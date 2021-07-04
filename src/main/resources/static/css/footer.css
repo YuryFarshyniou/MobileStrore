@@ -1,0 +1,22 @@
+footer {
+    width: 100%;
+    height: border-box;
+    background: #f8f9fa;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 25px;
+
+}
+
+footer a {
+    color: black;
+    font-size: 30px;
+    margin-left: 10px;
+
+}
+
+footer nav a:hover {
+    border-bottom: 1px solid black;
+}
+
+
