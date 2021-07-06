@@ -5,6 +5,10 @@ import by.yurachel.springapp.model.user.Status;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 
@@ -17,10 +21,14 @@ public class User {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
+    @NotEmpty(message = "UserName name should not be empty")
+    @Size(min = 2, max = 50, message = "UserName should be between 2 and 50 characters")
     private String userName;
 
+    @Size(min = 4, message = "Password should be longer than 4 characters.")
     private String password;
 
+    @Email
     private String email;
 
     @Enumerated(value = EnumType.STRING)

@@ -25,17 +25,4 @@ public class UserController {
         model.addAttribute("users", service.findAll());
         return "users/users";
     }
-
-    @GetMapping("/new")
-    public String addNewPhone(Model model) {
-        model.addAttribute("newUser", new User());
-        return "users/addUser";
-    }
-
-    @PostMapping
-    public String create(@ModelAttribute("newUser") User user) {
-        System.out.println(user);
-        service.save(user);
-        return "redirect:/users";
-    }
 }

@@ -38,8 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home").permitAll()
-                .antMatchers(HttpMethod.GET, "/phones/{^[\\d]$}", "/phones").hasAuthority(Permission.DEVELOPERS_READ.getPermission())
+                .antMatchers("/home","/phones","/phones/{^[\\d]$}","/registration").permitAll()
                 .antMatchers("/phones/new"
                         , "/phones/{\\d+}/updatePhone").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
                 .antMatchers(HttpMethod.DELETE, "/phones/{^[\\d]$}").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
@@ -50,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .defaultSuccessUrl("/home")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/home")
                 .and()
                 .rememberMe().userDetailsService(userDetailsService).tokenValiditySeconds(2592000);
     }

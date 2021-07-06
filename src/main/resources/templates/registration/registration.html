@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>MobileShop</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{../css/registration.css}"/>
+    <script type="text/javascript" src="webjars/jquery/3.2.0/jquery.min.js"></script>
+    <script th:href="@{../js/registration.js}"></script>
+
+</head>
+<body>
+<div class="container">
+    <form th:method="POST" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal" role="form">
+        <h2>Registration</h2>
+        <div class="form-group">
+            <label for="userName" class="col-sm-3 control-label">UserName</label>
+            <div class="col-sm-9">
+                <input type="text" id="userName" placeholder="User Name" class="form-control" autofocus
+                       th:field="*{userName}">
+                <span style="color: darkred" th:errors="*{userName}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password</label>
+            <div class="col-sm-9">
+                <input type="password" id="password" placeholder="Password" class="form-control"
+                       th:field="*{password}">
+                <span style="color: darkred" th:errors="*{password}"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email</label>
+            <div class="col-sm-9">
+                <input type="email" id="email" placeholder="Email" class="form-control" name="email"
+                       th:field="*{email}">
+                <span style="color: darkred" th:errors="*{email}"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Register</button>
+    </form>
+</div>
+</body>
+</html>

@@ -45,10 +45,10 @@ public class PhoneController {
         @PostMapping
         public String create(@ModelAttribute("newPhone") @Valid Phone phone,
                              BindingResult bindingResult) {
-            service.save(phone);
             if (bindingResult.hasErrors()) {
                 return "phones/newPhone";
             }
+            service.save(phone);
             return "redirect:/phones";
         }
 
