@@ -63,6 +63,7 @@ public class PhoneController {
                              @ModelAttribute("phone") @Valid Phone phone,
                              BindingResult bindingResult) {
             if (bindingResult.hasErrors()) {
+                bindingResult.getAllErrors().forEach(System.out::println);
                 return "phones/updatePhone";
             }
             service.save(phone);

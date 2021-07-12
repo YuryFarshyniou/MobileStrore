@@ -28,7 +28,8 @@ public class User {
     @Size(min = 4, message = "Password should be longer than 4 characters.")
     private String password;
 
-    @Email
+    @Email(message = "Please,check your email.")
+    @NotEmpty(message = "Email shouldn't be empty.")
     private String email;
 
     @Enumerated(value = EnumType.STRING)

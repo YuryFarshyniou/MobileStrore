@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org/" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
     <meta charset="UTF-8">
-    <title>PRofile</title>
+    <title>Profile</title>
 </head>
 <body>
-User information
+<header th:insert="header.html :: navigationBar"></header>
+<a sec:aisAuthenticated()="name">name</a>
 </body>
 </html>

@@ -39,6 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/home","/phones","/phones/{^[\\d]$}","/registration").permitAll()
+                .antMatchers("/profile").authenticated()
                 .antMatchers("/phones/new"
                         , "/phones/{\\d+}/updatePhone").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
                 .antMatchers(HttpMethod.DELETE, "/phones/{^[\\d]$}").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
