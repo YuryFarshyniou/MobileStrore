@@ -1,10 +1,16 @@
 package by.yurachel.springapp.model.phone.impl;
 
+import by.yurachel.springapp.model.user.impl.User;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "phones")
@@ -24,6 +30,9 @@ public class Phone {
     private String processor;
     @NotEmpty(message = "Img link should not be empty")
     private String img;
+
+    @ManyToMany(mappedBy = "phones",fetch = FetchType.EAGER)
+    private Set<User> users = new HashSet<>();
 
     private static final long serialVersionUID = 6295618226040646585L;
 
@@ -76,6 +85,14 @@ public class Phone {
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     public Phone(long id, String name, double price, String processor) {

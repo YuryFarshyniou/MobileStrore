@@ -5,9 +5,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
-<a sec:aisAuthenticated()="name">name</a>
+<div class="container">
+    <div class="row">
+        <div class="column " style="margin-top: 100px">
+            <div class="h1" style="text-align: center">User's information</div>
+            <div class="table-responsive">
+                <table class="table table-striped table-borderless table-hover my-5 ">
+
+                    <tbody>
+                    <tr class="bg-light">
+                        <td>User name:</td>
+                        <td th:text="${#authentication.name}">name</td>
+                    </tr>
+                    <tr class="bg-light">
+                        <td>User email:</td>
+                        <td th:text="${#authentication.getPrincipal().getUser().getEmail()}">name</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div th:each="phone : ${phoneList}">
+                <td th:class="name_column" th:text="${phone.getName()}">name</td>
+                <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="400"
+                                          th:height="400" th:alt="Image"/></td>
+                <td th:class="price_column" th:text="${phone.getPrice()}">price</td>
+                <td sec:authorize="hasAuthority('developers:write')">
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="footer.html :: footer"></footer>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>MobileShop</title>
-    <link rel="stylesheet" type="text/css" th:href="@{../css/home.css}"/>
+    <link rel="stylesheet" th:href="@{/css/home.css}"/>
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
@@ -21,7 +21,6 @@
         </div>
     </div>
 </section>
-
 <section>
     <div class="container-xxl">
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -146,12 +145,12 @@
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="prev">
+                    data-bs-slide="prev" id="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                    data-bs-slide="next">
+                    data-bs-slide="next" id="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>
@@ -159,6 +158,6 @@
         </div>
     </div>
 </section>
-<footer th:insert="footer.html :: footer"></footer>
+<footer id="footer" th:insert="footer.html :: footer"></footer>
 </body>
 </html>

@@ -3,11 +3,11 @@ section {
     padding-bottom: 50px;
 }
 
-.carousel-control-prev-icon {
+.carousel-control-prev .carousel-control-prev-icon {
     background-image: url("../img/left-arrow.svg");
 }
 
-.carousel-control-next-icon {
+.carousel-control-next .carousel-control-next-icon {
     background-image: url("../img/right-arrow-angle.svg");
 }
 
@@ -15,10 +15,11 @@ section {
     width: 20px;
 }
 
-.carousel-control-prev {
-    left: -35px;
+#prev {
+    left: -130px;
 }
 
-.carousel-control-next {
-    right: -35px;
+#next {
+    right: -130px;
 }
+

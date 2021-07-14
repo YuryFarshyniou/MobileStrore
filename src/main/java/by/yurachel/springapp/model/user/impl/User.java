@@ -1,14 +1,16 @@
 package by.yurachel.springapp.model.user.impl;
 
+import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -37,6 +39,18 @@ public class User {
 
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "users_orders",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "phone_id")
+    )
+    private List<Phone> phones = new ArrayList<>();
+
+    public boolean addPhone(Phone phone) {
+        return phones.add(phone);
+    }
 
     public User(long id, String userName, String password, String email, Role role, Status status) {
         this.id = id;
@@ -110,6 +124,14 @@ public class User {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public List<Phone> getPhones() {
+        return phones;
+    }
+
+    public void setPhones(List<Phone> phones) {
+        this.phones = phones;
     }
 
     @Override

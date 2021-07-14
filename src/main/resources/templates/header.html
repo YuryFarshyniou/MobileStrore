@@ -49,11 +49,11 @@
                     </button>
                 </form>
 
-<!--                <form class="form-inline my-2 my-lg-0" form-method="get" th:action="@{/login}">-->
-<!--                    <button sec:authorize="isAnonymous()" th:href="@{~/login}"-->
-<!--                            class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login-->
-<!--                    </button>-->
-<!--                </form>-->
+                <form class="form-inline my-2 my-lg-0" form-method="get" th:action="@{/login}">
+                    <button sec:authorize="isAnonymous()" th:href="@{~/login}"
+                            class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login
+                    </button>
+                </form>
                 <ul class="navbar-nav " id="drop">
                     <li class="nav-item dropdown " sec:authorize="isAuthenticated()">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDr"
@@ -61,10 +61,10 @@
                            th:text="${#authentication.getPrincipal().getUsername()}">text </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" th:href="@{/profile}">Profile</a>
+                                <a class="dropdown-item" th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href=#>Your Cart</a>
+                                <a class="dropdown-item" th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})/purchasesList}">Purchases list</a>
                             </li>
                         </ul>
                     </li>

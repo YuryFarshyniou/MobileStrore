@@ -1,44 +1,42 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <title>Phone</title>
-  <link rel="stylesheet" type="text/css" th:href="@{../css/phonePage.css}"/>
+    <meta charset="UTF-8"/>
+    <title>Phone</title>
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
-<div class="container">
-  <div class="row justify-content-md-center">
-    <div class="col-8">
-      <div class="image">
-        <img th:src="@{${phone.getImg()}}" width="600"
-             height="500" alt="Image" />
-      </div>
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th></th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-          <td>Name</td>
-          <td th:text="${phone.getName()}">name</td>
+<div class="container ">
+    <div class="row ">
+        <div class="col justify-content-center" style="margin-top: 80px">
+            <img th:src="@{${phone.getImg()}}" width="600" height="500" alt="Image"
+                 style="margin-left: auto;margin-right: auto; display: block ; margin-bottom: 20px"   />
 
-        </tr>
-        <tr>
-          <td>Processor</td>
-          <td th:text="${phone.getProcessor()}">processor</td>
-        </tr>
-        <tr>
-          <td>Price</td>
-          <td th:text="${phone.getPrice()}">price</td>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td th:text="${phone.getName()}">name</td>
 
-        </tr>
-        </tbody>
-      </table>
+                </tr>
+                <tr>
+                    <td>Processor</td>
+                    <td th:text="${phone.getProcessor()}">processor</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td th:text="${phone.getPrice()}">price</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
 </div>
 <footer th:insert="footer.html :: footer"></footer>
 </body>

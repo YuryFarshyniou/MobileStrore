@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head th:fragment="phoneCatalogHeader">
-    <meta charset="UTF-8"/>
-    <title>PhoneCatalog</title>
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Lobster'>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/catalog.css}"/>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
@@ -17,18 +18,14 @@
                     <th>Name</th>
                     <th></th>
                     <th>Price</th>
-                    <th sec:authorize="hasAuthority('developers:write')"></th>
-                    <th></th>
-                    <th sec:authorize="isAuthenticated()"></th>
-                    <th sec:authorize="hasAuthority('developers:write')"></th>
                 </tr>
                 </thead>
                 <tbody>
-                <div th:each="phone : ${phones}">
+                <div th:each="phone : ${purchaseList}">
                     <tr>
                         <td th:class="name_column" th:text="${phone.getName()}">name</td>
-                        <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="400"
-                                                  th:height="400" th:alt="Image"/></td>
+                        <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="50"
+                                                  th:height="50" th:alt="Image"/></td>
                         <td th:class="price_column" th:text="${phone.getPrice()}">price</td>
 
                         <td>
@@ -36,7 +33,17 @@
                                 <input class="btn btn-dark" type="submit" name="info" value="More info"/>
                             </form>
                         </td>
-
+                        <td sec:authorize="isAuthenticated()">
+                            <form >
+                                <input class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
+                            </form>
+                        </td>
+                        <td sec:authorize="hasAuthority('developers:write')">
+                            <form th:action="@{/phones/{id}/updatePhone(id=${phone.getId()})}" th:method="GET"
+                                  th:name="update">
+                                <input class="btn btn-dark" type="submit" name="info" value="Update"/>
+                            </form>
+                        </td>
                         <td sec:authorize="hasAuthority('developers:write')">
                             <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="DELETE"
                                   th:name="removePhone">
@@ -49,8 +56,6 @@
             </table>
         </div>
     </div>
-
-</div>
 <footer th:insert="footer.html :: footer"></footer>
 </body>
 </html>
