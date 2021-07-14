@@ -8,9 +8,9 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Entity
 @Table(name = "phones")
@@ -31,10 +31,18 @@ public class Phone {
     @NotEmpty(message = "Img link should not be empty")
     private String img;
 
-    @ManyToMany(mappedBy = "phones",fetch = FetchType.EAGER)
-    private Set<User> users = new HashSet<>();
+    @ManyToMany(mappedBy = "phones", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    private List<User> users = new ArrayList<>();
 
     private static final long serialVersionUID = 6295618226040646585L;
+
+    public boolean addUser(User user) {
+        return users.add(user);
+    }
+
+    public boolean deleteUser(long id) {
+        return users.removeIf(user -> user.getId() == id);
+    }
 
     public Phone(String name, double price, String processor, String img) {
         this.name = name;
@@ -87,11 +95,11 @@ public class Phone {
         return serialVersionUID;
     }
 
-    public Set<User> getUsers() {
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(Set<User> users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 

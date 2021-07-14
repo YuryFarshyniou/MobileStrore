@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -40,17 +41,25 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
     @JoinTable(
             name = "users_orders",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "phone_id")
     )
+
     private List<Phone> phones = new ArrayList<>();
+
+    private File imageFile;
 
     public boolean addPhone(Phone phone) {
         return phones.add(phone);
     }
+
+    public void deletePhone(long id) {
+        phones.removeIf(phone -> phone.getId() == id);
+    }
+
 
     public User(long id, String userName, String password, String email, Role role, Status status) {
         this.id = id;
@@ -73,6 +82,13 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.email = email;
+    }
+
+    public User(String userName, String password, String email, File imageFile) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.imageFile = imageFile;
     }
 
     public User() {
@@ -134,6 +150,14 @@ public class User {
         this.phones = phones;
     }
 
+    public File getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(File imageFile) {
+        this.imageFile = imageFile;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -158,4 +182,5 @@ public class User {
                 ", status=" + status +
                 '}';
     }
+
 }

@@ -28,13 +28,6 @@
                     </tbody>
                 </table>
             </div>
-            <div th:each="phone : ${phoneList}">
-                <td th:class="name_column" th:text="${phone.getName()}">name</td>
-                <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="400"
-                                          th:height="400" th:alt="Image"/></td>
-                <td th:class="price_column" th:text="${phone.getPrice()}">price</td>
-                <td sec:authorize="hasAuthority('developers:write')">
-            </div>
         </div>
     </div>
 </div>

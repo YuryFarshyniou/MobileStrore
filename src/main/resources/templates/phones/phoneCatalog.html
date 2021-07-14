@@ -36,7 +36,17 @@
                                 <input class="btn btn-dark" type="submit" name="info" value="More info"/>
                             </form>
                         </td>
-
+                        <td sec:authorize="isAuthenticated()">
+                            <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST" th:name="addPurchase" >
+                                <input class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
+                            </form>
+                        </td>
+                        <td sec:authorize="hasAuthority('developers:write')">
+                            <form th:action="@{/phones/{id}/updatePhone(id=${phone.getId()})}" th:method="GET"
+                                  th:name="update">
+                                <input class="btn btn-dark" type="submit" name="info" value="Update"/>
+                            </form>
+                        </td>
                         <td sec:authorize="hasAuthority('developers:write')">
                             <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="DELETE"
                                   th:name="removePhone">

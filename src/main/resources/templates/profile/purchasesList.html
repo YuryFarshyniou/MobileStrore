@@ -5,19 +5,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
-<div class="container">
+<div class="container" style="margin-top: 62px">
     <div class="row justify-content-md-center">
         <div class="col">
+            <div th:class="h1" style="text-align: center">Purchase list:</div>
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th>
                     <th></th>
-                    <th>Price</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,27 +28,10 @@
                         <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="50"
                                                   th:height="50" th:alt="Image"/></td>
                         <td th:class="price_column" th:text="${phone.getPrice()}">price</td>
-
                         <td>
-                            <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="GET" th:name="moreInfo">
-                                <input class="btn btn-dark" type="submit" name="info" value="More info"/>
-                            </form>
-                        </td>
-                        <td sec:authorize="isAuthenticated()">
-                            <form >
-                                <input class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
-                            </form>
-                        </td>
-                        <td sec:authorize="hasAuthority('developers:write')">
-                            <form th:action="@{/phones/{id}/updatePhone(id=${phone.getId()})}" th:method="GET"
-                                  th:name="update">
-                                <input class="btn btn-dark" type="submit" name="info" value="Update"/>
-                            </form>
-                        </td>
-                        <td sec:authorize="hasAuthority('developers:write')">
-                            <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="DELETE"
-                                  th:name="removePhone">
-                                <input class="btn btn-dark" type="submit" name="remove" value="Remove"/>
+                            <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="DELETE"
+                                  th:name="removeFromPurchase">
+                                <input class="btn btn-dark btn-sm" type="submit" name="remove" value="Remove"/>
                             </form>
                         </td>
                     </tr>

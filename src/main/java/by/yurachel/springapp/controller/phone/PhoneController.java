@@ -2,8 +2,8 @@ package by.yurachel.springapp.controller.phone;
 
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.service.IService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -17,62 +17,63 @@ import javax.validation.Valid;
 @RequestMapping("/phones")
 public class PhoneController {
 
-        private IService<Phone> service;
+    private IService<Phone> phoneService;
+    private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
-        @Autowired
-        public void setService(@Qualifier("phoneService") IService<Phone> service) {
-            this.service = service;
-        }
+    @Autowired
+    public void setService(@Qualifier("phoneService") IService<Phone> service) {
+        this.phoneService = service;
+    }
 
-        @GetMapping()
-        public String phoneList(Model model) {
-            model.addAttribute("phones", service.findAll());
-            return "phones/phoneCatalog";
-        }
+    @GetMapping()
+    public String phoneList(Model model) {
+        model.addAttribute("phones", phoneService.findAll());
+        return "phones/phoneCatalog";
+    }
 
-        @GetMapping("/{id}")
-        public String phonePage(@PathVariable("id") int id, Model model) {
-            model.addAttribute("phone", service.findById(id));
-            return "phones/showPhone";
-        }
+    @GetMapping("/{id}")
+    public String phonePage(@PathVariable("id") int id, Model model) {
+        model.addAttribute("phone", phoneService.findById(id));
+        return "phones/showPhone";
+    }
 
-        @GetMapping("/new")
-        public String addNewPhone(Model model) {
-            model.addAttribute("newPhone", new Phone());
+    @GetMapping("/new")
+    public String addNewPhone(Model model) {
+        model.addAttribute("newPhone", new Phone());
+        return "phones/newPhone";
+    }
+
+    @PostMapping
+    public String create(@ModelAttribute("newPhone") @Valid Phone phone,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "phones/newPhone";
         }
+        phoneService.save(phone);
+        return "redirect:/phones";
+    }
 
-        @PostMapping
-        public String create(@ModelAttribute("newPhone") @Valid Phone phone,
-                             BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                return "phones/newPhone";
-            }
-            service.save(phone);
-            return "redirect:/phones";
-        }
 
-        @GetMapping("/{id}/updatePhone")
-        public String edit(Model model, @PathVariable("id") int id) {
-            model.addAttribute("phone", service.findById(id));
+    @GetMapping("/{id}/updatePhone")
+    public String edit(Model model, @PathVariable("id") int id) {
+        model.addAttribute("phone", phoneService.findById(id));
+        return "phones/updatePhone";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@PathVariable int id,
+                         @ModelAttribute("phone") @Valid Phone phone,
+                         BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
             return "phones/updatePhone";
         }
+        phoneService.save(phone);
+        return "redirect:/phones";
+    }
 
-        @PatchMapping("/{id}")
-        public String update(@PathVariable int id,
-                             @ModelAttribute("phone") @Valid Phone phone,
-                             BindingResult bindingResult) {
-            if (bindingResult.hasErrors()) {
-                bindingResult.getAllErrors().forEach(System.out::println);
-                return "phones/updatePhone";
-            }
-            service.save(phone);
-            return "redirect:/phones";
-        }
-
-        @DeleteMapping("/{id}")
-        public String delete(@PathVariable("id") int id) {
-            service.deleteById(id);
-            return "redirect:/phones";
-        }
+    @DeleteMapping(value = "/{id}", name = "removePhone")
+    public String delete(@PathVariable("id") int id) {
+        phoneService.deleteById(id);
+        return "redirect:/phones";
+    }
 }

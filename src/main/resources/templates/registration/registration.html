@@ -35,6 +35,13 @@
                 <span style="color: darkred" th:errors="*{email}"></span>
             </div>
         </div>
+        <div class="form-group">
+            <label for="userName" class="col-sm-3 control-label">UserName</label>
+            <div class="col-sm-9">
+                <input type="file" id="img" placeholder="Image" class="form-control"
+                       th:field="*{imageFile}">
+            </div>
+        </div>
 
         <button type="submit" class="btn btn-primary btn-block">Register</button>
     </form>
