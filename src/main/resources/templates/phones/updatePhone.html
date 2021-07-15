@@ -8,7 +8,7 @@
 <body>
 <header th:insert="header.html :: navigationBar"></header>
 <div class="container">
-    <div class="row justify-content-md-center mt-5">
+    <div class="row justify-content-md-center mt-2">
         <div class="col-8">
             <form th:method="PATCH" th:action="@{/phones/{id}(id=${phone.id})}" th:object="${phone}">
                 <div class="mb-3">

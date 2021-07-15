@@ -42,9 +42,15 @@
                     </li>
                 </ul>
 
-                <a sec:authorize="isAuthenticated()" class="navbar-brand" th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">
-                    <img th:src="@{/img/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
-                </a>
+                <a sec:authorize="isAuthenticated()" class="navbar-brand"
+                   th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">
+
+                    <img th:unless="${#authentication.getPrincipal().getUser().isHasImage()}"
+                         th:src="@{/img/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
+
+                    <img th:if="${#authentication.getPrincipal().getUser().isHasImage()}"
+                         th:src="@{'/img/avatar/'+${#authentication.getName()}+'.png'}" alt="" width="35" height="35"
+                         style="border-radius: 50%"> </a>
 
                 <ul class="navbar-nav " id="drop" style="margin-right: 30px">
                     <li class="nav-item dropdown " sec:authorize="isAuthenticated()">

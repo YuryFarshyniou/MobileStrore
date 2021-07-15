@@ -2,6 +2,8 @@ package by.yurachel.springapp.config;
 
 import by.yurachel.springapp.model.user.Status;
 import by.yurachel.springapp.model.user.impl.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,12 +13,13 @@ import java.util.Collection;
 import java.util.List;
 
 
-
 public class SecurityUser implements UserDetails {
-    private User user;
+    private final User user;
+    private static final Logger logger = LoggerFactory.getLogger(SecurityUser.class);
 
     public SecurityUser(User user) {
         this.user = user;
+
     }
 
     @Override
@@ -66,4 +69,6 @@ public class SecurityUser implements UserDetails {
     public User getUser() {
         return user;
     }
+
+
 }

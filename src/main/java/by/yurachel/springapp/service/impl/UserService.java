@@ -7,6 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @Service("userService")
@@ -30,7 +34,6 @@ public class UserService implements IService<User> {
         logger.info("Users was successfully found");
         return users;
     }
-
     public User save(User user) {
         User userToDb = userRepository.save(user);
         logger.info("User was successfully added to db");
@@ -41,4 +44,6 @@ public class UserService implements IService<User> {
         userRepository.deleteById(id);
         logger.info("User with id {} was successfully deleted", id);
     }
+
+
 }
