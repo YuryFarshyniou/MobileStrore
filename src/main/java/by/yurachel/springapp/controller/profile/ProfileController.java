@@ -11,8 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.File;
-import java.net.MalformedURLException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Controller
 @RequestMapping("/profile")
@@ -32,7 +32,8 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}/purchasesList")
-    public String purchasesList(@PathVariable Long id, Model model, Authentication authentication){
+    public String purchasesList(@PathVariable Long id, Model model, Authentication authentication) {
+
         SecurityUser principal = (SecurityUser) authentication.getPrincipal();
         model.addAttribute("purchaseList", principal.getUser().getPhones());
 

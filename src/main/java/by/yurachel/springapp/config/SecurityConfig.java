@@ -29,7 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth){
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
@@ -38,7 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home","/phones","/phones/{^[\\d]$}","/registration").permitAll()
+                .antMatchers("/home", "/phones", "/phones/{^[\\d]$}", "/registration").permitAll()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/phones/new"
                         , "/phones/{\\d+}/updatePhone").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
@@ -52,7 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home")
                 .and()
-                .rememberMe().userDetailsService(userDetailsService).tokenValiditySeconds(2592000);
+                .rememberMe().userDetailsService(userDetailsService).tokenValiditySeconds(2592000)
+                .and().headers().cacheControl().disable();
     }
 
     @Bean

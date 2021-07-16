@@ -45,20 +45,18 @@ public class RegistrationController {
             return "registration/registration";
         }
         if (file.isEmpty()) {
-
             service.save(user);
             return "redirect:/home";
         }
         user.setHasImage(true);
         try {
-            Path path = Paths.get(AVATAR_PATH + user.getUserName() + ".png");
-            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            file.transferTo(Paths.get(AVATAR_PATH + user.getUserName() + ".png"));
+//            Path path = Paths.get(AVATAR_PATH + user.getUserName() + ".png");
+//            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         user.setPassword(encoder.encode(user.getPassword()));
-
         service.save(user);
         return "redirect:/home";
     }
