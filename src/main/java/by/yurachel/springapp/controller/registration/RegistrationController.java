@@ -12,15 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
-    private final String AVATAR_PATH = "C:\\Users\\USER1\\Java Projects\\SpringApp\\src\\main\\resources\\static\\img\\avatar\\";
+    private static final String AVATAR_PATH = "./src/main/resources/static/img/avatar/";
+    private static final String TARGET_PATH = "./target/classes/static/img/avatar/";
 
     private final IService<User> service;
     private final PasswordEncoder encoder;
@@ -51,8 +49,7 @@ public class RegistrationController {
         user.setHasImage(true);
         try {
             file.transferTo(Paths.get(AVATAR_PATH + user.getUserName() + ".png"));
-//            Path path = Paths.get(AVATAR_PATH + user.getUserName() + ".png");
-//            Files.copy(file.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+            file.transferTo(Paths.get(TARGET_PATH + user.getUserName() + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

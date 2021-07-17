@@ -50,7 +50,6 @@ public class User {
 
     private boolean hasImage;
 
-
     public boolean addPhone(Phone phone) {
         return phones.add(phone);
     }
@@ -149,6 +148,7 @@ public class User {
     public void setHasImage(boolean hasImage) {
         this.hasImage = hasImage;
     }
+
 
     @Override
     public boolean equals(Object o) {
