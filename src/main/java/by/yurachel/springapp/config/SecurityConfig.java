@@ -52,8 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home")
                 .and()
-                .rememberMe().userDetailsService(userDetailsService).tokenValiditySeconds(2592000)
-                .and().headers().cacheControl().disable();
+                .rememberMe().userDetailsService(userDetailsService).tokenValiditySeconds(2592000);
     }
 
     @Bean

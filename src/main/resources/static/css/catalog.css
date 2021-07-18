@@ -1,20 +1,40 @@
 .container {
-    padding-top: 56px;
+    padding-top: 70px;
     padding-bottom: 56px;
-}
-
-.table-striped {
-    width: 900px;
+    position: relative;
 }
 
 .price_column {
-    font-size: 50px;
-    font-family: "Lobster", serif;
+    font-size: 25px;
+    font-family: "Britannic Bold", serif;
+
 }
 
+
 .name_column {
-    width: 100%;
-    height: 100px;
-    font-size: 40px;
-    font-family: "Lobster", serif;
+    font-size: 25px;
+    font-family: "Britannic Bold", serif;
+
+}
+
+#sortTable {
+    vertical-align: middle;
+    text-align: center;
+}
+
+#nameHeader {
+    cursor: pointer;
+}
+
+#priceHeader {
+    cursor: pointer;
+}
+
+#myInput {
+    width: 40%;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    font-size: 25px;
+    height: 50px;
+
 }
