@@ -5,12 +5,10 @@ import by.yurachel.springapp.repository.UserRepository;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 @Service("userService")
@@ -45,5 +43,8 @@ public class UserService implements IService<User> {
         logger.info("User with id {} was successfully deleted", id);
     }
 
-
+    @Override
+    public Page<User> findAllPhones(Pageable pageable) {
+        return null;
+    }
 }
