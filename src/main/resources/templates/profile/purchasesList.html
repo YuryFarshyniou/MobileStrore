@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>
 
 <head>
     <meta charset="UTF-8">
@@ -11,8 +11,14 @@
 <div class="container" style="margin-top: 62px">
     <div class="row justify-content-md-center">
         <div class="col">
-            <div th:class="h1" style="text-align: center">Purchase list:</div>
-            <table class="table table-striped">
+            <div th:class="h1">Purchase list</div>
+            <span id="phoneSum" style="opacity: .8"></span>
+            <img class="rounded mx-auto d-block"
+                 th:if="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
+                 th:src="@{/img/emptyList.png}" alt="EmptyList"/>
+
+            <table class="table mt-3" id="purchaseTable"
+                   th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}">
                 <thead>
                 <tr>
                     <th></th>
@@ -22,12 +28,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                <div th:each="phone : ${purchaseList}">
+                <th:block th:each="phone : ${purchaseList}" id="purchaseDiv">
                     <tr>
                         <td th:class="name_column" th:text="${phone.getName()}">name</td>
-                        <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="50"
-                                                  th:height="50" th:alt="Image"/></td>
-                        <td th:class="price_column" th:text="${phone.getPrice()}">price</td>
+                        <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="90"
+                                                  th:height="90" th:alt="Image"/></td>
+                        <td th:class="price_column" th:text="${phone.getPrice()+'$'}">price</td>
                         <td>
                             <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="DELETE"
                                   th:name="removeFromPurchase">
@@ -35,11 +41,14 @@
                             </form>
                         </td>
                     </tr>
-                </div>
+                </th:block>
                 </tbody>
             </table>
+            <img th:src="@{/img/}" class="rounded float-end">
         </div>
     </div>
-<footer th:insert="footer.html :: footer"></footer>
+    <footer th:insert="footer.html :: footer"></footer>
+</div>
+<script th:src="@{/js/purchaseSum.js}"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -38,7 +39,8 @@ public class RegistrationController {
     @PostMapping
     public String create(@ModelAttribute("newUser") @Valid User user,
                          BindingResult bindingResult,
-                         @RequestParam("file") MultipartFile file) {
+                         @RequestParam("file") MultipartFile file,
+                         HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
             return "registration/registration";
         }

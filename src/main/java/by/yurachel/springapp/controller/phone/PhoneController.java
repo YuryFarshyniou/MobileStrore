@@ -25,6 +25,7 @@ public class PhoneController {
     private IService<Phone> phoneService;
     private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
+
     @Autowired
     public void setService(@Qualifier("phoneService") IService<Phone> service) {
         this.phoneService = service;
@@ -37,6 +38,8 @@ public class PhoneController {
         int[] body = pagination(phones);
         model.addAttribute("phones", phones);
         model.addAttribute("body", body);
+        model.addAttribute("amountOfElements", new int[]{5, 10, 20, 50});
+
 
         return "phones/phoneCatalog";
     }
@@ -87,51 +90,32 @@ public class PhoneController {
         return "redirect:/phones";
     }
 
-//    private List<Integer> pagination(Page<Phone> phones) {
-//        List<Integer> body = new ArrayList<>();
-//        if (phones.getTotalPages() > 7) {
-//            int totalPages = phones.getTotalPages();
-//            int pageNumber = phones.getNumber() + 1;
-//            List<Integer> a = new ArrayList<>(Arrays.asList(1, -1));
-//            List<Integer> b = new ArrayList<>(Arrays.asList(1, 2, 3));
-//            List<Integer> c = new ArrayList<>(Arrays.asList(-1, totalPages));
-//            List<Integer> d = new ArrayList<>(Arrays.asList(totalPages - 2, totalPages - 1, totalPages));
-//            List<Integer> e = new ArrayList<>(Arrays.asList(pageNumber - 2, pageNumber - 1));
-//            List<Integer> f = new ArrayList<>();
-//            List<Integer> g = new ArrayList<>(Arrays.asList(pageNumber + 1, pageNumber + 2));
-//            List<Integer> h = new ArrayList<>(Arrays.asList(pageNumber));
-//
-//            List<Integer> head = (pageNumber > 4) ? a : b;
-//            List<Integer> tail = (pageNumber < totalPages - 3) ? c : d;
-//            List<Integer> bodyBefore = (pageNumber > 4 && pageNumber > totalPages - 1) ? e : f;
-//            List<Integer> bodyAfter = (pageNumber < 2 && pageNumber > totalPages - 3) ? g : f;
-//            List<Integer> middle = (pageNumber > 3 && pageNumber > totalPages - 2) ? h : f;
-//            body.addAll(head);
-//            body.addAll(bodyBefore);
-//            body.addAll(middle);
-//            body.addAll(bodyAfter);
-//            body.addAll(tail);
-//
-//        } else {
-//            for (int i = 0; i < phones.getTotalPages(); i++) {
-//                body.add(++i);
-//            }
-//        }
-//
-//        System.out.println(body);
-//        return body;
-//    }
-
     private int[] pagination(Page<Phone> phones) {
         int[] body;
-        if (phones.getTotalPages() > 7) {
+        int maxPhonePages = 7;
+        int headMaxPage = 4;
+        int bodyBeforeMaxPage = 4;
+        int bodyAfterMaxPages = 2;
+        int bodyCenterMaxPage = 3;
+
+
+        if (phones.getTotalPages() > maxPhonePages) {
             int totalPages = phones.getTotalPages();
-            int pageNumber = phones.getNumber() + 1;
-            int[] head = (pageNumber > 4) ? new int[]{1, -1} : new int[]{1, 2, 3};
-            int[] bodyBefore = (pageNumber > 4 && pageNumber < totalPages - 1) ? new int[]{pageNumber - 2, pageNumber - 1} : new int[]{};
-            int[] bodyCenter = (pageNumber > 3 && pageNumber < totalPages - 2) ? new int[]{pageNumber} : new int[]{};
-            int[] bodyAfter = (pageNumber > 2 && pageNumber < totalPages - 3) ? new int[]{pageNumber + 1, pageNumber + 2} : new int[]{};
+            int pageNumber = phones.getNumber() + 1; //Отображаемый индекс страницы на единицу больше,чем тот,что мы имеем в коде.
+
+            /*If current page greater than headMaxPage ,than we display page one and minus one,else we display pages one,two three.*/
+            int[] head = (pageNumber > headMaxPage) ? new int[]{1, -1} : new int[]{1, 2, 3};
+            /*If current page greater than bodyBeforeMaxPage and pageNumber less than totalPAges minus one,than we display pageNumber minus two,
+             and pageNumber minus one,else we display nothing.*/
+            int[] bodyBefore = (pageNumber > bodyBeforeMaxPage && pageNumber < totalPages - 1) ? new int[]{pageNumber - 2, pageNumber - 1} : new int[]{};
+             /*If current page greater than bodyAfterMaxPages and pageNumber less than totalPAges minus three,than we display pageNumber plus one,
+             and pageNumber plus two,else we display nothing.*/
+            int[] bodyAfter = (pageNumber > bodyAfterMaxPages && pageNumber < totalPages - 3) ? new int[]{pageNumber + 1, pageNumber + 2} : new int[]{};
+            /*If current page greater than bodyCenterMaxPage and pageNumber less than totalPAges minus two,than we display pageNumber,else we display nothing.*/
+            int[] bodyCenter = (pageNumber > bodyCenterMaxPage && pageNumber < totalPages - 2) ? new int[]{pageNumber} : new int[]{};
+            /*If current page less than totalPages minus three,than we display minus one and totalPages,else we display totalPages-2,totalPages-1 and totalPages.*/
             int[] tail = (pageNumber < totalPages - 3) ? new int[]{-1, totalPages} : new int[]{totalPages - 2, totalPages - 1, totalPages};
+
             body = merge(head, bodyBefore, bodyCenter, bodyAfter, tail);
         } else {
             body = new int[phones.getTotalPages()];

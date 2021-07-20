@@ -11,9 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
-
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
@@ -43,7 +40,6 @@ public class ProfileController {
     @PostMapping(value = "/{id}", name = "addPurchase")
     public String addPurchase(@PathVariable Long id, Authentication authentication) {
         Phone phoneById = phoneService.findById(id);
-
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         securityUser.getUser().addPhone(phoneById);
         phoneById.addUser(securityUser.getUser());
