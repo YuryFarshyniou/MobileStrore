@@ -39,18 +39,13 @@
                     <td sec:authorize="isAuthenticated()"                       >
                         <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST"
                               th:name="addPurchase">
+
                             <input th:unless="${#authentication.getPrincipal().getUser().containsPhone(phone.id)}"
                                    class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
                             <input  th:if="${#authentication.getPrincipal().getUser().containsPhone(phone.id)}"
                                     class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
                         </form>
                     </td>
-<!--                    <td sec:authorize="isAuthenticated()">-->
-<!--                        <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST"-->
-<!--                              th:name="addPurchase">-->
-<!--                            <input class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>-->
-<!--                        </form>-->
-<!--                    </td>-->
 
                     <td sec:authorize="hasAuthority('developers:write')">
                         <form th:action="@{/phones/{id}/updatePhone(id=${phone.getId()})}" th:method="GET"

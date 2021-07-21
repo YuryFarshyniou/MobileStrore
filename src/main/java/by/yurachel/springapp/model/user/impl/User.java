@@ -6,6 +6,7 @@ import by.yurachel.springapp.model.user.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -51,6 +52,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "phone_id")
     )
+    @ToString.Exclude
     private List<Phone> phones = new ArrayList<>();
 
     private boolean hasImage;

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link rel="stylesheet" th:href="@{/css/purchasesList.css}">
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
@@ -25,26 +26,64 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
                 <th:block th:each="phone : ${purchaseList}" id="purchaseDiv">
                     <tr>
-                        <td th:class="name_column" th:text="${phone.getName()}">name</td>
-                        <td th:class="image"><img th:src="@{${phone.getImg()}}" th:width="90"
-                                                  th:height="90" th:alt="Image"/></td>
-                        <td th:class="price_column" th:text="${phone.getPrice()+'$'}">price</td>
-                        <td>
-                            <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="DELETE"
-                                  th:name="removeFromPurchase">
-                                <input class="btn btn-dark btn-sm" type="submit" name="remove" value="Remove"/>
+
+                        <td th:class="name_column" th:text="${phone.getKey()}"
+                            id="nameColumn">name
+                        </td>
+
+                        <th:block th:each="phone2 : ${phone.getValue()}">
+                            <td th:class="image"><img th:src="@{${phone2.getKey().getImg()}}" th:width="90"
+                                                      th:height="90" th:alt="Image"/></td>
+                        </th:block>
+
+                        <td id="actionWithPurchases">
+                            <th:block th:each="phone2 : ${phone.getValue()}">
+                                <form th:action="@{/profile/{id}(id=id=${phone2.getKey().getId()})}"
+                                      th:name="removeFromPurchase" id="minusFormButton" th:method="DELETE">
+                                    <button th:if="${phone2.getValue()==1}"
+                                            type="button" class="btn btn-secondary btn-sm disabled" id="minusButtonDisabled">-
+                                    </button>
+                                    <button th:unless="${phone2.getValue()==1}"
+                                            type="button" class="btn btn-secondary btn-sm " id="minusButton">-
+                                    </button>
+                                </form>
+                            </th:block>
+                            <th:block th:each="phone2 : ${phone.getValue()}">
+                                <span id="amountOfPurchases" th:text="${phone2.getValue()}"></span>
+                            </th:block>
+                            <form action="#"
+                                  th:name="removeFromPurchase" id="plusFormButton">
+                                <button type="button" class="btn btn-secondary btn-sm" id="plusButton">+</button>
                             </form>
+
+                        </td>
+                        <th:block th:each="phone2 : ${phone.getValue()}">
+                            <td th:class="price_column" th:text="${phone2.getKey().getPrice()+'$'}"
+                                id="priceColumn">price
+                            </td>
+                        </th:block>
+
+
+                        <td>
+                            <th:block th:each="phone2:${phone.getValue()}">
+                                <form th:action="@{/profile/{id}(id=${phone2.getKey().getId()})}" th:method="DELETE"
+                                      th:name="removeFromPurchase">
+                                    <input type="image" th:src="@{/img/garbageIcon.png}" alt="garbageIcon"
+                                           width="30" height="30"/>
+                                </form>
+                            </th:block>
+
                         </td>
                     </tr>
                 </th:block>
                 </tbody>
             </table>
-            <img th:src="@{/img/}" class="rounded float-end">
         </div>
     </div>
     <footer th:insert="footer.html :: footer"></footer>

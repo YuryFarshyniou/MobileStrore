@@ -4,6 +4,7 @@ import by.yurachel.springapp.model.user.impl.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -37,6 +38,7 @@ public class Phone {
     private String img;
 
     @ManyToMany(mappedBy = "phones", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    @ToString.Exclude
     private List<User> users = new ArrayList<>();
 
     private static final long serialVersionUID = 6295618226040646585L;

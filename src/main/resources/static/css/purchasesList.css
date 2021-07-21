@@ -1,0 +1,25 @@
+#purchaseTable {
+    vertical-align: middle;
+    text-align: center
+}
+
+#nameColumn, #priceColumn {
+    font-size: 25px
+}
+
+#minusFormButton, #plusFormButton {
+    display: inline;
+
+}
+
+#plusButton, #minusButton,#minusButtonDisabled {
+    width: 28px;
+}
+
+#amountOfPurchases {
+    display: inline;
+    margin-right: 5px;
+    margin-left: 5px
+}
+
+

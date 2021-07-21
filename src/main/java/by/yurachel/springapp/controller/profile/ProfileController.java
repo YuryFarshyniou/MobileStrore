@@ -11,6 +11,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
@@ -32,7 +37,24 @@ public class ProfileController {
     public String purchasesList(@PathVariable Long id, Model model, Authentication authentication) {
 
         SecurityUser principal = (SecurityUser) authentication.getPrincipal();
-        model.addAttribute("purchaseList", principal.getUser().getPhones());
+        List<Phone> userPhones = principal.getUser().getPhones();
+        Map<String, Map<Phone, Integer>> phones = new HashMap<>();
+        for (Phone phone : userPhones) {
+            Map<Phone, Integer> s = new HashMap<>();
+            if (phones.containsKey(phone.getName())) {
+                s = phones.get(phone.getName());
+                Set<Phone> set = s.keySet();
+                Phone p = (Phone) set.toArray()[0];
+                int i = s.get(p) + 1;
+                s.put(p, i);
+            } else {
+                s.put(phone, 1);
+            }
+            phones.put(phone.getName(), s);
+
+        }
+        System.out.println(phones.size());
+        model.addAttribute("purchaseList", phones);
 
         return "profile/purchasesList";
     }
