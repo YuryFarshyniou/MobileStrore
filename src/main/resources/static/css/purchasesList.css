@@ -1,6 +1,11 @@
+.container {
+    margin-top: 62px
+}
+
 #purchaseTable {
     vertical-align: middle;
-    text-align: center
+    text-align: center;
+
 }
 
 #nameColumn, #priceColumn {
@@ -25,13 +30,16 @@
 #amountOfPurchasesAndSum {
     font-weight: bold;
     float: right;
-    padding-right: 180px;
+    padding-right: 150px;
 }
 
 #makeAnOrderButton {
     float: right;
     margin-top: 80px;
     margin-right: 110px
+}
+#phoneSum{
+    opacity: .8
 }
 
 

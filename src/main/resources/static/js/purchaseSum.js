@@ -9,5 +9,5 @@ for (let i = 0; i < tbodyRowCount.rows.length; i++) {
 document.getElementById("phoneSum").innerHTML = "Sum of your purchases: " + sumVal + "$"
 
 document.getElementById("amountOfPurchasesAndSum").innerHTML = "Amount of purchases: " + amountOfPurchases +
-     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
     + " Sum of purchases: &nbsp;" + sumVal + "$";

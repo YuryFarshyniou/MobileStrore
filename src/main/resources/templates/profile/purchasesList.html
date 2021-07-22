@@ -8,26 +8,17 @@
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
-<div class="container" style="margin-top: 62px">
+<div class="container" >
     <div class="row justify-content-md-center">
         <div class="col">
             <div th:class="h1">Purchase list</div>
-            <span id="phoneSum" style="opacity: .8"></span>
+            <span id="phoneSum" ></span>
             <img class="rounded mx-auto d-block"
                  th:if="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
                  th:src="@{/img/emptyList.png}" alt="EmptyList"/>
 
-            <table class="table mt-3" id="purchaseTable"
+            <table class="table mt-5" id="purchaseTable"
                    th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}">
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                </thead>
                 <tbody>
                 <th:block th:each="phone : ${purchaseList}" id="purchaseDiv">
                     <th:block th:each="phone2 : ${phone.getValue()}">
@@ -75,9 +66,9 @@
             <span id="amountOfPurchasesAndSum" style=""></span>
 
         </div>
-        <form>
+        <form th:method="POST" th:action="">
             <button type="submit" class="btn btn-success"
-                    th:unless="${#authentication.getPrincipal().getUser().getPhones().size()==0}"
+                    th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
                     id="makeAnOrderButton">Make an order
             </button>
         </form>
