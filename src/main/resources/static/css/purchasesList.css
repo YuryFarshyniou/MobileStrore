@@ -12,7 +12,7 @@
 
 }
 
-#plusButton, #minusButton,#minusButtonDisabled {
+#plusButton, #minusButton, #minusButtonDisabled {
     width: 28px;
 }
 
@@ -20,6 +20,18 @@
     display: inline;
     margin-right: 5px;
     margin-left: 5px
+}
+
+#amountOfPurchasesAndSum {
+    font-weight: bold;
+    float: right;
+    padding-right: 180px;
+}
+
+#makeAnOrderButton {
+    float: right;
+    margin-top: 80px;
+    margin-right: 110px
 }
 
 

@@ -62,6 +62,15 @@ public class User {
     }
 
     public void deletePhone(long id) {
+        for (Phone phone : phones) {
+            if (phone.getId() == id) {
+                phones.remove(phone);
+                return;
+            }
+        }
+    }
+
+    public void deleteAllPhones(long id) {
         phones.removeIf(phone -> phone.getId() == id);
     }
 
