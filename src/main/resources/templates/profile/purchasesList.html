@@ -8,11 +8,11 @@
 </head>
 <body>
 <header th:insert="header.html :: navigationBar"></header>
-<div class="container" >
+<div class="container">
     <div class="row justify-content-md-center">
         <div class="col">
             <div th:class="h1">Purchase list</div>
-            <span id="phoneSum" ></span>
+            <span id="phoneSum"></span>
             <img class="rounded mx-auto d-block"
                  th:if="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
                  th:src="@{/img/emptyList.png}" alt="EmptyList"/>
@@ -26,10 +26,11 @@
                             <td th:class="name_column" th:text="${phone.getKey()}"
                                 id="nameColumn">name
                             </td>
+
                             <td th:class="image"><img th:src="@{${phone2.getKey().getImg()}}" th:width="90"
                                                       th:height="90" th:alt="Image"/></td>
                             <td id="actionWithPurchases">
-                                <form th:action="@{/profile/{id}(id=${phone2.getKey().getId()})}"
+                                <form th:action="@{/profile/{id}/minusOperator(id=${phone2.getKey().getId()})}"
                                       th:name="minusOperationInPurchaseList" id="minusFormButton" th:method="DELETE">
                                     <button th:if="${phone2.getValue()==1}"
                                             type="button" class="btn btn-secondary btn-sm disabled"
@@ -39,14 +40,14 @@
                                             type="submit" class="btn btn-secondary btn-sm " id="minusButton">-
                                     </button>
                                 </form>
-
                                 <span id="amountOfPurchases" th:text="${phone2.getValue()}"></span>
 
                                 <form th:action="@{/profile/{id}/plusOp(id=${phone2.getKey().getId()})}"
-                                      th:name="plusOperationInPurchaseList" id="plusFormButton" th:method="POST">
+                                      th:name="addPurchaseInPlusOperation" id="plusFormButton" th:method="POST">
                                     <button type="submit" class="btn btn-secondary btn-sm" id="plusButton">+</button>
                                 </form>
                             </td>
+
                             <td th:class="price_column" th:text="${(phone2.getKey().getPrice()*phone2.getValue())+'$'}"
                                 id="priceColumn">price
                             </td>
@@ -66,7 +67,9 @@
             <span id="amountOfPurchasesAndSum" style=""></span>
 
         </div>
-        <form th:method="POST" th:action="">
+        <form th:method="POST"
+              th:action="@{/profile/{id}/order(id=(${#authentication.getPrincipal().getUser().getId()}))}"
+              th:name="makeAnOrder">
             <button type="submit" class="btn btn-success"
                     th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
                     id="makeAnOrderButton">Make an order

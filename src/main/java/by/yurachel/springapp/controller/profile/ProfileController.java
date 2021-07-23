@@ -1,6 +1,7 @@
 package by.yurachel.springapp.controller.profile;
 
 import by.yurachel.springapp.config.SecurityUser;
+import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.service.IService;
@@ -21,11 +22,13 @@ import java.util.Set;
 public class ProfileController {
     private final IService<Phone> phoneService;
     private final IService<User> userService;
+    private final IService<Order> orderService;
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
-    public ProfileController(IService<Phone> phoneService, IService<User> userService) {
+    public ProfileController(IService<Phone> phoneService, IService<User> userService, IService<Order> orderService) {
         this.phoneService = phoneService;
         this.userService = userService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/{id}")
@@ -49,7 +52,7 @@ public class ProfileController {
         return "profile/orders";
     }
 
-    @PostMapping(value = "/{id}", name = "addPurchase")
+    @PostMapping(value = "/{id}", name = "addPurchaseInPhoneCatalog")
     public String addPurchaseInPhoneCatalog(@PathVariable Long id, Authentication authentication) {
         Phone phoneById = phoneService.findById(id);
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
@@ -57,33 +60,51 @@ public class ProfileController {
         phoneById.addUser(securityUser.getUser());
 
         userService.save(securityUser.getUser());
-        phoneService.save(phoneById);
         return "redirect:/phones";
     }
 
-    @PostMapping(value = "/{id}/plusOp", name = "addPurchase")
+    @PostMapping(value = "/{id}/plusOp", name = "addPurchaseInPlusOperation")
     public String addPhoneInPlusOperation(@PathVariable Long id, Authentication authentication) {
         Phone phoneById = phoneService.findById(id);
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         securityUser.getUser().addPhone(phoneById);
-        phoneById.addUser(securityUser.getUser());
+//        phoneById.addUser(securityUser.getUser());
 
         userService.save(securityUser.getUser());
-        phoneService.save(phoneById);
         return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
     }
 
-    @DeleteMapping(value = "/{id}", name = "removeFromPurchase")
+    @PostMapping(value = "/{id}/order", name = "makeAnOrder")
+    public String makeAnOrder(@PathVariable Long id, Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        Order order = new Order();
+//        order.setPhones(user.getPhones());
+//        order.setUser(user);
+
+        user.getPhones().clear();
+
+        userService.save(user);
+//        System.out.println(user.getOrders());
+        return "redirect:/profile/" + user.getId() + "/purchasesList";
+    }
+
+    @DeleteMapping(value = "/{id}")
     public String deleteFromPurchase(@PathVariable Long id, Authentication authentication) {
+        phoneService.deleteById(id);
+
+        return "redirect:/phones";
+    }
+
+    @DeleteMapping(value = "/{id}/minusOperator")
+    public String deleteFromMinusOperator(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         user.deletePhone(id);
         Phone phone = phoneService.findById(id);
-        phone.deleteUser(user.getId());
 
         userService.save(user);
-        phoneService.save(phone);
-        return "redirect:/profile/{id}/purchasesList";
+        return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
     }
 
     @DeleteMapping(value = "/{id}/allPhones", name = "removeAllPhonesInOneOrderFromPurchase")
@@ -92,14 +113,14 @@ public class ProfileController {
         User user = securityUser.getUser();
         user.deleteAllPhones(id);
         Phone phone = phoneService.findById(id);
-        phone.deleteUser(user.getId());
+        phone.deleteAllUsers(user.getId());
 
         userService.save(user);
-        phoneService.save(phone);
         return "redirect:/profile/{id}/purchasesList";
     }
 
     private Map<String, Map<Phone, Integer>> convertListIntoMap(List<Phone> userPhones) {
+        System.out.println("UserPhones: " + userPhones);
         Map<String, Map<Phone, Integer>> phones = new HashMap<>();
         for (Phone phone : userPhones) {
             Map<Phone, Integer> s = new HashMap<>();
@@ -114,6 +135,7 @@ public class ProfileController {
             }
             phones.put(phone.getName(), s);
         }
+        System.out.println("MAP : " + phones);
         return phones;
     }
 }

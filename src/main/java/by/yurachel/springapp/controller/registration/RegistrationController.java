@@ -45,6 +45,7 @@ public class RegistrationController {
             return "registration/registration";
         }
         if (file.isEmpty()) {
+            user.setPassword(encoder.encode(user.getPassword()));
             service.save(user);
             return "redirect:/home";
         }

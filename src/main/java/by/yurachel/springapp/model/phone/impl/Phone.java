@@ -1,11 +1,11 @@
 package by.yurachel.springapp.model.phone.impl;
 
+import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.impl.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -19,7 +19,9 @@ import java.util.List;
 @Table(name = "phones")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@ToString
 public class Phone {
     @Id
     @GeneratedValue(generator = "increment")
@@ -37,18 +39,30 @@ public class Phone {
     @NotEmpty(message = "Img link should not be empty")
     private String img;
 
-    @ManyToMany(mappedBy = "phones", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
+    private static final long serialVersionUID = 6295618226040646585L;
+
+    @ManyToMany(mappedBy = "phones")
     @ToString.Exclude
     private List<User> users = new ArrayList<>();
 
-    private static final long serialVersionUID = 6295618226040646585L;
+//    @ManyToMany(mappedBy = "phones", cascade = CascadeType.MERGE)
+//        private List<Order> orders = new ArrayList<>();
 
-    public boolean addUser(User user) {
-        return users.add(user);
+    public void deleteUser(long id) {
+        for (User user : users) {
+            if (user.getId() == id) {
+                users.remove(user);
+                return;
+            }
+        }
     }
 
-    public boolean deleteUser(long id) {
-        return users.removeIf(user -> user.getId() == id);
+    public void deleteAllUsers(long id) {
+        users.removeIf(user -> user.getId() == id);
+    }
+
+    public void addUser(User user) {
+        users.add(user);
     }
 
     public Phone(String name, double price, String processor, String img) {
@@ -56,7 +70,6 @@ public class Phone {
         this.price = price;
         this.processor = processor;
         this.img = img;
-
     }
 
     public Phone(long id, String name, double price, String processor) {
@@ -71,7 +84,6 @@ public class Phone {
         this.price = price;
         this.processor = processor;
     }
-
 
 
 }

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service("userService")
@@ -21,29 +22,35 @@ public class UserService implements IService<User> {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     public User findById(long id) {
         User user = userRepository.findById(id).orElse(null);
-        logger.info("User {} was successfully found", user);
+        logger.info("User {} was successfully found", user.getUserName());
         return user;
     }
 
+    @Transactional
     public List<User> findAll() {
         List<User> users = userRepository.findAll();
         logger.info("Users was successfully found");
         return users;
     }
+
+    @Transactional
     public User save(User user) {
         User userToDb = userRepository.save(user);
         logger.info("User was successfully added to db");
         return userToDb;
     }
 
+    @Transactional
     public void deleteById(long id) {
         userRepository.deleteById(id);
         logger.info("User with id {} was successfully deleted", id);
     }
 
     @Override
+    @Transactional
     public Page<User> findAllPhones(Pageable pageable) {
         return null;
     }

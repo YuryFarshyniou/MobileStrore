@@ -1,12 +1,10 @@
 package by.yurachel.springapp.model.user.impl;
 
+import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -15,12 +13,15 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
 public class User {
 
     @Id
@@ -48,17 +49,21 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
     @JoinTable(
-            name = "users_orders",
+            name = "users_phones",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "phone_id")
     )
     @ToString.Exclude
     private List<Phone> phones = new ArrayList<>();
 
+//    @OneToMany(mappedBy = "user")
+//    private List<Order> orders = new ArrayList<>();
+
+
     private boolean hasImage;
 
-    public boolean addPhone(Phone phone) {
-        return phones.add(phone);
+    public void addPhone(Phone phone) {
+         phones.add(phone);
     }
 
     public void deletePhone(long id) {

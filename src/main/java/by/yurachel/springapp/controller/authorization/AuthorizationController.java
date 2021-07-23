@@ -13,6 +13,5 @@ public class AuthorizationController {
         return "authorization/login";
     }
 
-
 }
 
