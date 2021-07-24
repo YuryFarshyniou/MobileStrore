@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class Order {
+public class Order implements Serializable {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -30,20 +31,14 @@ public class Order {
 
     private String creationDate;
 
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private OrderState state;
 
-//    @ManyToOne()
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
-//
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
-//    @JoinTable(
-//            name = "orders_phones",
-//            joinColumns = @JoinColumn(name = "order_id"),
-//            inverseJoinColumns = @JoinColumn(name = "phones_id")
-//    )
-//    private List<Phone> phones = new ArrayList<>();
+    @ManyToOne()
+    private User user;
+
+    @ManyToMany()
+    private List<Phone> phonesInOrder = new ArrayList<>();
 
     public Order() {
         creationDate = new Date().toString();

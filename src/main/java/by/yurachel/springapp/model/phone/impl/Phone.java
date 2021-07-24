@@ -4,14 +4,13 @@ import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.impl.User;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class Phone {
+public class Phone implements Serializable {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -45,8 +44,9 @@ public class Phone {
     @ToString.Exclude
     private List<User> users = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "phones", cascade = CascadeType.MERGE)
-//        private List<Order> orders = new ArrayList<>();
+    @ManyToMany(mappedBy = "phonesInOrder")
+    @ToString.Exclude
+    private List<Order> orders = new ArrayList<>();
 
     public void deleteUser(long id) {
         for (User user : users) {

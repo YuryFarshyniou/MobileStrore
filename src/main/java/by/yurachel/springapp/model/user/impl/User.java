@@ -5,15 +5,17 @@ import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "users")
@@ -22,7 +24,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -47,17 +49,13 @@ public class User {
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @JoinTable(
-            name = "users_phones",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "phone_id")
-    )
+    @ManyToMany(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @ToString.Exclude
     private List<Phone> phones = new ArrayList<>();
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders = new ArrayList<>();
 
 
     private boolean hasImage;
@@ -79,6 +77,7 @@ public class User {
         phones.removeIf(phone -> phone.getId() == id);
     }
 
+    @Transactional
     public boolean containsPhone(long id) {
         return phones.stream().anyMatch(phone -> phone.getId() == id);
     }

@@ -79,12 +79,13 @@ public class ProfileController {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         Order order = new Order();
-//        order.setPhones(user.getPhones());
-//        order.setUser(user);
+        order.setPhonesInOrder(user.getPhones());
+        order.setUser(user);
 
         user.getPhones().clear();
 
         userService.save(user);
+        orderService.save(order);
 //        System.out.println(user.getOrders());
         return "redirect:/profile/" + user.getId() + "/purchasesList";
     }
