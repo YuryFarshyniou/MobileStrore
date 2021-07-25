@@ -1,6 +1,7 @@
 package by.yurachel.springapp.controller.profile;
 
 import by.yurachel.springapp.config.SecurityUser;
+import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
@@ -12,10 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Controller
 @RequestMapping("/profile")
@@ -33,6 +31,7 @@ public class ProfileController {
 
     @GetMapping("/{id}")
     public String userProfile(@PathVariable Long id) {
+
         return "profile/profile";
     }
 
@@ -40,70 +39,94 @@ public class ProfileController {
     public String purchasesList(@PathVariable Long id, Model model, Authentication authentication) {
 
         SecurityUser principal = (SecurityUser) authentication.getPrincipal();
-        List<Phone> userPhones = principal.getUser().getPhones();
-        Map<String, Map<Phone, Integer>> phones = convertListIntoMap(userPhones);
+        User user = principal.getUser();
+
+        Order order =user.getPreparatoryOrder();
+        System.out.println(order);
+        List<Phone> userPhones = new ArrayList<>();
+        if (order != null) {
+            userPhones = order.getPhones();
+        }
+
+        Map<String, Map<Phone, Integer>> phones = convertListOfPhonesIntoMap(userPhones);
         model.addAttribute("purchaseList", phones);
 
         return "profile/purchasesList";
     }
 
     @GetMapping("/{id}/orders")
-    public String ordersList(@PathVariable Long id, Authentication authentication) {
+    public String ordersList(@PathVariable Long id, Model model, Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        List<Order> orders = user.getOrders();
+//        Map<String<Map<Order, Integer>> orders = convertListOfPhonesIntoMap(orders);
+        model.addAttribute("orders", orders);
+
         return "profile/orders";
+    }
+
+    @GetMapping("/{id}/successOrder")
+    public String successOrder(@PathVariable Long id) {
+        return "fragments/successOrder";
     }
 
     @PostMapping(value = "/{id}", name = "addPurchaseInPhoneCatalog")
     public String addPurchaseInPhoneCatalog(@PathVariable Long id, Authentication authentication) {
-        Phone phoneById = phoneService.findById(id);
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-        securityUser.getUser().addPhone(phoneById);
-        phoneById.addUser(securityUser.getUser());
+        User user = securityUser.getUser();
+        Order order = user.getPreparatoryOrder();
+        if (order == null) {
+            order = new Order();
+            order.setState(OrderState.PREPARATORY);
+            order.setUser(user);
+            user.addOrder(order);
+        }
+        Phone phoneById = phoneService.findById(id);
+        order.addPhone(phoneById);
 
-        userService.save(securityUser.getUser());
+        System.out.println(user.getPreparatoryOrder());
+        orderService.save(order);
+        userService.save(user);
         return "redirect:/phones";
     }
 
     @PostMapping(value = "/{id}/plusOp", name = "addPurchaseInPlusOperation")
     public String addPhoneInPlusOperation(@PathVariable Long id, Authentication authentication) {
-        Phone phoneById = phoneService.findById(id);
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-        securityUser.getUser().addPhone(phoneById);
-//        phoneById.addUser(securityUser.getUser());
+        User user = securityUser.getUser();
+        Order order = user.getPreparatoryOrder();
+        Phone phoneById = phoneService.findById(id);
+        order.addPhone(phoneById);
+        System.out.println(user.getPreparatoryOrder());
 
-        userService.save(securityUser.getUser());
-        return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
+        orderService.save(order);
+        userService.save(user);
+
+        return "redirect:/profile/" + user.getId() + "/purchasesList";
     }
 
     @PostMapping(value = "/{id}/order", name = "makeAnOrder")
     public String makeAnOrder(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        Order order = new Order();
-        order.setPhonesInOrder(user.getPhones());
-        order.setUser(user);
+        Order order = user.getPreparatoryOrder();
+        order.setState(OrderState.ACTIVE);
+        System.out.println(user.getPreparatoryOrder());
 
-        user.getPhones().clear();
-
-        userService.save(user);
         orderService.save(order);
-//        System.out.println(user.getOrders());
-        return "redirect:/profile/" + user.getId() + "/purchasesList";
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public String deleteFromPurchase(@PathVariable Long id, Authentication authentication) {
-        phoneService.deleteById(id);
-
-        return "redirect:/phones";
+        userService.save(user);
+        return "redirect:/profile/" + user.getId() + "/successOrder";
     }
 
     @DeleteMapping(value = "/{id}/minusOperator")
     public String deleteFromMinusOperator(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        user.deletePhone(id);
-        Phone phone = phoneService.findById(id);
+        Order order = user.getPreparatoryOrder();
+        order.deletePhone(id);
+        System.out.println(user.getPreparatoryOrder());
 
+        orderService.save(order);
         userService.save(user);
         return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
     }
@@ -112,16 +135,20 @@ public class ProfileController {
     public String removeAllPhonesInOneOrderFromPurchase(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        user.deleteAllPhones(id);
-        Phone phone = phoneService.findById(id);
-        phone.deleteAllUsers(user.getId());
-
+        Order order = user.getPreparatoryOrder();
+        order.deleteAllPhones(id);
+        if (order.getPhones().isEmpty()) {
+            user.getOrders().remove(order);
+            orderService.deleteById(order.getId());
+            userService.save(user);
+            return "redirect:/profile/{id}/purchasesList";
+        }
+        orderService.save(order);
         userService.save(user);
         return "redirect:/profile/{id}/purchasesList";
     }
 
-    private Map<String, Map<Phone, Integer>> convertListIntoMap(List<Phone> userPhones) {
-        System.out.println("UserPhones: " + userPhones);
+    private Map<String, Map<Phone, Integer>> convertListOfPhonesIntoMap(List<Phone> userPhones) {
         Map<String, Map<Phone, Integer>> phones = new HashMap<>();
         for (Phone phone : userPhones) {
             Map<Phone, Integer> s = new HashMap<>();
@@ -136,7 +163,6 @@ public class ProfileController {
             }
             phones.put(phone.getName(), s);
         }
-        System.out.println("MAP : " + phones);
         return phones;
     }
 }

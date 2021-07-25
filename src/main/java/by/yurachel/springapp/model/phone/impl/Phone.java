@@ -42,28 +42,24 @@ public class Phone implements Serializable {
 
     @ManyToMany(mappedBy = "phones")
     @ToString.Exclude
-    private List<User> users = new ArrayList<>();
-
-    @ManyToMany(mappedBy = "phonesInOrder")
-    @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
 
-    public void deleteUser(long id) {
-        for (User user : users) {
-            if (user.getId() == id) {
-                users.remove(user);
-                return;
-            }
-        }
-    }
-
-    public void deleteAllUsers(long id) {
-        users.removeIf(user -> user.getId() == id);
-    }
-
-    public void addUser(User user) {
-        users.add(user);
-    }
+//    public void deleteUser(long id) {
+//        for (User user : users) {
+//            if (user.getId() == id) {
+//                users.remove(user);
+//                return;
+//            }
+//        }
+//    }
+//
+//    public void deleteAllUsers(long id) {
+//        users.removeIf(user -> user.getId() == id);
+//    }
+//
+//    public void addUser(User user) {
+//        users.add(user);
+//    }
 
     public Phone(String name, double price, String processor, String img) {
         this.name = name;

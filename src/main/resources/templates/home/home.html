@@ -5,7 +5,7 @@
     <link rel="stylesheet" th:href="@{/css/home.css}"/>
 </head>
 <body>
-<header th:insert="header.html :: navigationBar"></header>
+<header th:insert="fragments/header :: navigationBar"></header>
 
 <section>
     <div class="container-xxl">
@@ -158,6 +158,6 @@
         </div>
     </div>
 </section>
-<footer id="footer" th:insert="footer.html :: footer"></footer>
+<footer id="footer" th:insert="fragments/footer :: footer"></footer>
 </body>
 </html>

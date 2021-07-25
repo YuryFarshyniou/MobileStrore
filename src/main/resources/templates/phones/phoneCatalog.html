@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{/css/catalog.css}">
 </head>
 <body>
-<header th:insert="header.html :: navigationBar"></header>
+<header th:insert="fragments/header :: navigationBar"></header>
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col">
@@ -36,13 +36,13 @@
                         </form>
                     </td>
 
-                    <td sec:authorize="isAuthenticated()"                       >
+                    <td sec:authorize="isAuthenticated()"           >
                         <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
 
-                            <input th:unless="${#authentication.getPrincipal().getUser().containsPhone(phone.id)}"
+                            <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
                                    class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
-                            <input  th:if="${#authentication.getPrincipal().getUser().containsPhone(phone.id)}"
+                            <input  th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
                                     class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
                         </form>
                     </td>
@@ -104,7 +104,7 @@
         </ul>
     </div>
 </div>
-<footer th:insert="footer.html :: footer"></footer>
+<footer th:insert="fragments/footer :: footer"></footer>
 
 <script th:src="@{/js/catalogSorting.js}"></script>
 </body>

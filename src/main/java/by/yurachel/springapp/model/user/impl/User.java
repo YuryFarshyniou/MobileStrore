@@ -1,15 +1,14 @@
 package by.yurachel.springapp.model.user.impl;
 
 import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -49,38 +48,51 @@ public class User implements Serializable {
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @ToString.Exclude
-    private List<Phone> phones = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders = new ArrayList<>();
-
 
     private boolean hasImage;
 
-    public void addPhone(Phone phone) {
-         phones.add(phone);
+    public Order getPreparatoryOrder() {
+        return orders.stream().filter(order -> order.getState().toString().equals("PREPARATORY"))
+                .findFirst()
+                .orElse(null);
     }
 
-    public void deletePhone(long id) {
-        for (Phone phone : phones) {
-            if (phone.getId() == id) {
-                phones.remove(phone);
-                return;
-            }
+    public boolean containsPhoneInPreparatoryOrder(long id) {
+        Order order = orders.stream().filter(order2 -> order2.getState().toString().equals("PREPARATORY"))
+                .findFirst()
+                .orElse(null);
+        if (order == null) {
+            return false;
         }
+        return order.containsPhone(id);
     }
 
-    public void deleteAllPhones(long id) {
-        phones.removeIf(phone -> phone.getId() == id);
+    public void addOrder(Order order) {
+        orders.add(order);
     }
 
-    @Transactional
-    public boolean containsPhone(long id) {
-        return phones.stream().anyMatch(phone -> phone.getId() == id);
-    }
+//
+//    public void deletePhone(long id) {
+//        for (Phone phone : phones) {
+//            if (phone.getId() == id) {
+//                phones.remove(phone);
+//                return;
+//            }
+//        }
+//    }
+//
+//    public void deleteAllPhones(long id) {
+//        phones.removeIf(phone -> phone.getId() == id);
+//    }
+//
+//
+//    public boolean containsPhone(long id) {
+//        return phones.stream().anyMatch(phone -> phone.getId() == id);
+//    }
 
     public User(String userName, String password, String email) {
         this.userName = userName;
@@ -94,5 +106,7 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
     }
+
+
 }
 

@@ -26,7 +26,7 @@ public class OrderService implements IService<Order> {
     @Transactional
     public Order findById(long id) {
         Order order = orderRepository.findById(id).orElse(null);
-        logger.info("Order {} was successfully found", order);
+        logger.info("Order {} was successfully found", order.getId());
         return order;
     }
 
@@ -42,7 +42,7 @@ public class OrderService implements IService<Order> {
     @Transactional
     public Order save(Order order) {
         Order orderToBd = orderRepository.save(order);
-        logger.info("Order {} was successfully added to db", orderToBd);
+        logger.info("Order {} was successfully added to db", orderToBd.getId());
 
         return orderToBd;
     }
