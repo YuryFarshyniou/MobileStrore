@@ -1,5 +1,6 @@
 package by.yurachel.springapp.model.user.impl;
 
+import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -61,6 +63,11 @@ public class User implements Serializable {
                 .orElse(null);
     }
 
+    public List<Order> getOrdersWithoutPreparatory() {
+        return orders.stream().filter(order -> order.getState() != OrderState.PREPARATORY)
+                .collect(Collectors.toList());
+    }
+
     public boolean containsPhoneInPreparatoryOrder(long id) {
         Order order = orders.stream().filter(order2 -> order2.getState().toString().equals("PREPARATORY"))
                 .findFirst()
@@ -75,24 +82,11 @@ public class User implements Serializable {
         orders.add(order);
     }
 
-//
-//    public void deletePhone(long id) {
-//        for (Phone phone : phones) {
-//            if (phone.getId() == id) {
-//                phones.remove(phone);
-//                return;
-//            }
-//        }
-//    }
-//
-//    public void deleteAllPhones(long id) {
-//        phones.removeIf(phone -> phone.getId() == id);
-//    }
-//
-//
-//    public boolean containsPhone(long id) {
-//        return phones.stream().anyMatch(phone -> phone.getId() == id);
-//    }
+    public Order findOrder(long id) {
+        return orders.stream().filter(order -> order.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 
     public User(String userName, String password, String email) {
         this.userName = userName;

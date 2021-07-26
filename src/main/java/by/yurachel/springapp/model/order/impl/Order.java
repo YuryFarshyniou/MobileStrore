@@ -63,7 +63,7 @@ public class Order implements Serializable {
         phones.removeIf(phone -> phone.getId() == id);
     }
 
-    public String stringForOrder() {
+    public Map<String,Integer> stringForOrder() {
         Map<String, Integer> order = new HashMap<>();
 
         for (Phone phone : phones) {
@@ -74,13 +74,8 @@ public class Order implements Serializable {
                 order.put(phone.getName(), ++value);
             }
         }
-        StringBuilder stringBuilder = new StringBuilder();
 
-        for (Map.Entry<String, Integer> entry : order.entrySet()) {
-            stringBuilder.append(entry.getKey()).append(",").append(entry.getValue()).append(" ");
-
-        }
-        return stringBuilder.toString();
+        return order;
     }
 
     public Order() {

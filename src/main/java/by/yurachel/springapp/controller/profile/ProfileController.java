@@ -37,20 +37,15 @@ public class ProfileController {
 
     @GetMapping("/{id}/purchasesList")
     public String purchasesList(@PathVariable Long id, Model model, Authentication authentication) {
-
         SecurityUser principal = (SecurityUser) authentication.getPrincipal();
         User user = principal.getUser();
-
-        Order order =user.getPreparatoryOrder();
-        System.out.println(order);
+        Order order = user.getPreparatoryOrder();
         List<Phone> userPhones = new ArrayList<>();
         if (order != null) {
             userPhones = order.getPhones();
         }
-
         Map<String, Map<Phone, Integer>> phones = convertListOfPhonesIntoMap(userPhones);
         model.addAttribute("purchaseList", phones);
-
         return "profile/purchasesList";
     }
 
@@ -58,8 +53,8 @@ public class ProfileController {
     public String ordersList(@PathVariable Long id, Model model, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        List<Order> orders = user.getOrders();
-//        Map<String<Map<Order, Integer>> orders = convertListOfPhonesIntoMap(orders);
+
+        List<Order> orders = user.getOrdersWithoutPreparatory();
         model.addAttribute("orders", orders);
 
         return "profile/orders";
@@ -70,7 +65,7 @@ public class ProfileController {
         return "fragments/successOrder";
     }
 
-    @PostMapping(value = "/{id}", name = "addPurchaseInPhoneCatalog")
+    @PostMapping(value = "/{id}")
     public String addPurchaseInPhoneCatalog(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
@@ -84,38 +79,49 @@ public class ProfileController {
         Phone phoneById = phoneService.findById(id);
         order.addPhone(phoneById);
 
-        System.out.println(user.getPreparatoryOrder());
+
         orderService.save(order);
-        userService.save(user);
         return "redirect:/phones";
     }
 
-    @PostMapping(value = "/{id}/plusOp", name = "addPurchaseInPlusOperation")
+    @PostMapping(value = "/{id}/plusOp")
     public String addPhoneInPlusOperation(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         Order order = user.getPreparatoryOrder();
         Phone phoneById = phoneService.findById(id);
         order.addPhone(phoneById);
-        System.out.println(user.getPreparatoryOrder());
 
         orderService.save(order);
-        userService.save(user);
-
         return "redirect:/profile/" + user.getId() + "/purchasesList";
     }
 
-    @PostMapping(value = "/{id}/order", name = "makeAnOrder")
+    @PostMapping(value = "/{id}/order")
     public String makeAnOrder(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         Order order = user.getPreparatoryOrder();
         order.setState(OrderState.ACTIVE);
-        System.out.println(user.getPreparatoryOrder());
 
         orderService.save(order);
-        userService.save(user);
         return "redirect:/profile/" + user.getId() + "/successOrder";
+    }
+
+    @PutMapping(value = "/{id}/orders")
+    public String cancelTheOrder(@PathVariable long id, Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        Order order = user.findOrder(id);
+        if (!order.getState().toString().equals("CANCELED")) {
+            order.setState(OrderState.CANCELED);
+        } else {
+            order.setState(OrderState.ACTIVE);
+        }
+
+
+        orderService.save(order);
+        return "redirect:/profile/" + user.getId() + "/orders";
+
     }
 
     @DeleteMapping(value = "/{id}/minusOperator")
@@ -124,14 +130,12 @@ public class ProfileController {
         User user = securityUser.getUser();
         Order order = user.getPreparatoryOrder();
         order.deletePhone(id);
-        System.out.println(user.getPreparatoryOrder());
 
         orderService.save(order);
-        userService.save(user);
         return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
     }
 
-    @DeleteMapping(value = "/{id}/allPhones", name = "removeAllPhonesInOneOrderFromPurchase")
+    @DeleteMapping(value = "/{id}/allPhones")
     public String removeAllPhonesInOneOrderFromPurchase(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
@@ -140,11 +144,10 @@ public class ProfileController {
         if (order.getPhones().isEmpty()) {
             user.getOrders().remove(order);
             orderService.deleteById(order.getId());
-            userService.save(user);
+
             return "redirect:/profile/{id}/purchasesList";
         }
         orderService.save(order);
-        userService.save(user);
         return "redirect:/profile/{id}/purchasesList";
     }
 
