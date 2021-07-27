@@ -57,6 +57,10 @@ public class User implements Serializable {
 
     private boolean hasImage;
 
+    public void deleteOrder(long id) {
+        orders.removeIf(order -> order.getId() == id);
+    }
+
     public Order getPreparatoryOrder() {
         return orders.stream().filter(order -> order.getState().toString().equals("PREPARATORY"))
                 .findFirst()
@@ -65,6 +69,7 @@ public class User implements Serializable {
 
     public List<Order> getOrdersWithoutPreparatory() {
         return orders.stream().filter(order -> order.getState() != OrderState.PREPARATORY)
+                .filter(order -> order.getState() != OrderState.DELETED)
                 .collect(Collectors.toList());
     }
 

@@ -1,5 +1,5 @@
 package by.yurachel.springapp.model.order;
 
 public enum OrderState {
-    ACTIVE, CANCELED, SUCCESS,PREPARATORY
+    ACTIVE, CANCELED, DELIVERED,PREPARATORY,DELETED
 }

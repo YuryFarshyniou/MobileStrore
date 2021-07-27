@@ -28,6 +28,7 @@ public class Order implements Serializable {
 
     private String creationDate;
 
+
     @Enumerated(EnumType.STRING)
     private OrderState state;
 
@@ -37,6 +38,10 @@ public class Order implements Serializable {
     @ManyToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Phone> phones = new ArrayList<>();
+
+    public double orderSum() {
+        return phones.stream().mapToDouble(Phone::getPrice).sum();
+    }
 
     public void addPhone(Phone phone) {
         phones.add(phone);
@@ -63,7 +68,7 @@ public class Order implements Serializable {
         phones.removeIf(phone -> phone.getId() == id);
     }
 
-    public Map<String,Integer> stringForOrder() {
+    public Map<String, Integer> orderInformation() {
         Map<String, Integer> order = new HashMap<>();
 
         for (Phone phone : phones) {

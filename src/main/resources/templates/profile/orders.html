@@ -20,12 +20,26 @@
                     <td>
                         <div class="card">
                             <div class="card-body">
-                                <a class="card-title" href="#" th:text="'Order №'+${orders.indexOf(order)+1}"></a>
+                                <span class="card-title" th:text="'Order №'+${orders.indexOf(order)+1}"
+                                      id="orderNumber"></span>
+                                <form th:action="@{/profile/{id}/order(id=${order.getId()})}"
+                                th:method="DELETE">
+                                    <input class="card-title"
+                                           th:if="${order.getState().toString()=='CANCELED'||order.getState().toString()=='DELEVERED'}"
+                                           type="image" th:src="@{/img/garbageIcon.png}" alt="garbageIcon"
+                                           width="20" height="20" id="garbageOrder"/>
+                                </form>
+
+
                                 <p class="card-text">
-                                    <span th:text="${order.getCreationDate()}+' Elements: '"></span>
-                                    <th:block th:each="value : ${order.stringForOrder()}">
+                                    <span th:text="'Date of creation: '+${order.getCreationDate()}"
+                                          id="dateOfCreation"></span>
+                                    <br/><br/>
+                                    <span th:text="${' Elements: '}" id="orderElements"></span>
+                                    <th:block th:each="value : ${order.orderInformation()}">
                                         <br/>
-                                        <span th:text="${value.getKey()} +' '+${value.getValue()} "></span>
+                                        <span th:text="'Phone name: '+${value.getKey()} +'. Amount:  '+${value.getValue()} "
+                                              id="orderElement"></span>
                                     </th:block>
                                 </p>
                                 <form th:action="@{/profile/{id}/orders(id=${order.getId()})}" th:method="PUT"
@@ -38,7 +52,9 @@
                                     </button>
                                 </form>
 
-                                <a href="#" class="btn btn-success" th:text="${order.getState()}">Status</a>
+                                <span th:text="'Status of order: '+${order.getState()}" id="orderStatus">Status</span>
+
+                                <span th:text="'Sum of purchases: '+${order.orderSum()} + '$'" id="sumInOrder"></span>
                             </div>
                         </div>
                     </td>

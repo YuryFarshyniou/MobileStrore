@@ -151,6 +151,21 @@ public class ProfileController {
         return "redirect:/profile/{id}/purchasesList";
     }
 
+    @DeleteMapping(value = "/{id}/order")
+    public String deleteOrder(@PathVariable Long id, Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        Order order = user.findOrder(id);
+        if (order.getState().toString().equals("CANCELED")) {
+            orderService.deleteById(id);
+            user.deleteOrder(id);
+            return "redirect:/profile/" + user.getId() + "/orders";
+        }
+        order.setState(OrderState.DELETED);
+        orderService.save(order);
+        return "redirect:/profile/" + user.getId() + "/orders";
+    }
+
     private Map<String, Map<Phone, Integer>> convertListOfPhonesIntoMap(List<Phone> userPhones) {
         Map<String, Map<Phone, Integer>> phones = new HashMap<>();
         for (Phone phone : userPhones) {
