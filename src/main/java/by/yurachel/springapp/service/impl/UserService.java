@@ -39,7 +39,6 @@ public class UserService implements IService<User> {
     @Transactional
     public User save(User user) {
         User userToDb = userRepository.saveAndFlush(user);
-
         logger.info("User {} successfully added to db",user.getId());
         return userToDb;
     }

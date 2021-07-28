@@ -1,3 +1,54 @@
-td{
+td {
     font-size: 40px;
+}
+
+#profileWithAvatar, #profileUnknown {
+    border-radius: 50%;
+}
+
+
+#profileUserName {
+    float: left;
+    margin-left: 120px;
+    margin-top: 170px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#creationDateProfile {
+    opacity: .8;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+#personalData {
+    margin-top: 30px
+}
+
+.inf {
+    font-size: 20px;
+    opacity: .8;
+}
+
+.descriptionProfile {
+    font-size: 20px;
+}
+
+#updateImage {
+    width: 300px;
+}
+
+#updateAvatarInput {
+    width: 210px;
+}
+
+#submitForAvatar{
+    margin-bottom: 3px;
+}
+
+.inline ,.inline #submitForAvatar {
+    display: inline-block;
+}
+#editHref{
+    font-size: 25px;
 }

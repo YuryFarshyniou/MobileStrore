@@ -6,13 +6,16 @@ import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.util.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -21,6 +24,7 @@ public class ProfileController {
     private final IService<Phone> phoneService;
     private final IService<User> userService;
     private final IService<Order> orderService;
+
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
     public ProfileController(IService<Phone> phoneService, IService<User> userService, IService<Order> orderService) {
@@ -30,8 +34,8 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public String userProfile(@PathVariable Long id) {
-
+    public String userProfile(@PathVariable Long id, Model model) {
+        model.addAttribute("imgUtil", new UserUtils());
         return "profile/profile";
     }
 
@@ -63,6 +67,15 @@ public class ProfileController {
     @GetMapping("/{id}/successOrder")
     public String successOrder(@PathVariable Long id) {
         return "fragments/successOrder";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editProfile(@PathVariable Long id, Authentication authentication,
+                              Model model) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        model.addAttribute("user", user);
+        return "profile/editProfile";
     }
 
     @PostMapping(value = "/{id}")
@@ -117,12 +130,20 @@ public class ProfileController {
         } else {
             order.setState(OrderState.ACTIVE);
         }
-
-
         orderService.save(order);
         return "redirect:/profile/" + user.getId() + "/orders";
-
     }
+
+    @PutMapping(value = "/{id}")
+    public String updateAvatar(@PathVariable long id, Authentication authentication,
+                               @RequestParam("file") MultipartFile file) throws IOException {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        user.setAvatar(file.getBytes());
+        userService.save(user);
+        return "redirect:/profile/" + user.getId();
+    }
+
 
     @DeleteMapping(value = "/{id}/minusOperator")
     public String deleteFromMinusOperator(@PathVariable Long id, Authentication authentication) {

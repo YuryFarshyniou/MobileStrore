@@ -4,6 +4,7 @@ import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
+import by.yurachel.springapp.util.UserUtils;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
@@ -15,6 +16,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,6 @@ public class User implements Serializable {
 
     @NotEmpty(message = "UserName name should not be empty")
     @Size(min = 2, max = 50, message = "UserName should be between 2 and 50 characters")
-
     private String userName;
 
     @Size(min = 4, message = "Password should be longer than 4 characters.")
@@ -44,18 +45,27 @@ public class User implements Serializable {
     @NotEmpty(message = "Email shouldn't be empty.")
     private String email;
 
+    private String firstName;
+
+    private String lastName;
+
     @Enumerated(value = EnumType.STRING)
     private Role role = Role.USER;
 
     @Enumerated(value = EnumType.STRING)
     private Status status = Status.ACTIVE;
 
-
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders = new ArrayList<>();
 
-    private boolean hasImage;
+    @Lob
+    private byte[] avatar;
+
+    @Temporal(TemporalType.DATE)
+    private Date registrationDate;
+
+    private String address;
 
     public void deleteOrder(long id) {
         orders.removeIf(order -> order.getId() == id);
@@ -91,6 +101,10 @@ public class User implements Serializable {
         return orders.stream().filter(order -> order.getId() == id)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public UserUtils getUserUtils() {
+        return new UserUtils();
     }
 
     public User(String userName, String password, String email) {

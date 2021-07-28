@@ -9,8 +9,7 @@
 
 <body>
 <div class="container">
-    <form th:method="POST" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal" role="form"
-          enctype="multipart/form-data">
+    <form th:method="POST" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal" role="form">
         <h2>Registration</h2>
         <div class="form-group">
             <label for="userName" class="col-sm-3 control-label">UserName</label>
@@ -34,12 +33,6 @@
                 <input type="email" id="email" placeholder="Email" class="form-control" name="email"
                        th:field="*{email}">
                 <span style="color: darkred" th:errors="*{email}"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="img" class="col-sm-3 control-label">Image</label>
-            <div class="col-sm-9">
-                <input type="file" name="file" id="img" placeholder="Image" class="form-control" >
             </div>
         </div>
 

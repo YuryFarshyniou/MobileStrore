@@ -26,7 +26,8 @@ public class Order implements Serializable {
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
 
-    private String creationDate;
+    @Temporal(TemporalType.DATE)
+    private Date creationDate;
 
 
     @Enumerated(EnumType.STRING)
@@ -84,7 +85,7 @@ public class Order implements Serializable {
     }
 
     public Order() {
-        creationDate = new Date().toString();
+        creationDate = new Date();
     }
 
 

@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -37,6 +38,9 @@ public class Phone implements Serializable {
     private String processor;
     @NotEmpty(message = "Img link should not be empty")
     private String img;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateOfAdded;
 
     private static final long serialVersionUID = 6295618226040646585L;
 
