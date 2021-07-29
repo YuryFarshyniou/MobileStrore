@@ -8,8 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Service("userService")
@@ -22,14 +22,14 @@ public class UserService implements IService<User> {
         this.userRepository = userRepository;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public User findById(long id) {
         User user = userRepository.findById(id).orElse(null);
         logger.info("User {} was successfully found", user.getUserName());
         return user;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<User> findAll() {
         List<User> users = userRepository.findAll();
         logger.info("Users was successfully found");
@@ -39,7 +39,7 @@ public class UserService implements IService<User> {
     @Transactional
     public User save(User user) {
         User userToDb = userRepository.saveAndFlush(user);
-        logger.info("User {} successfully added to db",user.getId());
+        logger.info("User {} successfully added to db", user.getId());
         return userToDb;
     }
 
@@ -50,7 +50,7 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<User> findAllPhones(Pageable pageable) {
         return null;
     }

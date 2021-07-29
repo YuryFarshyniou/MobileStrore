@@ -73,7 +73,7 @@ public class PhoneController {
         return "phones/updatePhone";
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public String update(@PathVariable int id,
                          @ModelAttribute("phone") @Valid Phone phone,
                          BindingResult bindingResult) {

@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row justify-content-md-center mt-2">
         <div class="col-8">
-            <form th:method="PATCH" th:action="@{/phones/{id}(id=${phone.id})}" th:object="${phone}" style="margin-top: 56px">
+            <form th:method="PUT" th:action="@{/phones/{id}(id=${phone.id})}" th:object="${phone}" style="margin-top: 56px">
                 <div class="mb-3">
                     <label for="phoneName" class="form-label">New phone name</label>
                     <input name="name" type="text" class="form-control" id="phoneName"

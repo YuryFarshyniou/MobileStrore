@@ -8,8 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @Service("orderService")
@@ -23,7 +24,7 @@ public class OrderService implements IService<Order> {
     }
 
     @Override
-    @Transactional
+   @Transactional(readOnly = true)
     public Order findById(long id) {
         Order order = orderRepository.findById(id).orElse(null);
         logger.info("Order {} was successfully found", order.getId());
@@ -31,7 +32,7 @@ public class OrderService implements IService<Order> {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Order> findAll() {
         List<Order> orders = orderRepository.findAll();
         logger.info("All orders in db was successfully found");
@@ -56,7 +57,7 @@ public class OrderService implements IService<Order> {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<Order> findAllPhones(Pageable pageable) {
         return null;
     }

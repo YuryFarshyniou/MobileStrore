@@ -12,9 +12,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.*;
 
@@ -115,7 +117,6 @@ public class ProfileController {
         User user = securityUser.getUser();
         Order order = user.getPreparatoryOrder();
         order.setState(OrderState.ACTIVE);
-
         orderService.save(order);
         return "redirect:/profile/" + user.getId() + "/successOrder";
     }
@@ -141,6 +142,24 @@ public class ProfileController {
         User user = securityUser.getUser();
         user.setAvatar(file.getBytes());
         userService.save(user);
+        return "redirect:/profile/" + user.getId();
+    }
+
+    @PutMapping(value = "/{id}/editUser")
+    public String editUser(@PathVariable long id, Authentication authentication,
+                           @ModelAttribute("user") @Valid User user,
+                           BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "profile/editProfile";
+        }
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User loginUser = securityUser.getUser();
+        loginUser.setAddress(user.getAddress());
+        loginUser.setEmail(user.getEmail());
+        loginUser.setFirstName(user.getFirstName());
+        loginUser.setLastName(user.getLastName());
+        loginUser.setUserName(user.getUserName());
+        userService.save(loginUser);
         return "redirect:/profile/" + user.getId();
     }
 
