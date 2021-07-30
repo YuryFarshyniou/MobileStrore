@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Users</title>
+    <style>
+        body:not(.container) {
+            background-color: #e3e3e3;
+        }
+
+        .container {
+            background-color: white;
+        }
+
+    </style>
+</head>
+<body>
+<header th:insert="fragments/header :: navigationBar"></header>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col">
+            <table class="table table-striped" style="margin-top: 80px">
+                <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Address</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:each="user : ${users}">
+                    <tr>
+                        <td th:class="name_column" th:text="${user.getUserName()}">Username</td>
+                        <td th:class="name_column" th:text="${user.getEmail()}">email</td>
+                        <td th:class="name_column" th:text="${user.getRole()}">role</td>
+                        <td th:class="name_column" th:text="${user.getStatus()}">status</td>
+                        <td th:class="name_column" th:text="${user.getFirstName()}">FirstName</td>
+                        <td th:class="name_column" th:text="${user.getLastName()}">LastName</td>
+                        <td th:class="name_column" th:text="${user.getAddress()}">Address</td>
+
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+
+            <div class="mt-3">
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Pages</a>
+                    </li>
+                    <th:block th:each="i :${body}">
+                        <li class="page-item active" th:if="${((i)-1)==users.getNumber()}">
+                            <a class="page-link" href="#" tabindex="-1">[[${i}]]</a>
+                        </li>
+                        <li class="page-item disabled" th:if="${(i)==-1}">
+                            <a class="page-link" href="#" tabindex="-1">...</a>
+                        </li>
+                        <li class="page-item " th:if="${((i)-1)!=users.getNumber()&&(i)!=-1}">
+                            <a class="page-link" th:href="@{/admin/users(page=${(i)-1},size=${users.getSize()})}"
+                               tabindex="-1">[[${i}]]</a>
+                        </li>
+                    </th:block>
+                </ul>
+
+                <ul class="pagination">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Elements per page</a>
+                    </li>
+                    <th:block th:each="c :${amountOfElements}">
+                        <li class="page-item active" th:if="${users.getSize()==c}">
+                            <a class="page-link" href="#" tabindex="-1">[[${c}]]</a>
+                        </li>
+                        <li class="page-item " th:unless="${users.getSize()==c}">
+                            <a class="page-link" th:href="@{/admin/users(page=${users.getNumber()},size=${c})}"
+                               tabindex="-1">[[${c}]]</a>
+                        </li>
+                    </th:block>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>

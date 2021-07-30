@@ -1,6 +1,7 @@
 package by.yurachel.springapp.service.impl;
 
 import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.repository.OrderRepository;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
@@ -58,7 +59,9 @@ public class OrderService implements IService<Order> {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<Order> findAllPhones(Pageable pageable) {
-        return null;
+    public Page<Order> findAllWithPagination(Pageable pageable) {
+        Page<Order> orders = orderRepository.findAll(pageable);
+        logger.info("All orders in db was successfully found");
+        return orders;
     }
 }

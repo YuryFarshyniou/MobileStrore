@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link rel="stylesheet" th:href="@{/css/profile.css}">
+
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
 
-<div class="container" style="margin-top: 100px">
-    <div class="row">
+<div class="container">
+    <div class="row row-cols-auto" id="idRow">
         <div class="col" id="headerProfile">
             <img th:if="${#authentication.getPrincipal().getUser().getAvatar()==null}"
                  th:src="@{/img/unknownUser.jpg}" class="float-start"
@@ -20,20 +21,22 @@
             <span th:text="${#authentication.getName()}" id="profileUserName">  </span>
         </div>
     </div>
-    <div>
-        <form id="updateImage" class="inline" th:method="PUT"
-              th:action="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}"
-              enctype="multipart/form-data">
-            <input type="file" name="file" id="updateAvatarInput" placeholder="Image" class="inline">
-            <button type="submit" class="btn btn-sm btn-outline-dark" id="submitForAvatar">Submit</button>
-        </form>
-        <span class="inline" id="creationDateProfile"
-              th:text="'MobileShop ID:'+${#authentication.getPrincipal().getUser().getId()} +' &#8729 from ' +
+    <div class="row row-cols-auto" id="avatarRow">
+        <div class="col">
+            <form id="updateImage" class="inline" th:method="PUT"
+                  th:action="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}"
+                  enctype="multipart/form-data">
+                <input type="file" name="file" id="updateAvatarInput" placeholder="Image" class="inline">
+                <button type="submit" class="btn btn-sm btn-outline-dark" id="submitForAvatar">Submit</button>
+            </form>
+            <span class="inline" id="creationDateProfile"
+                  th:text="'MobileShop ID:'+${#authentication.getPrincipal().getUser().getId()} +' &#8729 from ' +
 ${#dates.format(#authentication.getPrincipal().getUser().getRegistrationDate(),'dd MMMM yyyy')}"></span>
+        </div>
     </div>
-    <h2 id="personalData">Personal data: </h2>
-    <div class="row">
+    <div class="row " id="bottomRow">
         <div class="col-5">
+            <h2 id="personalData">Personal data: </h2>
             <div class="table-responsive">
                 <table class="table table-light table-borderless mt-1 " id="tableProfile">
                     <tbody>
@@ -61,19 +64,21 @@ ${#dates.format(#authentication.getPrincipal().getUser().getRegistrationDate(),'
                     </tr>
                     <tr class="bg-light">
                         <td class="inf">Address:</td>
-                        <td class="descriptionProfile" th:text="${#authentication.getPrincipal().getUser().getAddress()}">Address</td>
+                        <td class="descriptionProfile"
+                            th:text="${#authentication.getPrincipal().getUser().getAddress()}">Address
+                        </td>
                     </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
-        <div class="col-1">
+        <div class="col-1" id="editColumn">
             <a th:href="@{/profile/{id}/edit(id=${#authentication.getPrincipal().getUser().getId()})} " id="editHref">Edit</a>
         </div>
     </div>
-
-
 </div>
 <footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

@@ -1,5 +1,18 @@
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
+.container {
+    background-color: white;
+}
+
 td {
     font-size: 40px;
+}
+
+#headerProfile {
+    margin-top: 100px;
+    margin-left: 30px;
 }
 
 #profileWithAvatar, #profileUnknown {
@@ -19,6 +32,7 @@ td {
     opacity: .8;
     font-size: 15px;
     margin-bottom: 30px;
+    margin-left: 20px;
 }
 
 #personalData {
@@ -35,20 +49,35 @@ td {
 }
 
 #updateImage {
-    width: 300px;
+    width: 307px;
 }
 
 #updateAvatarInput {
     width: 210px;
+    margin-left: 30px;
 }
 
-#submitForAvatar{
+#submitForAvatar {
     margin-bottom: 3px;
 }
 
-.inline ,.inline #submitForAvatar {
+.inline, .inline #submitForAvatar {
     display: inline-block;
 }
-#editHref{
+
+#editHref {
     font-size: 25px;
+}
+
+#bottomRow {
+    padding-bottom: 210px;
+    margin-left: 30px;
+}
+
+#avatarRow, #idRow {
+    background-color: lightgoldenrodyellow;
+}
+
+#editColumn {
+    margin-top: 80px;
 }

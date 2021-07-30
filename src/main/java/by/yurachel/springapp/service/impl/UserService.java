@@ -1,5 +1,6 @@
 package by.yurachel.springapp.service.impl;
 
+import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.repository.UserRepository;
 import by.yurachel.springapp.service.IService;
@@ -51,7 +52,9 @@ public class UserService implements IService<User> {
 
     @Override
     @Transactional(readOnly = true)
-    public Page<User> findAllPhones(Pageable pageable) {
-        return null;
+    public Page<User> findAllWithPagination(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
+        logger.info("All users in db was successfully found");
+        return users;
     }
 }

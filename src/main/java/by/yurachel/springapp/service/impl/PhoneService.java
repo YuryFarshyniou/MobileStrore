@@ -30,7 +30,7 @@ public class PhoneService implements IService<Phone> {
     }
 
     @Transactional(readOnly = true)
-    public Page<Phone> findAllPhones(Pageable pageable) {
+    public Page<Phone> findAllWithPagination(Pageable pageable) {
         Page<Phone> phones = phoneRepository.findAll(pageable);
         logger.info("All phones in db was successfully found");
         return phones;

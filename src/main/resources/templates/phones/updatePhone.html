@@ -2,40 +2,50 @@
 <head>
     <meta charset="UTF-8"/>
     <title>UpdatePhone</title>
+    <style>
+        body:not(.container) {
+            background-color: #e3e3e3;
+        }
+    </style>
 </head>
 
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
 <div class="container">
-    <div class="row justify-content-md-center mt-2">
-        <div class="col-8">
-            <form th:method="PUT" th:action="@{/phones/{id}(id=${phone.id})}" th:object="${phone}" style="margin-top: 56px">
-                <div class="mb-3">
-                    <label for="phoneName" class="form-label">New phone name</label>
-                    <input name="name" type="text" class="form-control" id="phoneName"
-                           aria-describedby="emailHelp" placeholder="New Name" th:field="*{name}">
-                    <span style="color: darkred" th:errors="*{name}"></span>
+    <div class="row justify-content-center">
+        <div class="col-5 " style="margin-top: 150px">
+            <div class="card">
+                <div class="card-body">
+                    <form th:method="PUT" th:action="@{/phones/{id}(id=${phone.id})}" th:object="${phone}">
+                        <div class="mb-3">
+                            <label for="phoneName" class="form-label">New phone name</label>
+                            <input name="name" type="text" class="form-control" id="phoneName"
+                                   aria-describedby="emailHelp" placeholder="New Name" th:field="*{name}">
+                            <span style="color: darkred" th:errors="*{name}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phonePrice" class="form-label">New Price</label>
+                            <input name="price" type="text" class="form-control" id="phonePrice"
+                                   placeholder="New Price" th:field="*{price}">
+                            <span style="color: darkred" th:errors="*{price}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneProcessor" class="form-label">New Processor</label>
+                            <input name="processor" type="text" class="form-control" id="phoneProcessor"
+                                   placeholder="New Processor" th:field="*{processor}">
+                            <span style="color: darkred" th:errors="*{processor}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phoneImage" class="form-label">Image</label>
+                            <input name="img" type="text" class="form-control" id="phoneImage"
+                                   placeholder="New Image" th:field="*{img}">
+                            <span style="color: darkred" th:errors="*{img}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </form>
                 </div>
-                <div class="mb-3">
-                    <label for="phonePrice" class="form-label">New Price</label>
-                    <input name="price" type="text" class="form-control" id="phonePrice"
-                           placeholder="New Price" th:field="*{price}">
-                    <span style="color: darkred" th:errors="*{price}"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="phoneProcessor" class="form-label">New Processor</label>
-                    <input name="processor" type="text" class="form-control" id="phoneProcessor"
-                           placeholder="New Processor" th:field="*{processor}">
-                    <span style="color: darkred" th:errors="*{processor}"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="phoneImage" class="form-label">Image</label>
-                    <input name="img" type="text" class="form-control" id="phoneImage"
-                           placeholder="New Image" th:field="*{img}">
-                    <span style="color: darkred" th:errors="*{img}"></span>
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
+            </div>
+
         </div>
     </div>
 </div>

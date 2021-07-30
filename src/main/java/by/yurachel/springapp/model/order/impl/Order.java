@@ -80,7 +80,6 @@ public class Order implements Serializable {
                 order.put(phone.getName(), ++value);
             }
         }
-
         return order;
     }
 

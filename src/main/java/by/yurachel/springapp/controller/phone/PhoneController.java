@@ -34,7 +34,7 @@ public class PhoneController {
     @GetMapping()
     public String phoneList(Model model,
                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Phone> phones = phoneService.findAllPhones(pageable);
+        Page<Phone> phones = phoneService.findAllWithPagination(pageable);
         int[] body = pagination(phones);
         model.addAttribute("phones", phones);
         model.addAttribute("body", body);

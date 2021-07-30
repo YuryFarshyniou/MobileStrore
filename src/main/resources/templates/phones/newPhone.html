@@ -2,44 +2,56 @@
 <head>
     <meta charset="UTF-8"/>
     <title>NewPhone</title>
-    <link rel="stylesheet" th:href="@{../css/newPhone.css}">
+    <style>
+        body:not(.container) {
+            background-color: #e3e3e3;
+        }
+    </style>
 </head>
 
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
 <div class="container">
-    <div class="row justify-content-md-center mt-2">
-        <div class="col-8">
-            <form th:method="POST" th:action="@{/phones}" th:object="${newPhone}">
-                <div class="mb-3">
-                    <label for="PhoneName" class="form-label">Phone name: </label>
-                    <input name="name" type="text" class="form-control" id="PhoneName"
-                           aria-describedby="emailHelp" placeholder="Name" th:field="*{name}">
-                    <span style="color: darkred" th:errors="*{name}"></span>
+    <div class="row justify-content-center">
+        <div class="col-5 " style="margin-top: 150px">
+            <div class="card">
+                <div class="card-body">
+                    <form th:method="POST" th:action="@{/phones}" th:object="${newPhone}">
+                        <div class="mb-3">
+                            <label for="PhoneName" class="form-label">Phone name: </label>
+                            <input name="name" type="text" class="form-control" id="PhoneName"
+                                   aria-describedby="emailHelp" placeholder="Name" th:field="*{name}">
+                            <span style="color: darkred" th:errors="*{name}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="PhonePrice" class="form-label">Price of the phone: </label>
+                            <input name="phonePrice: " type="text" class="form-control" id="PhonePrice"
+                                   placeholder="Price"
+                                   th:field="*{price}">
+                            <span style="color: darkred" th:errors="*{price}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="PhoneProcessor" class="form-label">Processor</label>
+                            <input name="processor" type="text" class="form-control" id="PhoneProcessor"
+                                   placeholder="Processor" th:field="*{processor}">
+                            <span style="color: darkred" th:errors="*{processor}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="PhoneImg" class="form-label">Image</label>
+                            <input name="image" type="text" class="form-control" id="PhoneImg" placeholder="Image"
+                                   th:field="*{img}">
+                            <span style="color: darkred" th:errors="*{img}"></span>
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+
                 </div>
-                <div class="mb-3">
-                    <label for="PhonePrice" class="form-label">Price of the phone: </label>
-                    <input name="phonePrice: " type="text" class="form-control" id="PhonePrice" placeholder="Price"
-                           th:field="*{price}">
-                    <span style="color: darkred" th:errors="*{price}"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="PhoneProcessor" class="form-label">Processor</label>
-                    <input name="processor" type="text" class="form-control" id="PhoneProcessor"
-                           placeholder="Processor" th:field="*{processor}">
-                    <span style="color: darkred" th:errors="*{processor}"></span>
-                </div>
-                <div class="mb-3">
-                    <label for="PhoneImg" class="form-label">Image</label>
-                    <input name="image" type="text" class="form-control" id="PhoneImg" placeholder="Image"
-                           th:field="*{img}">
-                    <span style="color: darkred" th:errors="*{img}"></span>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </div>
+
         </div>
     </div>
 </div>
+
 <footer th:insert="fragments/footer :: footer"></footer>
 </body>
 </html>
