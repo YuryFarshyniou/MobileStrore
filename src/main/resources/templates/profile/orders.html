@@ -23,9 +23,9 @@
                                 <span class="card-title" th:text="'Order №'+${orders.indexOf(order)+1}"
                                       id="orderNumber"></span>
                                 <form th:action="@{/profile/{id}/order(id=${order.getId()})}"
-                                th:method="DELETE">
+                                      th:method="DELETE">
                                     <input class="card-title"
-                                           th:if="${order.getState().toString()=='CANCELED'||order.getState().toString()=='DELEVERED'}"
+                                           th:if="${order.getState().name()=='CANCELED'}or ${order.getState().name()=='DELIVERED'}"
                                            type="image" th:src="@{/img/garbageIcon.png}" alt="garbageIcon"
                                            width="20" height="20" id="garbageOrder"/>
                                 </form>
@@ -36,19 +36,26 @@
                                           id="dateOfCreation"></span>
                                     <br/><br/>
                                     <span th:text="${' Elements: '}" id="orderElements"></span>
+                                    <img th:if="${order.getState().name().equals('DELIVERED')}"
+                                         th:src="@{/img/delivered.jpg}"
+                                         class="s" alt="deliveredImg" width="50px" height="50px"
+                                         style="margin-left: 600px">
                                     <th:block th:each="value : ${order.orderInformation()}">
                                         <br/>
                                         <span th:text="'Phone name: '+${value.getKey()} +'. Amount:  '+${value.getValue()} "
                                               id="orderElement"></span>
                                     </th:block>
+
                                 </p>
                                 <form th:action="@{/profile/{id}/orders(id=${order.getId()})}" th:method="PUT"
                                       style="display: inline">
                                     <button type="submit" class="btn btn-danger"
-                                            th:unless="${order.getState().name()=='CANCELED'}">Cancel this order
+                                            th:if="${order.getState().name()!='CANCELED'&& order.getState().name()!='DELIVERED'}">
+                                        Cancel this order
                                     </button>
                                     <button type="submit" class="btn btn-primary"
-                                            th:if="${order.getState().name()=='CANCELED'}">Restore the order
+                                            th:if="${order.getState().name()=='CANCELED'}">
+                                        Restore the order
                                     </button>
                                 </form>
 

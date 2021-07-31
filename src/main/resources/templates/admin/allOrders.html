@@ -7,7 +7,8 @@
         body:not(.container) {
             background-color: #e3e3e3;
         }
-        .container{
+
+        .container {
             background-color: white;
         }
     </style>
@@ -17,25 +18,42 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col">
-            <table class="table table-striped" style="margin-top: 80px">
+            <table class="table table-striped" style="margin-top: 80px" id="orderTable">
                 <thead>
                 <tr>
                     <th>Order id</th>
-                    <th>Date of creation</th>
+                    <th onclick="sortTableRow(1,'orderTable')" style="cursor: pointer">Date of creation</th>
                     <th>Order's state</th>
-                    <th>Username</th>
+                    <th onclick="sortTableRow(3,'orderTable')" style="cursor: pointer">Username</th>
                     <th>Phones</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <th:block th:each="order : ${orders}">
-                    <tr>
-                        <td th:class="name_column" th:text="${order.getId()}">name</td>
-                        <td th:class="name_column" th:text="${order.getCreationDate()}">date</td>
-                        <td th:class="name_column" th:text="${order.getState()}">state</td>
-                        <td th:class="name_column" th:text="${order.getUser().getUserName()}">name</td>
-                        <td th:class="name_column">Phones</td>
-                    </tr>
+                    <form th:action="@{/admin/orders/{id}(id=${order.getId()})}" th:method="PUT">
+                        <tr>
+                            <td th:text="${order.getId()}">name</td>
+                            <td th:text="${order.getCreationDate()}">date</td>
+                            <td>
+                                <label th:for="state">
+                                    <select class="form-select form-select-sm" aria-label="Default select example"
+                                            name="state">
+                                        <option th:each="state : ${T(by.yurachel.springapp.model.order.OrderState).values()}"
+                                                th:value="${{state}}"
+                                                th:text="${state}"
+                                                th:selected="${state}==${order.getState()}"></option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td th:text="${order.getUser().getUserName()}">name</td>
+                            <td>Phones</td>
+                            <td>
+                                <button class="btn btn-sm btn-success" type="submit">Change</button>
+                            </td>
+                        </tr>
+                    </form>
                 </th:block>
                 </tbody>
             </table>
@@ -68,7 +86,7 @@
                             <a class="page-link" href="#" tabindex="-1">[[${c}]]</a>
                         </li>
                         <li class="page-item " th:unless="${orders.getSize()==c}">
-                            <a class="page-link" th:href="@{/admin/users(page=${orders.getNumber()},size=${c})}"
+                            <a class="page-link" th:href="@{/admin/orders(page=${orders.getNumber()},size=${c})}"
                                tabindex="-1">[[${c}]]</a>
                         </li>
                     </th:block>
@@ -78,5 +96,6 @@
     </div>
 </div>
 <footer th:insert="fragments/footer :: footer"></footer>
+<script th:src="@{/js/sortingTables.js}"></script>
 </body>
 </html>

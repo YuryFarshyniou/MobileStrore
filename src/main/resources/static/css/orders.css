@@ -1,5 +1,10 @@
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
 .container {
     margin-top: 62px;
+    background-color: white;
 }
 .card-text{
     margin-top: 15px;

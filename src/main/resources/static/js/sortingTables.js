@@ -1,6 +1,6 @@
-function sortTableRow(n) {
+function sortTableRow(n, tableId) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("sortTable");
+    table = document.getElementById(tableId);
     switching = true;
     dir = "asc";
     while (switching) {
@@ -36,49 +36,48 @@ function sortTableRow(n) {
 }
 
 
-function sortTableNumber(n) {
+function sortTableNumber(n, tableId) {
     let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("sortTable");
-    switching = true;
+    if (tableId === 'sortTable') {
+        table = document.getElementById(tableId);
+        switching = true;
+        dir = "asc";
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
 
-    dir = "asc";
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
 
-    while (switching) {
-        switching = false;
-        rows = table.rows;
-        for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
+                let fNum = x.innerHTML.split("$")
+                let sNum = y.innerHTML.split("$")
+                if (dir === "asc") {
+                    if (Number(fNum[0]) > Number(sNum[0])) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir === "desc") {
 
-            x = rows[i].getElementsByTagName("TD")[n];
-            y = rows[i + 1].getElementsByTagName("TD")[n];
+                    if (Number(fNum[0]) < Number(sNum[0])) {
 
-            let fNum = x.innerHTML.split("$")
-            let sNum = y.innerHTML.split("$")
-            if (dir === "asc") {
-                if (Number(fNum[0]) > Number(sNum[0])) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if (dir === "desc") {
-
-                if (Number(fNum[0]) < Number(sNum[0])) {
-
-                    shouldSwitch = true;
-                    break;
+                        shouldSwitch = true;
+                        break;
+                    }
                 }
             }
-        }
-        if (shouldSwitch) {
-
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-
-            switchcount++;
-        } else {
-
-            if (switchcount === 0 && dir === "asc") {
-                dir = "desc";
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
+
+                switchcount++;
+            } else {
+
+                if (switchcount === 0 && dir === "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
             }
         }
     }

@@ -103,6 +103,14 @@ public class User implements Serializable {
                 .orElse(null);
     }
 
+    public void editOrder(Order order) {
+        orders.forEach(o -> {
+            if (o.getId() == order.getId()) {
+                o.setState(order.getState());
+            }
+        });
+    }
+
     public UserUtils getUserUtils() {
         return new UserUtils();
     }

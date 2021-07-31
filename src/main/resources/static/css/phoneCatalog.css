@@ -1,7 +1,12 @@
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
 .container {
     padding-top: 70px;
     padding-bottom: 56px;
     position: relative;
+    background-color: white;
 }
 
 .price_column {

@@ -1,5 +1,6 @@
 package by.yurachel.springapp.controller.admin;
 
+import by.yurachel.springapp.config.SecurityUser;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.service.IService;
@@ -7,10 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 
@@ -42,10 +43,23 @@ public class AdminController {
                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<Order> orders = orderService.findAllWithPagination(pageable);
         int[] body = pagination(orders);
+
         model.addAttribute("orders", orders);
         model.addAttribute("body", body);
         model.addAttribute("amountOfElements", new int[]{5, 10, 20, 50});
-        return "admin/orders";
+        return "admin/allOrders";
+    }
+
+    @PutMapping("/orders/{id}")
+    public String updateOrder(@PathVariable long id, @ModelAttribute Order order,
+                              Authentication authentication) {
+        Order orderFromDb = orderService.findById(order.getId());
+        orderFromDb.setState(order.getState());
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        user.editOrder(orderFromDb);
+        orderService.save(orderFromDb);
+        return "redirect:/admin/orders";
     }
 
     private int[] pagination(Page<?> object) {

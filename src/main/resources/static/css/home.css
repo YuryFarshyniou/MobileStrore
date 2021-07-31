@@ -1,5 +1,9 @@
-body{
-    background-color: black;
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
+.container {
+    background-color: white;
 }
 section {
     padding-top: 50px;
