@@ -35,7 +35,7 @@ public class RegistrationController {
 
     @PostMapping
     public String create(@ModelAttribute("newUser") @Valid User user,
-                         BindingResult bindingResult) throws IOException {
+                         BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "registration/registration";
         }

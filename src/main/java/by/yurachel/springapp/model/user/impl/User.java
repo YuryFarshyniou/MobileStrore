@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @EqualsAndHashCode
+@ToString
 public class User implements Serializable {
 
     @Id

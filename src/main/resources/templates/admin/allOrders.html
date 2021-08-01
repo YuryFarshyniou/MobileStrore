@@ -22,9 +22,9 @@
                 <thead>
                 <tr>
                     <th>Order id</th>
-                    <th onclick="sortTableRow(1,'orderTable')" style="cursor: pointer">Date of creation</th>
+                    <th onclick="sortTableRow(1,'orderTable')" style="cursor: pointer">Username</th>
                     <th>Order's state</th>
-                    <th onclick="sortTableRow(3,'orderTable')" style="cursor: pointer">Username</th>
+                    <th onclick="sortTableRow(3,'orderTable')" style="cursor: pointer">Date of creation</th>
                     <th>Phones</th>
                     <th></th>
                 </tr>
@@ -35,19 +35,19 @@
                     <form th:action="@{/admin/orders/{id}(id=${order.getId()})}" th:method="PUT">
                         <tr>
                             <td th:text="${order.getId()}">name</td>
-                            <td th:text="${order.getCreationDate()}">date</td>
+                            <td th:text="${order.getUser().getUserName()}">name</td>
                             <td>
                                 <label th:for="state">
                                     <select class="form-select form-select-sm" aria-label="Default select example"
                                             name="state">
-                                        <option th:each="state : ${T(by.yurachel.springapp.model.order.OrderState).values()}"
+                                        <option th:each="state : ${states}"
                                                 th:value="${{state}}"
                                                 th:text="${state}"
                                                 th:selected="${state}==${order.getState()}"></option>
                                     </select>
                                 </label>
                             </td>
-                            <td th:text="${order.getUser().getUserName()}">name</td>
+                            <td th:text="${order.getCreationDate()}">date</td>
                             <td>Phones</td>
                             <td>
                                 <button class="btn btn-sm btn-success" type="submit">Change</button>

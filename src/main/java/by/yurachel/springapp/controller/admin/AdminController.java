@@ -1,7 +1,10 @@
 package by.yurachel.springapp.controller.admin;
 
 import by.yurachel.springapp.config.SecurityUser;
+import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.user.Role;
+import by.yurachel.springapp.model.user.Status;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.service.IService;
 import org.springframework.data.domain.Page;
@@ -32,6 +35,8 @@ public class AdminController {
                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<User> users = userService.findAllWithPagination(pageable);
         int[] body = pagination(users);
+        model.addAttribute("status", Status.values());
+        model.addAttribute("roles", Role.values());
         model.addAttribute("users", users);
         model.addAttribute("body", body);
         model.addAttribute("amountOfElements", new int[]{5, 10, 20, 50});
@@ -43,7 +48,7 @@ public class AdminController {
                             @PageableDefault(sort = {"id"}, direction = Sort.Direction.ASC) Pageable pageable) {
         Page<Order> orders = orderService.findAllWithPagination(pageable);
         int[] body = pagination(orders);
-
+        model.addAttribute("states", OrderState.statesForAdmin());
         model.addAttribute("orders", orders);
         model.addAttribute("body", body);
         model.addAttribute("amountOfElements", new int[]{5, 10, 20, 50});
@@ -60,6 +65,21 @@ public class AdminController {
         user.editOrder(orderFromDb);
         orderService.save(orderFromDb);
         return "redirect:/admin/orders";
+    }
+
+    @PutMapping("/users/{id}")
+    public String updateUser(@PathVariable long id, @ModelAttribute User user,
+                             Authentication authentication) {
+
+        User userFromDb = userService.findById(user.getId());
+        userFromDb.setStatus(user.getStatus());
+        userFromDb.setRole(user.getRole());
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User userSecurity = securityUser.getUser();
+        userSecurity.setRole(user.getRole());
+        userSecurity.setStatus(user.getStatus());
+        userService.save(userFromDb);
+        return "redirect:/admin/users";
     }
 
     private int[] pagination(Page<?> object) {

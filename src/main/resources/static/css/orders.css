@@ -6,23 +6,25 @@ body:not(.container) {
     margin-top: 62px;
     background-color: white;
 }
-.card-text{
-    margin-top: 15px;
+.orderButtons{
+    margin-top: 10px;
 }
-
 #sumInOrder {
     float: right;
     opacity: .8;
+    position: absolute;
+    right: 30px;
+    bottom: 10px;
 }
 
 #orderStatus {
-    margin-left: 200px;
     font-weight: bold ;
+    position: absolute;
+    bottom: 10px;
 }
 
 #garbageOrder {
     float: right;
-    margin-right: 15px;
 }
 
 #orderNumber {
@@ -31,5 +33,6 @@ body:not(.container) {
 }
 #dateOfCreation{
     font-weight: bold;
+    margin-top: 10px;
 }
 

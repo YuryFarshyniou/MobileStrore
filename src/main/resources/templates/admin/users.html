@@ -24,26 +24,51 @@
                 <tr>
                     <th onclick="sortTableRow(0,'userTable')" style="cursor: pointer">Username</th>
                     <th onclick="sortTableRow(1,'userTable')" style="cursor: pointer">Email</th>
-                    <th onclick="sortTableRow(2,'userTable')" style="cursor: pointer">Role</th>
-                    <th onclick="sortTableRow(3,'userTable')" style="cursor: pointer">Status</th>
+                    <th onclick="sortTableRow(2,'userTable')" style="cursor: pointer">Status</th>
+                    <th onclick="sortTableRow(3,'userTable')" style="cursor: pointer">Role</th>
                     <th onclick="sortTableRow(4,'userTable')" style="cursor: pointer">FirstName</th>
                     <th onclick="sortTableRow(5,'userTable')" style="cursor: pointer">LastName</th>
                     <th onclick="sortTableRow(6,'userTable')" style="cursor: pointer">Address</th>
+                    <th ></th>
 
                 </tr>
                 </thead>
                 <tbody>
                 <th:block th:each="user : ${users}">
-                    <tr>
-                        <td th:class="name_column" th:text="${user.getUserName()}">Username</td>
-                        <td th:class="name_column" th:text="${user.getEmail()}">email</td>
-                        <td th:class="name_column" th:text="${user.getRole()}">role</td>
-                        <td th:class="name_column" th:text="${user.getStatus()}">status</td>
-                        <td th:class="name_column" th:text="${user.getFirstName()}">FirstName</td>
-                        <td th:class="name_column" th:text="${user.getLastName()}">LastName</td>
-                        <td th:class="name_column" th:text="${user.getAddress()}">Address</td>
-
-                    </tr>
+                    <form th:action="@{/admin/users/{id}(id=${user.getId()})}" th:method="PUT">
+                        <tr>
+                            <td th:class="name_column" th:text="${user.getUserName()}">Username</td>
+                            <td th:class="name_column" th:text="${user.getEmail()}">email</td>
+                            <td>
+                                <label th:for="status">
+                                    <select class="form-select form-select-sm" aria-label="Default select example"
+                                            name="status">
+                                        <option th:each="status : ${status}"
+                                                th:value="${{status}}"
+                                                th:text="${status}"
+                                                th:selected="${status}==${user.getStatus()}"></option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td>
+                                <label th:for="role">
+                                    <select class="form-select form-select-sm" aria-label="Default select example"
+                                            name="role">
+                                        <option th:each="role : ${roles}"
+                                                th:value="${{role}}"
+                                                th:text="${role}"
+                                                th:selected="${role}==${user.getRole()}"></option>
+                                    </select>
+                                </label>
+                            </td>
+                            <td th:class="name_column" th:text="${user.getFirstName()}">FirstName</td>
+                            <td th:class="name_column" th:text="${user.getLastName()}">LastName</td>
+                            <td th:class="name_column" th:text="${user.getAddress()}">Address</td>
+                            <td>
+                                <button class="btn btn-sm btn-success" type="submit">Change</button>
+                            </td>
+                        </tr>
+                    </form>
                 </th:block>
                 </tbody>
             </table>
