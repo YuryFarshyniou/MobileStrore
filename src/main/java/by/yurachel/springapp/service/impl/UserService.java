@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("userService")
+@Transactional
 public class UserService implements IService<User> {
 
     private final UserRepository userRepository;
@@ -37,14 +38,14 @@ public class UserService implements IService<User> {
         return users;
     }
 
-    @Transactional
+
     public User save(User user) {
         User userToDb = userRepository.saveAndFlush(user);
         logger.info("User {} successfully added to db", user.getId());
         return userToDb;
     }
 
-    @Transactional
+
     public void deleteById(long id) {
         userRepository.deleteById(id);
         logger.info("User with id {} was successfully deleted", id);

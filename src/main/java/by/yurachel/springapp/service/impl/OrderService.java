@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("orderService")
+@Transactional
 public class OrderService implements IService<Order> {
 
     private final OrderRepository orderRepository;
@@ -41,7 +42,6 @@ public class OrderService implements IService<Order> {
     }
 
     @Override
-    @Transactional
     public Order save(Order order) {
         Order orderToBd = orderRepository.save(order);
         logger.info("Order {} was successfully added to db", orderToBd.getId());
@@ -50,7 +50,6 @@ public class OrderService implements IService<Order> {
     }
 
     @Override
-    @Transactional
     public void deleteById(long id) {
         orderRepository.deleteById(id);
         logger.info("Order with id {} was successfully deleted form db", id);

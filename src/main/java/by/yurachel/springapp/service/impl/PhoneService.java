@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service("phoneService")
+@Transactional
 public class PhoneService implements IService<Phone> {
     private final PhoneRepository phoneRepository;
     private final Logger logger = LoggerFactory.getLogger(PhoneService.class);
@@ -36,14 +37,14 @@ public class PhoneService implements IService<Phone> {
         return phones;
     }
 
-    @Transactional
+
     public Phone save(Phone phone) {
         Phone phoneToDb = phoneRepository.save(phone);
         logger.info("Phone {} was successfully added to db", phoneToDb.getId());
         return phoneToDb;
     }
 
-    @Transactional
+
     public void deleteById(long id) {
         phoneRepository.deleteById(id);
         logger.info("Phone with id {} was successfully deleted form db", id);
