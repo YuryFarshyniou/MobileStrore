@@ -29,6 +29,7 @@ public class ProfileController {
 
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
+
     public ProfileController(IService<Phone> phoneService, IService<User> userService, IService<Order> orderService) {
         this.phoneService = phoneService;
         this.userService = userService;
@@ -81,7 +82,8 @@ public class ProfileController {
     }
 
     @PostMapping(value = "/{id}")
-    public String addPurchaseInPhoneCatalog(@PathVariable Long id, Authentication authentication) {
+    public String addPurchaseInPhoneCatalog(@PathVariable Long id, Authentication authentication,
+                                            @RequestParam(value = "requestFrom", required = false) String requestFromParam) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         Order order = user.getPreparatoryOrder();
@@ -96,6 +98,9 @@ public class ProfileController {
 
 
         orderService.save(order);
+        if (requestFromParam.equals("showPhone")) {
+            return "redirect:/phones/" + id;
+        }
         return "redirect:/phones";
     }
 

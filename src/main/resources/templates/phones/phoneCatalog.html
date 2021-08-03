@@ -37,7 +37,7 @@
                     </td>
 
                     <td sec:authorize="isAuthenticated()"           >
-                        <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST"
+                        <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='catalog')}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
 
                             <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"

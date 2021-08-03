@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Phone</title>
+    <style>
+        .addButtonInShowPhone {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+        body:not(.container) {
+            background-color: #e3e3e3;
+        }
+
+        .container {
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
@@ -11,20 +24,28 @@
         <div class="col-3 " style="margin-top: 80px">
             <img th:src="@{${phone.getImg()}}" width="300" height="300" alt="Image"/>
         </div>
-        <div class="col-4">
-            <h6 th:text="${phone.getName() +', '+ phone.getProcessor()}" style="margin-top: 270px"></h6>
+        <div class="col-9">
+            <div class="row justify-content-center">
+                <div class="col justify-content-center">
+                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 300px"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <h6 th:text="${phone.getProcessor()}" style="margin-top: 120px"></h6>
+            </div>
             <div class="row ">
-                <div class="col-3">
+                <div class="col-1">
                     <h3 th:text="${phone.getPrice()} + '$'" style="margin-top: 30px"></h3>
                 </div>
                 <div class="col-4" sec:authorize="isAuthenticated()">
-                    <form th:action="@{/profile/{id}(id=${phone.getId()})}" th:method="POST"
+                    <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='showPhone')}" th:method="POST"
                           th:name="addPurchaseInPhoneCatalog">
-
                         <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
-                               class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
+                               class="addButtonInShowPhone btn btn-danger" type="submit" name="addToList"
+                               value="Add to List"/>
                         <input th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
-                               class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
+                               class="addButtonInShowPhone btn btn-success disabled" type="submit" name="addToList"
+                               value="Added"/>
                     </form>
                 </div>
 
@@ -45,18 +66,8 @@
                 </thead>
                 <tbody>
                 <tr>
-                    <td>Name</td>
-                    <td th:text="${phone.getName()}">name</td>
-
-                </tr>
-                <tr>
                     <td>Processor</td>
                     <td th:text="${phone.getProcessor()}">processor</td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td th:text="${phone.getPrice()}+' $'">price</td>
-
                 </tr>
                 </tbody>
             </table>
