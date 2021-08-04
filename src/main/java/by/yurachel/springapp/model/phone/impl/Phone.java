@@ -1,7 +1,7 @@
 package by.yurachel.springapp.model.phone.impl;
 
 import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.phone.OperatingSystem;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -38,15 +38,62 @@ public class Phone implements Serializable {
     private String processor;
     @NotEmpty(message = "Img link should not be empty")
     private String img;
-
+    @Enumerated(value = EnumType.STRING)
+    private OperatingSystem os;
     @Temporal(TemporalType.DATE)
     private Date dateOfAdded;
+    @NotNull(message = "Screen size shouldn't be null")
+    private double screenSize;
+    @NotNull(message = "RAM shouldn't be null")
+    private int randomAccessMemory;
+    @NotNull(message = "Number of cameras shouldn't be null")
+    private int numberOfMainCameras;
+    @NotNull(message = "Number of matrix points shouldn't be null")
+    private int numberOfMatrixPoints;
+    @NotNull(message = "Number of sim cards shouldn't be null")
+    private int numberOfSimCards;
+    @NotNull(message = "CPU clock speed shouldn't be null")
+    private int cpuClockSpeed;
+    @NotNull(message = "Graphics accelerator shouldn't be null")
+    private String graphicsAccelerator;
+    @NotNull(message = "Body material shouldn't be null")
+    private String bodyMaterial;
+    @NotNull(message = "back cover material shouldn't be null")
+    private String backCoverMaterial;
+    @NotNull(message = "Body color shouldn't be null")
+    private String bodyColor;
+    @NotNull(message = "Length shouldn't be null")
+    private double length;
+    @NotNull(message = "Width shouldn't be null")
+    private double width;
+    @NotNull(message = "Thickness shouldn't be null")
+    private double thickness;
+    @NotNull(message = "Weight shouldn't be null")
+    private int weight;
+    @NotNull(message = "Screen technology shouldn't be null")
+    private String screenTechnology;
+    @NotNull(message = "Screen refresh rate shouldn't be null")
+    private int screenRefreshRate;
+    @NotNull(message = "Accumulator capacity shouldn't be null")
+    private int accumulatorCapacity;
+    @NotNull(message = "Accumulator type shouldn't be null")
+    private String accumulatorType;
+    private String wifi;
+    @NotNull(message = "Connection connector shouldn't be null")
+    private String connectionConnector;
 
     private static final long serialVersionUID = 6295618226040646585L;
 
     @ManyToMany(mappedBy = "phones")
     @ToString.Exclude
     private List<Order> orders = new ArrayList<>();
+
+    @ElementCollection
+    private List<String> images = new ArrayList<>();
+
+    public void addImage(String imageLink) {
+        images.add(imageLink);
+    }
 
 
     public Phone(String name, double price, String processor, String img) {

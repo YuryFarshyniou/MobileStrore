@@ -1,5 +1,6 @@
 package by.yurachel.springapp.controller.phone;
 
+import by.yurachel.springapp.model.phone.OperatingSystem;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
@@ -47,12 +48,14 @@ public class PhoneController {
     @GetMapping("/{id}")
     public String phonePage(@PathVariable("id") int id, Model model) {
         model.addAttribute("phone", phoneService.findById(id));
+        model.addAttribute("imageLink", "");
         return "phones/showPhone";
     }
 
     @GetMapping("/new")
     public String addNewPhone(Model model) {
         model.addAttribute("newPhone", new Phone());
+        model.addAttribute("os", OperatingSystem.values());
         return "phones/newPhone";
     }
 
@@ -66,10 +69,22 @@ public class PhoneController {
         return "redirect:/phones";
     }
 
+    @PostMapping("/{id}")
+    public String addImage(@PathVariable long id, @ModelAttribute(value = "imageLink") String imageLink) {
+        System.out.println(imageLink);
+        System.out.println(id);
+        Phone phone = phoneService.findById(id);
+        phone.addImage(imageLink);
+        phoneService.save(phone);
+        return "redirect:/phones/" + phone.getId();
+    }
+
 
     @GetMapping("/{id}/updatePhone")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("phone", phoneService.findById(id));
+        model.addAttribute("os", OperatingSystem.values());
+
         return "phones/updatePhone";
     }
 
