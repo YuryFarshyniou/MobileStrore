@@ -7,18 +7,21 @@
     <link rel="stylesheet" th:href="@{/css/purchasesList.css}">
 </head>
 <body>
-<header th:insert="header.html :: navigationBar"></header>
-<div class="container" >
+<header th:insert="fragments/header :: navigationBar"></header>
+<div class="container">
     <div class="row justify-content-md-center">
         <div class="col">
             <div th:class="h1">Purchase list</div>
-            <span id="phoneSum" ></span>
+            <span id="phoneSum" th:unless="${#authentication.getPrincipal().getUser().getPreparatoryOrder()==null ||
+                  #authentication.getPrincipal().getUser().getPreparatoryOrder().getPhones().isEmpty()}"></span>
             <img class="rounded mx-auto d-block"
-                 th:if="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
+                 th:if="${#authentication.getPrincipal().getUser().getPreparatoryOrder()==null ||
+                  #authentication.getPrincipal().getUser().getPreparatoryOrder().getPhones().isEmpty()}"
                  th:src="@{/img/emptyList.png}" alt="EmptyList"/>
 
             <table class="table mt-5" id="purchaseTable"
-                   th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}">
+                   th:unless="${#authentication.getPrincipal().getUser().getPreparatoryOrder()==null ||
+                  #authentication.getPrincipal().getUser().getPreparatoryOrder().getPhones().isEmpty()}">
                 <tbody>
                 <th:block th:each="phone : ${purchaseList}" id="purchaseDiv">
                     <th:block th:each="phone2 : ${phone.getValue()}">
@@ -26,10 +29,11 @@
                             <td th:class="name_column" th:text="${phone.getKey()}"
                                 id="nameColumn">name
                             </td>
+
                             <td th:class="image"><img th:src="@{${phone2.getKey().getImg()}}" th:width="90"
                                                       th:height="90" th:alt="Image"/></td>
                             <td id="actionWithPurchases">
-                                <form th:action="@{/profile/{id}(id=${phone2.getKey().getId()})}"
+                                <form th:action="@{/profile/{id}/minusOperator(id=${phone2.getKey().getId()})}"
                                       th:name="minusOperationInPurchaseList" id="minusFormButton" th:method="DELETE">
                                     <button th:if="${phone2.getValue()==1}"
                                             type="button" class="btn btn-secondary btn-sm disabled"
@@ -39,14 +43,14 @@
                                             type="submit" class="btn btn-secondary btn-sm " id="minusButton">-
                                     </button>
                                 </form>
-
                                 <span id="amountOfPurchases" th:text="${phone2.getValue()}"></span>
 
                                 <form th:action="@{/profile/{id}/plusOp(id=${phone2.getKey().getId()})}"
-                                      th:name="plusOperationInPurchaseList" id="plusFormButton" th:method="POST">
+                                      th:name="addPurchaseInPlusOperation" id="plusFormButton" th:method="POST">
                                     <button type="submit" class="btn btn-secondary btn-sm" id="plusButton">+</button>
                                 </form>
                             </td>
+
                             <td th:class="price_column" th:text="${(phone2.getKey().getPrice()*phone2.getValue())+'$'}"
                                 id="priceColumn">price
                             </td>
@@ -63,17 +67,21 @@
                 </th:block>
                 </tbody>
             </table>
-            <span id="amountOfPurchasesAndSum" style=""></span>
+            <span id="amountOfPurchasesAndSum" style="" th:unless="${#authentication.getPrincipal().getUser().getPreparatoryOrder()==null ||
+                  #authentication.getPrincipal().getUser().getPreparatoryOrder().getPhones().isEmpty()}"></span>
 
         </div>
-        <form th:method="POST" th:action="">
+        <form th:method="POST"
+              th:action="@{/profile/{id}/order(id=(${#authentication.getPrincipal().getUser().getId()}))}"
+              th:name="makeAnOrder">
             <button type="submit" class="btn btn-success"
-                    th:unless="${#authentication.getPrincipal().getUser().getPhones().isEmpty()}"
+                    th:unless="${#authentication.getPrincipal().getUser().getPreparatoryOrder()==null ||
+                  #authentication.getPrincipal().getUser().getPreparatoryOrder().getPhones().isEmpty()}"
                     id="makeAnOrderButton">Make an order
             </button>
         </form>
     </div>
-    <footer th:insert="footer.html :: footer"></footer>
+    <footer th:insert="fragments/footer :: footer"></footer>
 </div>
 <script th:src="@{/js/purchaseSum.js}"></script>
 </body>

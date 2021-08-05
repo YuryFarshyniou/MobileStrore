@@ -1,3 +1,83 @@
-td{
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
+.container {
+    background-color: white;
+}
+
+td {
     font-size: 40px;
+}
+
+#headerProfile {
+    margin-top: 100px;
+    margin-left: 30px;
+}
+
+#profileWithAvatar, #profileUnknown {
+    border-radius: 50%;
+}
+
+
+#profileUserName {
+    float: left;
+    margin-left: 120px;
+    margin-top: 170px;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+#creationDateProfile {
+    opacity: .8;
+    font-size: 15px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+}
+
+#personalData {
+    margin-top: 30px
+}
+
+.inf {
+    font-size: 20px;
+    opacity: .8;
+}
+
+.descriptionProfile {
+    font-size: 20px;
+}
+
+#updateImage {
+    width: 307px;
+}
+
+#updateAvatarInput {
+    width: 210px;
+    margin-left: 30px;
+}
+
+#submitForAvatar {
+    margin-bottom: 3px;
+}
+
+.inline, .inline #submitForAvatar {
+    display: inline-block;
+}
+
+#editHref {
+    font-size: 25px;
+}
+
+#bottomRow {
+    padding-bottom: 210px;
+    margin-left: 30px;
+}
+
+#avatarRow, #idRow {
+    background-color: lightgoldenrodyellow;
+}
+
+#editColumn {
+    margin-top: 80px;
 }

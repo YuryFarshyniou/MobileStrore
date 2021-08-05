@@ -1,5 +1,6 @@
 package by.yurachel.springapp.service.impl;
 
+import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.repository.UserRepository;
 import by.yurachel.springapp.service.IService;
@@ -8,10 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service("userService")
+@Transactional
 public class UserService implements IService<User> {
 
     private final UserRepository userRepository;
@@ -21,22 +24,27 @@ public class UserService implements IService<User> {
         this.userRepository = userRepository;
     }
 
+    @Transactional(readOnly = true)
     public User findById(long id) {
         User user = userRepository.findById(id).orElse(null);
-        logger.info("User {} was successfully found", user);
+        logger.info("User {} was successfully found", user.getUserName());
         return user;
     }
 
+    @Transactional(readOnly = true)
     public List<User> findAll() {
         List<User> users = userRepository.findAll();
         logger.info("Users was successfully found");
         return users;
     }
+
+
     public User save(User user) {
-        User userToDb = userRepository.save(user);
-        logger.info("User was successfully added to db");
+        User userToDb = userRepository.saveAndFlush(user);
+        logger.info("User {} successfully added to db", user.getId());
         return userToDb;
     }
+
 
     public void deleteById(long id) {
         userRepository.deleteById(id);
@@ -44,7 +52,10 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    public Page<User> findAllPhones(Pageable pageable) {
-        return null;
+    @Transactional(readOnly = true)
+    public Page<User> findAllWithPagination(Pageable pageable) {
+        Page<User> users = userRepository.findAll(pageable);
+        logger.info("All users in db was successfully found");
+        return users;
     }
 }

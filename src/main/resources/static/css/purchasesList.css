@@ -1,5 +1,6 @@
 .container {
-    margin-top: 62px
+    margin-top: 62px;
+
 }
 
 #purchaseTable {
@@ -38,7 +39,8 @@
     margin-top: 80px;
     margin-right: 110px
 }
-#phoneSum{
+
+#phoneSum {
     opacity: .8
 }
 

@@ -1,3 +1,10 @@
+body:not(.container) {
+    background-color: #e3e3e3;
+}
+
+.container {
+    background-color: white;
+}
 section {
     padding-top: 50px;
     padding-bottom: 50px;
@@ -22,4 +29,11 @@ section {
 #next {
     right: -130px;
 }
+.titleCard{
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: gray;
+}
+
 

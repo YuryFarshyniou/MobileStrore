@@ -1,17 +1,148 @@
-<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<html xmlns:th="http://www.thymeleaf.org/" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
 <head>
     <meta charset="UTF-8"/>
     <title>Phone</title>
+    <style>
+        .addButtonInShowPhone {
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+
+        body:not(.container) {
+            background-color: #e3e3e3;
+        }
+
+        .container {
+            background-color: white;
+            margin-bottom: 56px;
+            padding-bottom: 30px;
+        }
+
+        .ImagesShow img {
+            border: none;
+        }
+        .infoRawInShowPhone{
+            margin-top: 8px;
+            margin-left: 100px;
+            opacity: .6;
+        }
+        .infoLinkInShow{
+            font-weight: bold;
+            text-decoration: none;
+            color: gray;
+            font-size: 18px;
+        }
+
+    </style>
 </head>
 <body>
-<header th:insert="header.html :: navigationBar"></header>
+<header th:insert="fragments/header :: navigationBar"></header>
 <div class="container ">
-    <div class="row ">
-        <div class="col justify-content-center" style="margin-top: 80px">
-            <img th:src="@{${phone.getImg()}}" width="600" height="500" alt="Image"
-                 style="margin-left: auto;margin-right: auto; display: block ; margin-bottom: 20px"   />
+    <div class="row justify-content-left mb-2 ">
+        <div class="col-3 " style="margin-top: 80px">
+            <img th:src="@{${phone.getImg()}}" width="300" height="300" alt="Image"/>
+        </div>
+        <div class="col-9">
+            <div class="row justify-content-center">
+                <div class="col justify-content-center">
+                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 300px"></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ">
 
-            <table class="table table-striped table-borderless">
+                    <h6 th:text="${phone.getOs()+',screen '+phone.getScreenSize()+', '+phone.getScreenTechnology()+', '+phone.getProcessor()+', RAM '
+                + phone.getRandomAccessMemory()+' Gb, '+'camera '+phone.getNumberOfMatrixPoints()+' Mp, accumulator '+phone.getAccumulatorCapacity()+' Mah, number of Sim cards '+phone.getNumberOfSimCards()}"
+                        style="margin-top: 120px"></h6>
+                </div>
+
+            </div>
+            <div class="row ">
+                <div class="col-1">
+                    <h3 th:text="${phone.getPrice()} + '$'" style="margin-top: 30px"></h3>
+                </div>
+                <div class="col-2" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='showPhone')}" th:method="POST"
+                          th:name="addPurchaseInPhoneCatalog">
+                        <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                               class="addButtonInShowPhone btn btn-danger" type="submit" name="addToList"
+                               value="Add to List"/>
+                        <input th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                               class="addButtonInShowPhone btn btn-success disabled" type="submit" name="addToList"
+                               value="Added"/>
+                    </form>
+                </div>
+                <div class="col-2" sec:authorize="hasRole('ROLE_ADMIN')" style="margin-top: 30px">
+                    <button type="button" class="btn btn-primary " data-bs-toggle="modal"
+                            data-bs-target="#addImage" data-bs-whatever="@mdo" style="margin-left: 14px">Add image
+                    </button>
+                    <div class="modal fade" id="addImage" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Link for image</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="POST" >
+                                    <div class="modal-body">
+                                        <div class="mb-3">
+                                            <label for="phoneImage" class="form-label">Phone image</label>
+                                            <input name="imageLink" type="text" class="form-control" id="phoneImage"
+                                                   placeholder="phoneImage" th:value="${imageLink}">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Add
+                                            image
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2" style="margin-top: 30px" sec:authorize="hasRole('ROLE_ADMIN')">
+                    <form th:action="@{/phones/{id}/updatePhone(id=${phone.getId()})}" th:method="GET"
+                          th:name="update">
+                        <input class="btn btn-primary" type="submit" name="info" value="Update"/>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+        <hr style="margin-top: 20px">
+    </div>
+    <div class="row">
+        <div class="ImagesShow col">
+            <th:block th:each="image :${phone.getImages()}">
+                <img th:src="@{${image}}"
+                     class="img-thumbnail popup" alt="image" width="100" height="100" style="cursor: pointer">
+
+            </th:block>
+        </div>
+        <hr style="margin-top: 20px">
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-2">
+                    <h2>Description</h2>
+                </div>
+                <div class="col-7">
+                      <p class="infoRawInShowPhone">If you want to buy phones in our store,please <a
+                              class="infoLinkInShow" th:href="@{/login}">login</a>,or
+                        make a <a class="infoLinkInShow" th:href="@{/registration}">registration</a> in out store.
+                    </p>
+                </div>
+
+
+
+            </div>
+            <table class="table  table-borderless">
                 <thead>
                 <tr>
                     <th></th>
@@ -19,25 +150,168 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Name</td>
-                    <td th:text="${phone.getName()}">name</td>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Main characteristics</h5>
+                    </td>
+                    <td></td>
+                </tr>
 
+                <tr>
+                    <td>Operating system</td>
+                    <td th:text="${phone.getOs()}">operatingSystem</td>
+                </tr>
+                <tr>
+                    <td>Screen size</td>
+                    <td th:text="${phone.getScreenSize()} +''">screenSize</td>
+                </tr>
+                <tr>
+                    <td>RAM</td>
+                    <td th:text="${phone.getRandomAccessMemory() + ' Gb'}">ram</td>
+                </tr>
+                <tr>
+                    <td>Number of cameras</td>
+                    <td th:text="${phone.getNumberOfMainCameras()}">Number of cameras</td>
+                </tr>
+                <tr>
+                    <td>Number of matrix points</td>
+                    <td th:text="${phone.getNumberOfMatrixPoints()+' Mp'}">Number of matrix points</td>
+                </tr>
+                <tr>
+                    <td>Number of sim cards</td>
+                    <td th:text="${phone.getNumberOfSimCards()}">Number of sim cards</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Processor</h5>
+                    </td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Processor</td>
                     <td th:text="${phone.getProcessor()}">processor</td>
                 </tr>
                 <tr>
-                    <td>Price</td>
-                    <td th:text="${phone.getPrice()}">price</td>
-
+                    <td>CPU clock speed</td>
+                    <td th:text="${phone.getCpuClockSpeed() +' Mgh'}">cpuClockSpeed</td>
+                </tr>
+                <tr>
+                    <td>Graphics accelerator</td>
+                    <td th:text="${phone.getGraphicsAccelerator()}">graphicsAccelerator</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Design</h5>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Body material</td>
+                    <td th:text="${phone.getBodyMaterial()}">Body material</td>
+                </tr>
+                <tr>
+                    <td>Back cover material</td>
+                    <td th:text="${phone.getBackCoverMaterial()}">Back cover material</td>
+                </tr>
+                <tr>
+                    <td>Body color</td>
+                    <td th:text="${phone.getBodyColor()}">Body color</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Size and weight</h5>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Length</td>
+                    <td th:text="${phone.getLength()+' mm'}">length</td>
+                </tr>
+                <tr>
+                    <td>Width</td>
+                    <td th:text="${phone.getWidth()} + ' mm'">width</td>
+                </tr>
+                <tr>
+                    <td>Thickness</td>
+                    <td th:text="${phone.getThickness() +' mm'}">thickness</td>
+                </tr>
+                <tr>
+                    <td>Weight</td>
+                    <td th:text="${phone.getWeight()} +' gr'">weight</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Screen</h5>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Screen technology</td>
+                    <td th:text="${phone.getScreenTechnology()}">screen technology</td>
+                </tr>
+                <tr>
+                    <td>Screen refresh rate</td>
+                    <td th:text="${phone.getScreenRefreshRate()}">screen refresh rate</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Accumulator</h5>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Accumulator type</td>
+                    <td th:text="${phone.getAccumulatorType()}">accumulatorType</td>
+                </tr>
+                <tr>
+                    <td>Accumulator capacity</td>
+                    <td th:text="${phone.getAccumulatorCapacity()}">accumulatorCapacity</td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>
+                        <h5>Interfaces</h5>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Wi-fi</td>
+                    <td th:text="${phone.getWifi()}">wifi</td>
+                </tr>
+                <tr>
+                    <td>Connection connector</td>
+                    <td th:text="${phone.getConnectionConnector()}">connectionConnector</td>
                 </tr>
                 </tbody>
             </table>
+            <hr/>
+            <span style="font-size: 15px;opacity: .5;margin-bottom: 30px">The above information was obtained from open sources, including from official sites and from catalogs of manufacturers.
+                <br/>
+               When receiving an order,Always pay attention to the parameters and characteristics of the purchases goods that are important for you.
+                <br/>
+               All materials ,published in this catalog are the property of MobileStore,any publication or copying(full or partial) without prior consent is prohibited.
+            </span>
+        </div>
+    </div>
+
+</div>
+<!--Modal-->
+<div class="modal fade modal-img" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <img id="popup-img" src="" alt="image">
         </div>
     </div>
 </div>
-<footer th:insert="footer.html :: footer"></footer>
+
+
+<script>
+    $('.popup').click(function () {
+        let src = $(this).attr('src')
+        $('.modal-img').modal("show")
+        $('#popup-img').attr('src', src)
+    })
+</script>
+<footer th:insert="fragments/footer :: footer"></footer>
+
 </body>
 </html>

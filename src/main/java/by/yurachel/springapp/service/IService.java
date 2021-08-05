@@ -14,5 +14,5 @@ public interface IService<T> {
 
     void deleteById(long id);
 
-    Page<T> findAllPhones(Pageable pageable);
+    Page<T> findAllWithPagination(Pageable pageable);
 }

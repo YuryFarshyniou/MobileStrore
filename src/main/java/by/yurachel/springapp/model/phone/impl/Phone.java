@@ -1,9 +1,10 @@
 package by.yurachel.springapp.model.phone.impl;
 
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.phone.OperatingSystem;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -12,15 +13,18 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "phones")
-@NoArgsConstructor
 @AllArgsConstructor
-@Data
-public class Phone {
+@Getter
+@Setter
+@ToString
+public class Phone implements Serializable {
     @Id
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
@@ -36,19 +40,65 @@ public class Phone {
     private String processor;
     @NotEmpty(message = "Img link should not be empty")
     private String img;
-
-    @ManyToMany(mappedBy = "phones", fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
-    @ToString.Exclude
-    private List<User> users = new ArrayList<>();
+    @Enumerated(value = EnumType.STRING)
+    private OperatingSystem os;
+    @Temporal(TemporalType.DATE)
+    private Date dateOfAdded;
+    @NotNull(message = "Screen size shouldn't be null")
+    private double screenSize;
+    @NotNull(message = "RAM shouldn't be null")
+    private int randomAccessMemory;
+    @NotNull(message = "Number of cameras shouldn't be null")
+    private int numberOfMainCameras;
+    @NotNull(message = "Number of matrix points shouldn't be null")
+    private int numberOfMatrixPoints;
+    @NotNull(message = "Number of sim cards shouldn't be null")
+    private int numberOfSimCards;
+    @NotNull(message = "CPU clock speed shouldn't be null")
+    private int cpuClockSpeed;
+    @NotNull(message = "Graphics accelerator shouldn't be null")
+    private String graphicsAccelerator;
+    @NotNull(message = "Body material shouldn't be null")
+    private String bodyMaterial;
+    @NotNull(message = "back cover material shouldn't be null")
+    private String backCoverMaterial;
+    @NotNull(message = "Body color shouldn't be null")
+    private String bodyColor;
+    @NotNull(message = "Length shouldn't be null")
+    private double length;
+    @NotNull(message = "Width shouldn't be null")
+    private double width;
+    @NotNull(message = "Thickness shouldn't be null")
+    private double thickness;
+    @NotNull(message = "Weight shouldn't be null")
+    private int weight;
+    @NotNull(message = "Screen technology shouldn't be null")
+    private String screenTechnology;
+    @NotNull(message = "Screen refresh rate shouldn't be null")
+    private int screenRefreshRate;
+    @NotNull(message = "Accumulator capacity shouldn't be null")
+    private int accumulatorCapacity;
+    @NotNull(message = "Accumulator type shouldn't be null")
+    private String accumulatorType;
+    private String wifi;
+    @NotNull(message = "Connection connector shouldn't be null")
+    private String connectionConnector;
 
     private static final long serialVersionUID = 6295618226040646585L;
 
-    public boolean addUser(User user) {
-        return users.add(user);
+    @ManyToMany(mappedBy = "phones")
+    @ToString.Exclude
+    private List<Order> orders = new ArrayList<>();
+
+    @ElementCollection
+    private List<String> images = new ArrayList<>();
+
+    public void addImage(String imageLink) {
+        images.add(imageLink);
     }
 
-    public boolean deleteUser(long id) {
-        return users.removeIf(user -> user.getId() == id);
+    public Phone() {
+        dateOfAdded = new Date();
     }
 
     public Phone(String name, double price, String processor, String img) {
@@ -56,7 +106,6 @@ public class Phone {
         this.price = price;
         this.processor = processor;
         this.img = img;
-
     }
 
     public Phone(long id, String name, double price, String processor) {
@@ -71,7 +120,6 @@ public class Phone {
         this.price = price;
         this.processor = processor;
     }
-
 
 
 }
