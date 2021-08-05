@@ -17,7 +17,8 @@ body:not(.container) {
 .name_column {
     font-size: 25px;
     font-family: "Britannic Bold", serif;
-
+    text-decoration: none;
+    color: gray;
 }
 
 #sortTable {
@@ -39,5 +40,14 @@ body:not(.container) {
     margin-bottom: 20px;
     font-size: 25px;
     height: 50px;
-
+}
+.infoRawInPhoneCatalog{
+    margin-left: 40px;
+    opacity: .6;
+}
+.infoLinkInCat{
+    font-weight: bold;
+    text-decoration: none;
+    color: gray;
+    font-size: 18px;
 }
