@@ -41,12 +41,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home", "/phones", "/phones/{^[\\d]$}", "/registration").permitAll()
-                .antMatchers("/profile").authenticated()
-                .antMatchers("/phones/new"
-                        , "/phones/{\\d+}/updatePhone").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
-                .antMatchers(HttpMethod.DELETE, "/phones/{^[\\d]$}").hasAuthority(Permission.DEVELOPERS_WRITE.getPermission())
-                .antMatchers("/users", "/users/new").hasRole(Role.ADMIN.name())
+                .antMatchers("/home","/phones/**", "/registration").permitAll()
+                .antMatchers("/profile/**").authenticated()
+                .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .and()
                 .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
                 .and()

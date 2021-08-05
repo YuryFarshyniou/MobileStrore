@@ -29,4 +29,11 @@ section {
 #next {
     right: -130px;
 }
+.titleCard{
+    font-weight: bold;
+    font-size: 20px;
+    text-decoration: none;
+    color: gray;
+}
+
 

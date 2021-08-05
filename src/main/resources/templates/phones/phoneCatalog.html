@@ -18,7 +18,7 @@
                     <th onclick="sortTableRow(1,'sortTable')" id="nameHeader">Name</th>
                     <th onclick="sortTableNumber(2,'sortTable')" id="priceHeader">Price</th>
                     <th sec:authorize="hasAuthority('developers:write')"></th>
-                    <th></th>
+<!--                    <th></th>-->
                     <th sec:authorize="isAuthenticated()"></th>
                     <th sec:authorize="hasAuthority('developers:write')"></th>
                 </tr>
@@ -27,23 +27,30 @@
                 <tr id="elementTable" th:each="phone : ${phones}">
                     <td class="image"><img th:src="@{${phone.getImg()}}" width="90"
                                            height="90" th:alt="Image"/></td>
-                    <td class="name_column" th:text="${phone.getName()}">name</td>
+                    <td >
+                        <a th:href="@{/phones/{id}(id=${phone.getId()})}">
+                            <span class="name_column" th:text="${phone.getName()}">
+                                Name
+                            </span>
+                        </a>
+
+                    </td>
                     <td class="price_column" th:text="${phone.getPrice}+'$'">price</td>
 
-                    <td>
-                        <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="GET" th:name="moreInfo">
-                            <input class="btn btn-dark" type="submit" name="info" value="More info"/>
-                        </form>
-                    </td>
+<!--                    <td>-->
+<!--                        <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="GET" th:name="moreInfo">-->
+<!--                            <input class="btn btn-dark" type="submit" name="info" value="More info"/>-->
+<!--                        </form>-->
+<!--                    </td>-->
 
-                    <td sec:authorize="isAuthenticated()"           >
+                    <td sec:authorize="isAuthenticated()">
                         <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='catalog')}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
 
                             <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
                                    class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
-                            <input  th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
-                                    class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
+                            <input th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                                   class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
                         </form>
                     </td>
 
@@ -65,9 +72,9 @@
             </table>
         </div>
     </div>
-<!--    <div th:if="${phones.getTotalPages()>7}">-->
+    <!--    <div th:if="${phones.getTotalPages()>7}">-->
 
-<!--    </div>-->
+    <!--    </div>-->
 
     <div class="mt-3">
         <ul class="pagination">

@@ -2,7 +2,10 @@ package by.yurachel.springapp.model.phone.impl;
 
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.phone.OperatingSystem;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -17,7 +20,6 @@ import java.util.List;
 
 @Entity
 @Table(name = "phones")
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -95,6 +97,9 @@ public class Phone implements Serializable {
         images.add(imageLink);
     }
 
+    public Phone() {
+        dateOfAdded = new Date();
+    }
 
     public Phone(String name, double price, String processor, String img) {
         this.name = name;
