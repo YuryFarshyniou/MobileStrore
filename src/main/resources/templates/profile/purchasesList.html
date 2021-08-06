@@ -51,8 +51,10 @@
                                 </form>
                             </td>
 
-                            <td th:class="price_column" th:text="${(phone2.getKey().getPrice()*phone2.getValue())+'$'}"
-                                id="priceColumn">price
+                            <td style="width: 200px">
+                                <p th:class="price_column"
+                                   th:text="${(phone2.getKey().getPrice()*phone2.getValue())+'$'}" id="priceColumn" ></p>
+
                             </td>
                             <td>
                                 <form th:action="@{/profile/{id}/allPhones(id=${phone2.getKey().getId()})}"

@@ -26,19 +26,21 @@ public class ProfileController {
     private final IService<Phone> phoneService;
     private final IService<User> userService;
     private final IService<Order> orderService;
+    private final UserUtils userUtils;
 
     private static final Logger logger = LoggerFactory.getLogger(ProfileController.class);
 
 
-    public ProfileController(IService<Phone> phoneService, IService<User> userService, IService<Order> orderService) {
+    public ProfileController(IService<Phone> phoneService, IService<User> userService, IService<Order> orderService, UserUtils userUtils) {
         this.phoneService = phoneService;
         this.userService = userService;
         this.orderService = orderService;
+        this.userUtils = userUtils;
     }
 
     @GetMapping("/{id}")
     public String userProfile(@PathVariable Long id, Model model) {
-        model.addAttribute("imgUtil", new UserUtils());
+        model.addAttribute("imgUtil", userUtils);
         return "profile/profile";
     }
 
@@ -91,7 +93,7 @@ public class ProfileController {
             order = new Order();
             order.setState(OrderState.PREPARATORY);
             order.setUser(user);
-            user.addOrder(order);
+            userUtils.addOrder(user.getOrders(), order);
         }
         Phone phoneById = phoneService.findById(id);
         order.addPhone(phoneById);
@@ -130,7 +132,7 @@ public class ProfileController {
     public String cancelTheOrder(@PathVariable long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        Order order = user.findOrder(id);
+        Order order = userUtils.findOrder(user.getOrders(), id);
         if (!order.getState().toString().equals("CANCELED")) {
             order.setState(OrderState.CANCELED);
         } else {
@@ -200,7 +202,7 @@ public class ProfileController {
     public String deleteOrder(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        Order order = user.findOrder(id);
+        Order order = userUtils.findOrder(user.getOrders(), id);
         if (order.getState().toString().equals("CANCELED")) {
             orderService.deleteById(id);
             user.deleteOrder(id);

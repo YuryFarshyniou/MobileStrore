@@ -68,6 +68,7 @@ public class User implements Serializable {
 
     private String address;
 
+
     public void deleteOrder(long id) {
         orders.removeIf(order -> order.getId() == id);
     }
@@ -92,28 +93,6 @@ public class User implements Serializable {
             return false;
         }
         return order.containsPhone(id);
-    }
-
-    public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public Order findOrder(long id) {
-        return orders.stream().filter(order -> order.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public void editOrder(Order order) {
-        orders.forEach(o -> {
-            if (o.getId() == order.getId()) {
-                o.setState(order.getState());
-            }
-        });
-    }
-
-    public UserUtils getUserUtils() {
-        return new UserUtils();
     }
 
     public User(String userName, String password, String email) {
