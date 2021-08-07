@@ -40,34 +40,10 @@ public class Order implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Phone> phones = new ArrayList<>();
 
-    public double orderSum() {
-        return phones.stream().mapToDouble(Phone::getPrice).sum();
-    }
 
-    public void addPhone(Phone phone) {
-        phones.add(phone);
-    }
-
-    public boolean containsPhone(long id) {
-        Phone phone2 = phones.stream().filter(phone -> phone.getId() == id)
-                .findFirst()
-                .orElse(null);
-
-        return phone2 != null;
-    }
-
-    public void deletePhone(long id) {
-        for (Phone phone : phones) {
-            if (phone.getId() == id) {
-                phones.remove(phone);
-                return;
-            }
-        }
-    }
-
-    public void deleteAllPhones(long id) {
-        phones.removeIf(phone -> phone.getId() == id);
-    }
+//    public void deleteAllPhones(long id) {
+//        phones.removeIf(phone -> phone.getId() == id);
+//    }
 
     public Map<String, Integer> orderInformation() {
         Map<String, Integer> order = new HashMap<>();

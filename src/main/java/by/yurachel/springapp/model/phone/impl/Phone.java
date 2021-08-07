@@ -93,10 +93,6 @@ public class Phone implements Serializable {
     @ElementCollection
     private List<String> images = new ArrayList<>();
 
-    public void addImage(String imageLink) {
-        images.add(imageLink);
-    }
-
     public Phone() {
         dateOfAdded = new Date();
     }

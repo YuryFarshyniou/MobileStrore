@@ -1,73 +1,57 @@
-2021-08-06 13:07:14.856  INFO 20268 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 20268 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
-2021-08-06 13:07:14.858  INFO 20268 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
-2021-08-06 13:07:14.887  INFO 20268 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-08-06 13:07:14.887  INFO 20268 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-08-06 13:07:15.359  INFO 20268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-08-06 13:07:15.411  INFO 20268 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 3 JPA repository interfaces.
-2021-08-06 13:07:15.779  INFO 20268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
-2021-08-06 13:07:15.785  INFO 20268 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-06 13:07:15.785  INFO 20268 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-08-06 13:07:15.867  INFO 20268 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-06 13:07:15.867  INFO 20268 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 979 ms
-2021-08-06 13:07:15.931  INFO 20268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-06 13:07:16.238  INFO 20268 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-06 13:07:16.270  INFO 20268 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-06 13:07:16.296  INFO 20268 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-08-06 13:07:16.366  INFO 20268 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-08-06 13:07:16.439  INFO 20268 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-08-06 13:07:16.907  INFO 20268 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-06 13:07:16.914  INFO 20268 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-06 13:07:16.949  WARN 20268 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-06 13:07:17.296  INFO 20268 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4e4f2bbe, org.springframework.security.web.context.SecurityContextPersistenceFilter@d62d659, org.springframework.security.web.header.HeaderWriterFilter@115a3cb7, org.springframework.security.web.authentication.logout.LogoutFilter@3d251e20, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1124f52b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@56cc3f89, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72d392ae, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@1a28d545, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ddbc337, org.springframework.security.web.session.SessionManagementFilter@465e8cbf, org.springframework.security.web.access.ExceptionTranslationFilter@1876cccd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@40e26b9f]
-2021-08-06 13:07:17.659  INFO 20268 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-08-06 13:07:17.682  INFO 20268 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
-2021-08-06 13:07:17.689  INFO 20268 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.091 seconds (JVM running for 3.581)
-2021-08-06 13:08:19.081  INFO 6968 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 6968 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
-2021-08-06 13:08:19.083  INFO 6968 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
-2021-08-06 13:08:19.111  INFO 6968 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-08-06 13:08:19.111  INFO 6968 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-08-06 13:08:19.564  INFO 6968 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-08-06 13:08:19.613  INFO 6968 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 44 ms. Found 3 JPA repository interfaces.
-2021-08-06 13:08:19.984  INFO 6968 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
-2021-08-06 13:08:19.990  INFO 6968 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-06 13:08:19.991  INFO 6968 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-08-06 13:08:20.070  INFO 6968 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-06 13:08:20.071  INFO 6968 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 959 ms
-2021-08-06 13:08:20.135  INFO 6968 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-06 13:08:20.429  INFO 6968 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-06 13:08:20.461  INFO 6968 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-06 13:08:20.487  INFO 6968 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-08-06 13:08:20.557  INFO 6968 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-08-06 13:08:20.626  INFO 6968 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-08-06 13:08:21.087  INFO 6968 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-06 13:08:21.093  INFO 6968 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-06 13:08:21.127  WARN 6968 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-06 13:08:21.466  INFO 6968 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@9562884, org.springframework.security.web.context.SecurityContextPersistenceFilter@6fea62b9, org.springframework.security.web.header.HeaderWriterFilter@44bba039, org.springframework.security.web.authentication.logout.LogoutFilter@2dbd51c4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@494a02f8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e9f5699, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@593de391, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@32bc6a69, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65da9a79, org.springframework.security.web.session.SessionManagementFilter@10dce713, org.springframework.security.web.access.ExceptionTranslationFilter@32b3b32a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@67eb3a7c]
-2021-08-06 13:08:21.816  INFO 6968 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-08-06 13:08:21.838  INFO 6968 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
-2021-08-06 13:08:21.846  INFO 6968 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.02 seconds (JVM running for 3.503)
-2021-08-06 13:08:24.041  INFO 6968 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-06 13:08:24.041  INFO 6968 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-06 13:08:24.042  INFO 6968 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-08-06 13:08:24.111  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:08:24.114  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:08:24.115  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:08:24.117  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:08:24.118  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:08:24.120  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:08:24.122  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:08:24.123  INFO 6968 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:08:30.330  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:08:30.332  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:08:30.334  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:08:30.336  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:08:30.338  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:08:30.340  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:08:30.343  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:08:30.345  INFO 6968 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:08:30.362 ERROR 6968 --- [http-nio-9191-exec-8] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-9191-exec-8] Exception processing template "home/home": An error happened during template parsing (template: "class path resource [templates/home/home.html]")
+2021-08-07 15:15:15.943  INFO 3712 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 3712 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
+2021-08-07 15:15:15.947  INFO 3712 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
+2021-08-07 15:15:15.983  INFO 3712 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-07 15:15:15.983  INFO 3712 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-07 15:15:16.550  INFO 3712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-07 15:15:16.612  INFO 3712 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 3 JPA repository interfaces.
+2021-08-07 15:15:17.027  INFO 3712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2021-08-07 15:15:17.034  INFO 3712 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-07 15:15:17.034  INFO 3712 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-08-07 15:15:17.121  INFO 3712 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-07 15:15:17.121  INFO 3712 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1138 ms
+2021-08-07 15:15:17.190  INFO 3712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-07 15:15:17.570  INFO 3712 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-07 15:15:17.606  INFO 3712 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-07 15:15:17.649  INFO 3712 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-08-07 15:15:17.765  INFO 3712 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-07 15:15:17.857  INFO 3712 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-07 15:15:18.395  INFO 3712 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-07 15:15:18.402  INFO 3712 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-07 15:15:18.435  WARN 3712 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-07 15:15:18.698  INFO 3712 --- [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static methods: public static void by.yurachel.springapp.util.userUtils.impl.UserUtilsInt.setUserUtilsInt(by.yurachel.springapp.util.userUtils.impl.UserUtilsInt)
+2021-08-07 15:15:18.817  INFO 3712 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@331965b2, org.springframework.security.web.context.SecurityContextPersistenceFilter@739c2fa3, org.springframework.security.web.header.HeaderWriterFilter@7554c408, org.springframework.security.web.authentication.logout.LogoutFilter@414acf37, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@34a00e58, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8e15828, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7be82e6d, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@43f39d1b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6898b823, org.springframework.security.web.session.SessionManagementFilter@19c923a6, org.springframework.security.web.access.ExceptionTranslationFilter@33af782d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c67e9dc]
+2021-08-07 15:15:19.193  INFO 3712 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-08-07 15:15:19.222  INFO 3712 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
+2021-08-07 15:15:19.230  INFO 3712 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.579 seconds (JVM running for 4.125)
+2021-08-07 15:15:25.752  INFO 3712 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-07 15:15:25.753  INFO 3712 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-07 15:15:25.754  INFO 3712 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-08-07 15:15:25.826  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-07 15:15:25.829  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-07 15:15:25.831  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-07 15:15:25.833  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-07 15:15:25.834  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-07 15:15:25.836  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-07 15:15:25.838  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:15:25.840  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:15:32.016  INFO 3712 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:15:34.667  INFO 3712 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:15:36.892  INFO 3712 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:15:42.121  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-07 15:15:42.123  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-07 15:15:42.124  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-07 15:15:42.126  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-07 15:15:42.128  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-07 15:15:42.129  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-07 15:15:42.132  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:15:42.134  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:15:43.289  INFO 3712 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:15:44.628  INFO 3712 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:15:44.647  INFO 3712 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.OrderService  : Order 4 was successfully added to db
+2021-08-07 15:15:44.691  INFO 3712 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:15:44.707 ERROR 3712 --- [http-nio-9191-exec-9] org.thymeleaf.TemplateEngine             : [THYMELEAF][http-nio-9191-exec-9] Exception processing template "phones/phoneCatalog": An error happened during template parsing (template: "class path resource [templates/phones/phoneCatalog.html]")
 
-org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/home/home.html]")
+org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/phones/phoneCatalog.html]")
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:241) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parseStandalone(AbstractMarkupTemplateParser.java:100) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:666) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
@@ -162,85 +146,97 @@ org.thymeleaf.exceptions.TemplateInputException: An error happened during templa
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_281]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.48.jar:9.0.48]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_281]
-Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "#authentication.getPrincipal().getUser().getUserUtils().getAvatarData(
-                         (#authentication.getPrincipal().getUser().getAvatar()))" (template: "fragments/header" - line 63, col 26)
+Caused by: org.attoparser.ParseException: Exception evaluating SpringEL expression: "userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())" (template: "phones/phoneCatalog" - line 54, col 36)
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:393) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	... 93 common frames omitted
-Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "#authentication.getPrincipal().getUser().getUserUtils().getAvatarData(
-                         (#authentication.getPrincipal().getUser().getAvatar()))" (template: "fragments/header" - line 63, col 26)
+Caused by: org.thymeleaf.exceptions.TemplateProcessingException: Exception evaluating SpringEL expression: "userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())" (template: "phones/phoneCatalog" - line 54, col 36)
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:292) ~[thymeleaf-spring5-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.processor.StandardUnlessTagProcessor.isVisible(StandardUnlessTagProcessor.java:58) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	... 95 common frames omitted
-Caused by: org.springframework.expression.spel.SpelEvaluationException: EL1011E: Method call: Attempted to call method getAvatarData(byte[]) on null context object
-	at org.springframework.expression.spel.ast.MethodReference.throwIfNotNullSafe(MethodReference.java:154) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.MethodReference.getValueRef(MethodReference.java:83) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueRef(CompoundExpression.java:70) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:91) ~[spring-expression-5.3.8.jar:5.3.8]
+Caused by: java.lang.NullPointerException: null
+	at by.yurachel.springapp.util.userUtils.impl.UserUtilsInt.containsPhoneInPreparatoryOrder(UserUtilsInt.java:68) ~[classes/:na]
+	at sun.reflect.GeneratedMethodAccessor96.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_281]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_281]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:387) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265) ~[thymeleaf-spring5-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	... 120 common frames omitted
+	... 122 common frames omitted
 
-2021-08-06 13:08:30.366 ERROR 6968 --- [http-nio-9191-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/home/home.html]")] with root cause
+2021-08-07 15:15:44.712 ERROR 3712 --- [http-nio-9191-exec-9] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.thymeleaf.exceptions.TemplateInputException: An error happened during template parsing (template: "class path resource [templates/phones/phoneCatalog.html]")] with root cause
 
-org.springframework.expression.spel.SpelEvaluationException: EL1011E: Method call: Attempted to call method getAvatarData(byte[]) on null context object
-	at org.springframework.expression.spel.ast.MethodReference.throwIfNotNullSafe(MethodReference.java:154) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.MethodReference.getValueRef(MethodReference.java:83) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueRef(CompoundExpression.java:70) ~[spring-expression-5.3.8.jar:5.3.8]
-	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:91) ~[spring-expression-5.3.8.jar:5.3.8]
+java.lang.NullPointerException: null
+	at by.yurachel.springapp.util.userUtils.impl.UserUtilsInt.containsPhoneInPreparatoryOrder(UserUtilsInt.java:68) ~[classes/:na]
+	at sun.reflect.GeneratedMethodAccessor96.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_281]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[na:1.8.0_281]
+	at org.springframework.expression.spel.support.ReflectiveMethodExecutor.execute(ReflectiveMethodExecutor.java:129) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference.getValueInternal(MethodReference.java:112) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference.access$000(MethodReference.java:55) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.MethodReference$MethodValueRef.getValue(MethodReference.java:387) ~[spring-expression-5.3.8.jar:5.3.8]
+	at org.springframework.expression.spel.ast.CompoundExpression.getValueInternal(CompoundExpression.java:92) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.springframework.expression.spel.ast.SpelNodeImpl.getValue(SpelNodeImpl.java:112) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.springframework.expression.spel.standard.SpelExpression.getValue(SpelExpression.java:337) ~[spring-expression-5.3.8.jar:5.3.8]
 	at org.thymeleaf.spring5.expression.SPELVariableExpressionEvaluator.evaluate(SPELVariableExpressionEvaluator.java:265) ~[thymeleaf-spring5-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.VariableExpression.executeVariableExpression(VariableExpression.java:166) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.SimpleExpression.executeSimple(SimpleExpression.java:66) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:109) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.AdditionExpression.executeAddition(AdditionExpression.java:96) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.ComplexExpression.executeComplex(ComplexExpression.java:62) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:112) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:138) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.processor.AbstractStandardExpressionAttributeTagProcessor.doProcess(AbstractStandardExpressionAttributeTagProcessor.java:144) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.expression.Expression.execute(Expression.java:125) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.processor.StandardUnlessTagProcessor.isVisible(StandardUnlessTagProcessor.java:58) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.processor.AbstractStandardConditionalVisibilityTagProcessor.doProcess(AbstractStandardConditionalVisibilityTagProcessor.java:61) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.processor.element.AbstractAttributeTagProcessor.doProcess(AbstractAttributeTagProcessor.java:74) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.processor.element.AbstractElementTagProcessor.process(AbstractElementTagProcessor.java:95) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.util.ProcessorConfigurationUtils$ElementTagProcessorWrapper.process(ProcessorConfigurationUtils.java:633) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.ProcessorTemplateHandler.handleStandaloneElement(ProcessorTemplateHandler.java:918) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.StandaloneElementTag.beHandled(StandaloneElementTag.java:228) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
 	at org.thymeleaf.engine.Model.process(Model.java:282) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.engine.ProcessorTemplateHandler.handleOpenElement(ProcessorTemplateHandler.java:1587) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleOpenElementEnd(TemplateHandlerAdapterMarkupHandler.java:304) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:278) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleOpenElementEnd(OutputExpressionInlinePreProcessorHandler.java:186) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleOpenElementEnd(InlinedOutputExpressionMarkupHandler.java:124) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
-	at org.attoparser.HtmlElement.handleOpenElementEnd(HtmlElement.java:109) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.HtmlMarkupHandler.handleOpenElementEnd(HtmlMarkupHandler.java:297) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.MarkupEventProcessorHandler.handleOpenElementEnd(MarkupEventProcessorHandler.java:402) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.ParsingElementMarkupUtil.parseOpenElement(ParsingElementMarkupUtil.java:159) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
-	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:710) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.thymeleaf.engine.Model.process(Model.java:290) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.processIterationModel(IteratedGatheringModelProcessable.java:367) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.IteratedGatheringModelProcessable.process(IteratedGatheringModelProcessable.java:221) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.ProcessorTemplateHandler.handleCloseElement(ProcessorTemplateHandler.java:1640) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.engine.TemplateHandlerAdapterMarkupHandler.handleCloseElementEnd(TemplateHandlerAdapterMarkupHandler.java:388) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler$InlineMarkupAdapterPreProcessorHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:322) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.standard.inline.OutputExpressionInlinePreProcessorHandler.handleCloseElementEnd(OutputExpressionInlinePreProcessorHandler.java:220) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.thymeleaf.templateparser.markup.InlinedOutputExpressionMarkupHandler.handleCloseElementEnd(InlinedOutputExpressionMarkupHandler.java:164) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
+	at org.attoparser.HtmlElement.handleCloseElementEnd(HtmlElement.java:169) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.HtmlMarkupHandler.handleCloseElementEnd(HtmlMarkupHandler.java:412) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupEventProcessorHandler.handleCloseElementEnd(MarkupEventProcessorHandler.java:473) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.ParsingElementMarkupUtil.parseCloseElement(ParsingElementMarkupUtil.java:201) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
+	at org.attoparser.MarkupParser.parseBuffer(MarkupParser.java:725) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parseDocument(MarkupParser.java:301) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.attoparser.MarkupParser.parse(MarkupParser.java:257) ~[attoparser-2.0.5.RELEASE.jar:2.0.5.RELEASE]
 	at org.thymeleaf.templateparser.markup.AbstractMarkupTemplateParser.parse(AbstractMarkupTemplateParser.java:230) ~[thymeleaf-3.0.12.RELEASE.jar:3.0.12.RELEASE]
@@ -338,140 +334,61 @@ org.springframework.expression.spel.SpelEvaluationException: EL1011E: Method cal
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-embed-core-9.0.48.jar:9.0.48]
 	at java.lang.Thread.run(Thread.java:748) [na:1.8.0_281]
 
-2021-08-06 13:13:12.798  INFO 13248 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 13248 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
-2021-08-06 13:13:12.800  INFO 13248 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
-2021-08-06 13:13:12.830  INFO 13248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-08-06 13:13:12.831  INFO 13248 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-08-06 13:13:13.324  INFO 13248 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-08-06 13:13:13.375  INFO 13248 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 46 ms. Found 3 JPA repository interfaces.
-2021-08-06 13:13:13.743  INFO 13248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
-2021-08-06 13:13:13.749  INFO 13248 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-06 13:13:13.749  INFO 13248 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-08-06 13:13:13.833  INFO 13248 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-06 13:13:13.833  INFO 13248 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1002 ms
-2021-08-06 13:13:13.911  INFO 13248 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-06 13:13:14.218  INFO 13248 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-06 13:13:14.251  INFO 13248 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-06 13:13:14.278  INFO 13248 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-08-06 13:13:14.350  INFO 13248 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-08-06 13:13:14.422  INFO 13248 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-08-06 13:13:14.880  INFO 13248 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-06 13:13:14.887  INFO 13248 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-06 13:13:14.920  WARN 13248 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-06 13:13:15.288  INFO 13248 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7b083d33, org.springframework.security.web.context.SecurityContextPersistenceFilter@414acf37, org.springframework.security.web.header.HeaderWriterFilter@597d966a, org.springframework.security.web.authentication.logout.LogoutFilter@40203b3f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@789f35d8, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15f09c7a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c770f06, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@3699ed3b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5a16290, org.springframework.security.web.session.SessionManagementFilter@15c1c367, org.springframework.security.web.access.ExceptionTranslationFilter@6d4d307f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b7492be]
-2021-08-06 13:13:15.661  INFO 13248 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-08-06 13:13:15.684  INFO 13248 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
-2021-08-06 13:13:15.691  INFO 13248 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.158 seconds (JVM running for 3.655)
-2021-08-06 13:13:17.541  INFO 13248 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-06 13:13:17.541  INFO 13248 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-06 13:13:17.542  INFO 13248 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-08-06 13:13:17.607  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:13:17.609  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:13:17.611  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:13:17.612  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:13:17.614  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:13:17.616  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:13:17.618  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:13:17.620  INFO 13248 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:13:22.645  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:13:22.647  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:13:22.649  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:13:22.651  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:13:22.652  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:13:22.654  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:13:22.656  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:13:22.657  INFO 13248 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:13:24.849  INFO 13248 --- [http-nio-9191-exec-2] b.y.springapp.service.impl.OrderService  : All orders in db was successfully found
-2021-08-06 13:13:28.626  INFO 13248 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.OrderService  : Order 1 was successfully found
-2021-08-06 13:13:28.634  INFO 13248 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.OrderService  : Order 1 was successfully added to db
-2021-08-06 13:13:28.674  INFO 13248 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.OrderService  : All orders in db was successfully found
-2021-08-06 13:13:31.406  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:13:31.408  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:13:31.409  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:13:31.411  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:13:31.412  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:13:31.414  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:13:31.415  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:13:31.417  INFO 13248 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:13:34.984  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:13:34.986  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:13:34.987  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:13:34.989  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:13:34.991  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:13:34.992  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:13:34.993  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:13:34.994  INFO 13248 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:15:28.786  INFO 19764 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 19764 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
-2021-08-06 13:15:28.788  INFO 19764 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
-2021-08-06 13:15:28.816  INFO 19764 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-08-06 13:15:28.817  INFO 19764 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-08-06 13:15:29.288  INFO 19764 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-08-06 13:15:29.337  INFO 19764 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 43 ms. Found 3 JPA repository interfaces.
-2021-08-06 13:15:29.706  INFO 19764 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
-2021-08-06 13:15:29.712  INFO 19764 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-06 13:15:29.712  INFO 19764 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-08-06 13:15:29.794  INFO 19764 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-06 13:15:29.795  INFO 19764 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 978 ms
-2021-08-06 13:15:29.858  INFO 19764 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-06 13:15:30.159  INFO 19764 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-06 13:15:30.190  INFO 19764 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-06 13:15:30.218  INFO 19764 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-08-06 13:15:30.289  INFO 19764 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-08-06 13:15:30.359  INFO 19764 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-08-06 13:15:30.828  INFO 19764 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-06 13:15:30.834  INFO 19764 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-06 13:15:30.866  WARN 19764 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-06 13:15:31.213  INFO 19764 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@47161744, org.springframework.security.web.context.SecurityContextPersistenceFilter@108ea6d5, org.springframework.security.web.header.HeaderWriterFilter@5f80d0ff, org.springframework.security.web.authentication.logout.LogoutFilter@776e1b5e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@30066a8f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3fcefa42, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5452ea91, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@469879dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4b5feb85, org.springframework.security.web.session.SessionManagementFilter@27b56ee1, org.springframework.security.web.access.ExceptionTranslationFilter@9b164c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59503f7]
-2021-08-06 13:15:31.561  INFO 19764 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-08-06 13:15:31.584  INFO 19764 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
-2021-08-06 13:15:31.592  INFO 19764 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.064 seconds (JVM running for 3.541)
-2021-08-06 13:15:33.186  INFO 19764 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-06 13:15:33.187  INFO 19764 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-06 13:15:33.188  INFO 19764 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
-2021-08-06 13:15:33.253  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:15:33.256  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:15:33.257  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:15:33.259  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:15:33.261  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:15:33.262  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:15:33.264  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:15:33.266  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:15:51.509  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:15:51.511  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:15:51.512  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:15:51.514  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:15:51.516  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:15:51.517  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:15:51.519  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:15:51.522  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:15:55.077  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:15:55.079  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:15:55.081  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:15:55.082  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:15:55.084  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:15:55.085  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:15:55.087  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:15:55.089  INFO 19764 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:15:59.866  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-06 13:15:59.868  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-06 13:15:59.870  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-06 13:15:59.871  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-06 13:15:59.873  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-06 13:15:59.875  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-06 13:15:59.876  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-06 13:15:59.877  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:16:05.228  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.OrderService  : Order 1 was successfully added to db
-2021-08-06 13:16:05.872  INFO 19764 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
-2021-08-06 13:16:06.817  INFO 19764 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:16:06.823  INFO 19764 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:06.856  INFO 19764 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
-2021-08-06 13:16:08.745  INFO 19764 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:16:08.751  INFO 19764 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:09.032  INFO 19764 --- [http-nio-9191-exec-10] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-06 13:16:09.037  INFO 19764 --- [http-nio-9191-exec-10] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:10.110  INFO 19764 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:13.720  INFO 19764 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:14.579  INFO 19764 --- [http-nio-9191-exec-5] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:15.266  INFO 19764 --- [http-nio-9191-exec-2] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:15.862  INFO 19764 --- [http-nio-9191-exec-4] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
-2021-08-06 13:16:18.449  INFO 19764 --- [http-nio-9191-exec-10] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-07 15:17:48.021  INFO 4528 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 4528 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
+2021-08-07 15:17:48.023  INFO 4528 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
+2021-08-07 15:17:48.051  INFO 4528 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-07 15:17:48.051  INFO 4528 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-07 15:17:48.505  INFO 4528 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-07 15:17:48.560  INFO 4528 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 3 JPA repository interfaces.
+2021-08-07 15:17:48.922  INFO 4528 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2021-08-07 15:17:48.928  INFO 4528 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-07 15:17:48.928  INFO 4528 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-08-07 15:17:49.006  INFO 4528 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-07 15:17:49.006  INFO 4528 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 955 ms
+2021-08-07 15:17:49.068  INFO 4528 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-07 15:17:49.360  INFO 4528 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-07 15:17:49.392  INFO 4528 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-07 15:17:49.417  INFO 4528 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-08-07 15:17:49.485  INFO 4528 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-07 15:17:49.553  INFO 4528 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-07 15:17:50.003  INFO 4528 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-07 15:17:50.009  INFO 4528 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-07 15:17:50.042  WARN 4528 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-07 15:17:50.379  INFO 4528 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@34b731b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@2bf8e2ff, org.springframework.security.web.header.HeaderWriterFilter@6e534c26, org.springframework.security.web.authentication.logout.LogoutFilter@5648c404, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@76d6de4a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@93dd13, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@23fc3b3c, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@7ab97005, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6012b3dc, org.springframework.security.web.session.SessionManagementFilter@54c862cf, org.springframework.security.web.access.ExceptionTranslationFilter@1b566fc6, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@21d4180b]
+2021-08-07 15:17:50.729  INFO 4528 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-08-07 15:17:50.751  INFO 4528 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
+2021-08-07 15:17:50.758  INFO 4528 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 2.994 seconds (JVM running for 3.49)
+2021-08-07 15:17:50.907  INFO 4528 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-07 15:17:50.908  INFO 4528 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-07 15:17:50.908  INFO 4528 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-08-07 15:17:50.975  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-07 15:17:50.978  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-07 15:17:50.979  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-07 15:17:50.981  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-07 15:17:50.983  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-07 15:17:50.984  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-07 15:17:50.986  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:17:50.988  INFO 4528 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:17:56.996  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-07 15:17:56.998  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-07 15:17:56.999  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-07 15:17:57.001  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-07 15:17:57.003  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-07 15:17:57.004  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-07 15:17:57.006  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:17:57.008  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:17:59.594  INFO 4528 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:18:01.284  INFO 4528 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:18:01.307  INFO 4528 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.OrderService  : Order 4 was successfully added to db
+2021-08-07 15:18:01.345  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-07 15:18:03.772  INFO 4528 --- [http-nio-9191-exec-9] b.y.springapp.service.impl.OrderService  : Order 4 was successfully added to db
+2021-08-07 15:18:04.293  INFO 4528 --- [http-nio-9191-exec-5] b.y.springapp.service.impl.OrderService  : Order with id 4 was successfully deleted form db
+2021-08-07 15:18:05.323  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-07 15:18:05.325  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-07 15:18:05.326  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-07 15:18:05.328  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-07 15:18:05.329  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-07 15:18:05.331  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-07 15:18:05.332  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-07 15:18:05.334  INFO 4528 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-07 15:18:07.865  INFO 4528 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found

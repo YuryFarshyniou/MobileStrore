@@ -3,9 +3,10 @@ package by.yurachel.springapp.controller.phone;
 import by.yurachel.springapp.model.phone.OperatingSystem;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
+import by.yurachel.springapp.util.userUtils.UserUtilsInt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,14 +24,19 @@ import java.util.Arrays;
 @RequestMapping("/phones")
 public class PhoneController {
 
-    private IService<Phone> phoneService;
+    private final IService<Phone> phoneService;
+    private final UserUtilsInt userUtils;
+    private final PhoneUtilsInt phoneUtils;
     private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
-
-    @Autowired
-    public void setService(@Qualifier("phoneService") IService<Phone> service) {
-        this.phoneService = service;
+    public PhoneController(IService<Phone> phoneService,
+                           @Qualifier("userUtils") UserUtilsInt userUtils,
+                           @Qualifier("phoneUtils") PhoneUtilsInt phoneUtils) {
+        this.phoneService = phoneService;
+        this.userUtils = userUtils;
+        this.phoneUtils = phoneUtils;
     }
+
 
     @GetMapping()
     public String phoneList(Model model,
@@ -40,6 +46,7 @@ public class PhoneController {
         model.addAttribute("phones", phones);
         model.addAttribute("body", body);
         model.addAttribute("amountOfElements", new int[]{5, 10, 20, 50});
+        model.addAttribute("userUtils", userUtils);
 
 
         return "phones/phoneCatalog";
@@ -49,6 +56,8 @@ public class PhoneController {
     public String phonePage(@PathVariable("id") int id, Model model) {
         model.addAttribute("phone", phoneService.findById(id));
         model.addAttribute("imageLink", "");
+        model.addAttribute("userUtils", userUtils);
+
         return "phones/showPhone";
     }
 
@@ -71,10 +80,8 @@ public class PhoneController {
 
     @PostMapping("/{id}")
     public String addImage(@PathVariable long id, @ModelAttribute(value = "imageLink") String imageLink) {
-        System.out.println(imageLink);
-        System.out.println(id);
         Phone phone = phoneService.findById(id);
-        phone.addImage(imageLink);
+        phoneUtils.addImage(phone, imageLink);
         phoneService.save(phone);
         return "redirect:/phones/" + phone.getId();
     }

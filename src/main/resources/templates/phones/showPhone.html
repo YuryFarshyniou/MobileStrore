@@ -22,12 +22,14 @@
         .ImagesShow img {
             border: none;
         }
-        .infoRawInShowPhone{
+
+        .infoRawInShowPhone {
             margin-top: 8px;
             margin-left: 100px;
             opacity: .6;
         }
-        .infoLinkInShow{
+
+        .infoLinkInShow {
             font-weight: bold;
             text-decoration: none;
             color: gray;
@@ -65,10 +67,10 @@
                 <div class="col-2" sec:authorize="isAuthenticated()">
                     <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='showPhone')}" th:method="POST"
                           th:name="addPurchaseInPhoneCatalog">
-                        <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                        <input th:unless="${userUtilsInt.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                class="addButtonInShowPhone btn btn-danger" type="submit" name="addToList"
                                value="Add to List"/>
-                        <input th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                        <input th:if="${userUtilsInt.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                class="addButtonInShowPhone btn btn-success disabled" type="submit" name="addToList"
                                value="Added"/>
                     </form>
@@ -86,7 +88,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                 </div>
-                                <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="POST" >
+                                <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="POST">
                                     <div class="modal-body">
                                         <div class="mb-3">
                                             <label for="phoneImage" class="form-label">Phone image</label>
@@ -133,12 +135,11 @@
                     <h2>Description</h2>
                 </div>
                 <div class="col-7">
-                      <p class="infoRawInShowPhone">If you want to buy phones in our store,please <a
-                              class="infoLinkInShow" th:href="@{/login}">login</a>,or
+                    <p class="infoRawInShowPhone" sec:authorize="isAnonymous()">If you want to buy phones in our store,please <a
+                            class="infoLinkInShow" th:href="@{/login}">login</a>,or
                         make a <a class="infoLinkInShow" th:href="@{/registration}">registration</a> in out store.
                     </p>
                 </div>
-
 
 
             </div>
@@ -295,7 +296,8 @@
 
 </div>
 <!--Modal-->
-<div class="modal fade modal-img" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade modal-img" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <img id="popup-img" src="" alt="image">
