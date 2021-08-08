@@ -31,7 +31,7 @@
                                         <br/><br/>
                                         <span th:text="${' Elements: '}" id="orderElements"></span>
 
-                                        <th:block th:each="value : ${order.orderInformation()}">
+                                        <th:block th:each="value : ${orderUtils.orderInformation(order.getPhones())}">
                                             <br/>
                                             <span th:text="'Phone name: '+${value.getKey()} +'. Amount:  '+${value.getValue()} "
                                                   id="orderElement"></span>

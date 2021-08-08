@@ -17,4 +17,6 @@ public interface OrderUtilsInt {
     void deleteAllPhones(List<Phone> phones, long id);
 
     Map<String, Integer> orderInformation(List<Phone> phones);
+
+    Map<String, Map<Phone, Integer>> convertListOfPhonesIntoMap(List<Phone> userPhones);
 }

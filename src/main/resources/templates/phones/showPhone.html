@@ -67,10 +67,10 @@
                 <div class="col-2" sec:authorize="isAuthenticated()">
                     <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='showPhone')}" th:method="POST"
                           th:name="addPurchaseInPhoneCatalog">
-                        <input th:unless="${userUtilsInt.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
+                        <input th:unless="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                class="addButtonInShowPhone btn btn-danger" type="submit" name="addToList"
                                value="Add to List"/>
-                        <input th:if="${userUtilsInt.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
+                        <input th:if="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                class="addButtonInShowPhone btn btn-success disabled" type="submit" name="addToList"
                                value="Added"/>
                     </form>

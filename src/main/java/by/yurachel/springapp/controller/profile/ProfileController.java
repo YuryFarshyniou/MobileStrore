@@ -61,7 +61,7 @@ public class ProfileController {
         if (order != null) {
             userPhones = order.getPhones();
         }
-        Map<String, Map<Phone, Integer>> phones = convertListOfPhonesIntoMap(userPhones);
+        Map<String, Map<Phone, Integer>> phones = orderUtils.convertListOfPhonesIntoMap(userPhones);
         model.addAttribute("purchaseList", phones);
         model.addAttribute("userUtils", userUtilsInt);
         return "profile/purchasesList";
@@ -221,23 +221,5 @@ public class ProfileController {
         order.setState(OrderState.DELETED);
         orderService.save(order);
         return "redirect:/profile/" + user.getId() + "/orders";
-    }
-
-    private Map<String, Map<Phone, Integer>> convertListOfPhonesIntoMap(List<Phone> userPhones) {
-        Map<String, Map<Phone, Integer>> phones = new HashMap<>();
-        for (Phone phone : userPhones) {
-            Map<Phone, Integer> s = new HashMap<>();
-            if (phones.containsKey(phone.getName())) {
-                s = phones.get(phone.getName());
-                Set<Phone> set = s.keySet();
-                Phone p = (Phone) set.toArray()[0];
-                int i = s.get(p) + 1;
-                s.put(p, i);
-            } else {
-                s.put(phone, 1);
-            }
-            phones.put(phone.getName(), s);
-        }
-        return phones;
     }
 }
