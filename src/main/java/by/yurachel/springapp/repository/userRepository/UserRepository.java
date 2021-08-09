@@ -1,4 +1,4 @@
-package by.yurachel.springapp.repository;
+package by.yurachel.springapp.repository.userRepository;
 
 import by.yurachel.springapp.model.user.impl.User;
 import org.springframework.data.jpa.repository.JpaRepository;

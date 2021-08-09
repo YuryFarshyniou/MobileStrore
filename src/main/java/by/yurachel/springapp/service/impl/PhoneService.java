@@ -1,7 +1,7 @@
 package by.yurachel.springapp.service.impl;
 
 import by.yurachel.springapp.model.phone.impl.Phone;
-import by.yurachel.springapp.repository.PhoneRepository;
+import by.yurachel.springapp.repository.phoneRepository.PhoneRepository;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

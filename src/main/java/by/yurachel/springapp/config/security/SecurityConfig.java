@@ -1,4 +1,4 @@
-package by.yurachel.springapp.config;
+package by.yurachel.springapp.config.security;
 
 import by.yurachel.springapp.config.security.handlers.CustomAccessDeniedHandler;
 import by.yurachel.springapp.model.user.Role;

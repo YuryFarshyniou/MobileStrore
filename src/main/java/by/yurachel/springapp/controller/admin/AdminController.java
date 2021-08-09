@@ -1,6 +1,6 @@
 package by.yurachel.springapp.controller.admin;
 
-import by.yurachel.springapp.config.SecurityUser;
+import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.Role;

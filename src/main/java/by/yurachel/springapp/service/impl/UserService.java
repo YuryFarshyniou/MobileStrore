@@ -1,7 +1,7 @@
 package by.yurachel.springapp.service.impl;
 
 import by.yurachel.springapp.model.user.impl.User;
-import by.yurachel.springapp.repository.UserRepository;
+import by.yurachel.springapp.repository.userRepository.UserRepository;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

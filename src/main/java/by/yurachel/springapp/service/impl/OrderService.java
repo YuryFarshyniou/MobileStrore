@@ -1,7 +1,7 @@
 package by.yurachel.springapp.service.impl;
 
 import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.repository.OrderRepository;
+import by.yurachel.springapp.repository.orderRepository.OrderRepository;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

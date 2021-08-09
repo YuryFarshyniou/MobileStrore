@@ -1,4 +1,4 @@
-package by.yurachel.springapp.repository;
+package by.yurachel.springapp.repository.orderRepository;
 
 import by.yurachel.springapp.model.order.impl.Order;
 import org.springframework.data.jpa.repository.JpaRepository;

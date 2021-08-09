@@ -1,4 +1,4 @@
-package by.yurachel.springapp.config;
+package by.yurachel.springapp.config.security;
 
 import by.yurachel.springapp.model.user.Status;
 import by.yurachel.springapp.model.user.impl.User;

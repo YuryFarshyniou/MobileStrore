@@ -50,7 +50,7 @@
                     <td sec:authorize="isAuthenticated()">
                         <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='catalog')}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
-                            <!--                            -->
+
                             <input th:unless="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                    class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
                             <input th:if="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
