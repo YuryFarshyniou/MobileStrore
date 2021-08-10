@@ -1,5 +1,6 @@
 package by.yurachel.springapp.model.order.impl;
 
+
 import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.phone.impl.Phone;
 import by.yurachel.springapp.model.user.impl.User;
@@ -10,7 +11,9 @@ import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -39,49 +42,6 @@ public class Order implements Serializable {
     @ManyToMany()
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Phone> phones = new ArrayList<>();
-
-    public double orderSum() {
-        return phones.stream().mapToDouble(Phone::getPrice).sum();
-    }
-
-    public void addPhone(Phone phone) {
-        phones.add(phone);
-    }
-
-    public boolean containsPhone(long id) {
-        Phone phone2 = phones.stream().filter(phone -> phone.getId() == id)
-                .findFirst()
-                .orElse(null);
-
-        return phone2 != null;
-    }
-
-    public void deletePhone(long id) {
-        for (Phone phone : phones) {
-            if (phone.getId() == id) {
-                phones.remove(phone);
-                return;
-            }
-        }
-    }
-
-    public void deleteAllPhones(long id) {
-        phones.removeIf(phone -> phone.getId() == id);
-    }
-
-    public Map<String, Integer> orderInformation() {
-        Map<String, Integer> order = new HashMap<>();
-
-        for (Phone phone : phones) {
-            Integer value = order.get(phone.getName());
-            if (value == null) {
-                order.put(phone.getName(), 1);
-            } else {
-                order.put(phone.getName(), ++value);
-            }
-        }
-        return order;
-    }
 
     public Order() {
         creationDate = new Date();

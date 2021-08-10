@@ -27,11 +27,19 @@
                   th:action="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}"
                   enctype="multipart/form-data">
                 <input type="file" name="file" id="updateAvatarInput" placeholder="Image" class="inline">
-                <button type="submit" class="btn btn-sm btn-outline-dark" id="submitForAvatar">Submit</button>
-            </form>
-            <span class="inline" id="creationDateProfile"
-                  th:text="'MobileShop ID:'+${#authentication.getPrincipal().getUser().getId()} +' &#8729 from ' +
+                <label for="updateAvatarInput"> Choose a file</label>
+                <span class="inline" id="creationDateProfile"
+                      th:text="'MobileShop ID:'+${#authentication.getPrincipal().getUser().getId()} +' &#8729 from ' +
 ${#dates.format(#authentication.getPrincipal().getUser().getRegistrationDate(),'dd MMMM yyyy')}"></span>
+                <br/>
+                <span id="chosenFile">
+                        <strong>Chosen file:</strong>
+                        <span id="fileName">None</span>
+                    </span>
+                <button type="submit" class="btn btn-sm btn-outline-dark" id="submitForAvatar">Submit</button>
+
+            </form>
+
         </div>
     </div>
     <div class="row " id="bottomRow">
@@ -79,6 +87,14 @@ ${#dates.format(#authentication.getPrincipal().getUser().getRegistrationDate(),'
     </div>
 </div>
 <footer th:insert="fragments/footer :: footer"></footer>
+<script>
+    let inputFile = document.getElementById('updateAvatarInput')
+    let fileNameField = document.getElementById('fileName')
+    inputFile.addEventListener('change', function (event) {
+        fileNameField.textContent = event.target.files[0].name;
+
+    })
+</script>
 
 </body>
 </html>

@@ -1,10 +1,9 @@
 package by.yurachel.springapp.model.user.impl;
 
-import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
-import by.yurachel.springapp.util.UserUtils;
+import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
@@ -18,7 +17,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -68,52 +66,9 @@ public class User implements Serializable {
 
     private String address;
 
-    public void deleteOrder(long id) {
-        orders.removeIf(order -> order.getId() == id);
-    }
 
-    public Order getPreparatoryOrder() {
-        return orders.stream().filter(order -> order.getState().toString().equals("PREPARATORY"))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public List<Order> getOrdersWithoutPreparatory() {
-        return orders.stream().filter(order -> order.getState() != OrderState.PREPARATORY)
-                .filter(order -> order.getState() != OrderState.DELETED)
-                .collect(Collectors.toList());
-    }
-
-    public boolean containsPhoneInPreparatoryOrder(long id) {
-        Order order = orders.stream().filter(order2 -> order2.getState().toString().equals("PREPARATORY"))
-                .findFirst()
-                .orElse(null);
-        if (order == null) {
-            return false;
-        }
-        return order.containsPhone(id);
-    }
-
-    public void addOrder(Order order) {
-        orders.add(order);
-    }
-
-    public Order findOrder(long id) {
-        return orders.stream().filter(order -> order.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
-
-    public void editOrder(Order order) {
-        orders.forEach(o -> {
-            if (o.getId() == order.getId()) {
-                o.setState(order.getState());
-            }
-        });
-    }
-
-    public UserUtils getUserUtils() {
-        return new UserUtils();
+    public UserUtilsInt getUserUtils() {
+        return UserUtilsInt.getUserUtils();
     }
 
     public User(String userName, String password, String email) {

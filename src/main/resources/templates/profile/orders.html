@@ -31,7 +31,7 @@
                                         <br/><br/>
                                         <span th:text="${' Elements: '}" id="orderElements"></span>
 
-                                        <th:block th:each="value : ${order.orderInformation()}">
+                                        <th:block th:each="value : ${orderUtils.orderInformation(order.getPhones())}">
                                             <br/>
                                             <span th:text="'Phone name: '+${value.getKey()} +'. Amount:  '+${value.getValue()} "
                                                   id="orderElement"></span>
@@ -52,7 +52,8 @@
                                     <div class="col-2">
                                         <img th:if="${order.getState().name().equals('DELIVERED')}"
                                              th:src="@{/img/delivered.jpg}"
-                                             class="rounded mx-auto d-block" alt="deliveredImg" width="150px" height="150px">
+                                             class="rounded mx-auto d-block" alt="deliveredImg" width="150px"
+                                             height="150px">
                                     </div>
                                     <div class="col-6">
                                         <form th:action="@{/profile/{id}/order(id=${order.getId()})}"
@@ -64,7 +65,7 @@
                                         </form>
                                         <span th:text="'Status of order: '+${order.getState()}"
                                               id="orderStatus">Status</span>
-                                        <span th:text="'Sum of purchases: '+${order.orderSum()} + '$'"
+                                        <span th:text="'Sum of purchases: '+${orderUtils.orderSum(order.getPhones())} + '$'"
                                               id="sumInOrder"></span>
                                     </div>
                                 </div>

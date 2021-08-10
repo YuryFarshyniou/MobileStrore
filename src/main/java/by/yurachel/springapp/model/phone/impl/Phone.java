@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -91,11 +93,8 @@ public class Phone implements Serializable {
     private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
+    @LazyCollection(LazyCollectionOption.FALSE)
     private List<String> images = new ArrayList<>();
-
-    public void addImage(String imageLink) {
-        images.add(imageLink);
-    }
 
     public Phone() {
         dateOfAdded = new Date();

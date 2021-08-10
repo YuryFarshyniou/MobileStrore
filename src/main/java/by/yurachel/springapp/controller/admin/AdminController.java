@@ -1,12 +1,13 @@
 package by.yurachel.springapp.controller.admin;
 
-import by.yurachel.springapp.config.SecurityUser;
+import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.impl.Order;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
 import by.yurachel.springapp.model.user.impl.User;
 import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -24,10 +25,12 @@ public class AdminController {
 
     private final IService<User> userService;
     private final IService<Order> orderService;
+    private final UserUtilsInt userUtilsInt;
 
-    public AdminController(IService<User> userService, IService<Order> orderService) {
+    public AdminController(IService<User> userService, IService<Order> orderService, UserUtilsInt userUtilsInt) {
         this.userService = userService;
         this.orderService = orderService;
+        this.userUtilsInt = userUtilsInt;
     }
 
     @GetMapping("/users")
@@ -62,7 +65,7 @@ public class AdminController {
         orderFromDb.setState(order.getState());
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        user.editOrder(orderFromDb);
+        userUtilsInt.editOrder(user.getOrders(), orderFromDb);
         orderService.save(orderFromDb);
         return "redirect:/admin/orders";
     }

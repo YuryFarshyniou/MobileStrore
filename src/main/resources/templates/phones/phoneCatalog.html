@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col">
                     <input type="text" id="myInput" onkeyup="phoneFilter()" placeholder="Search for phone names..">
-                    <span class="infoRawInPhoneCatalog">If you want to buy phones in our store,please <a
+                    <span class="infoRawInPhoneCatalog" sec:authorize="isAnonymous()">If you want to buy phones in our store,please <a
                             class="infoLinkInCat" th:href="@{/login}">login</a>,or
                         make a <a class="infoLinkInCat" th:href="@{/registration}">registration</a> in out store.
                     </span>
@@ -34,7 +34,7 @@
                 </thead>
                 <tbody id="bd">
                 <tr id="elementTable" th:each="phone : ${phones}">
-                    <td >
+                    <td>
                         <a th:href="@{/phones/{id}(id=${phone.getId()})}">
                             <img class="image" th:src="@{${phone.getImg()}}" width="90"
                                  height="90" th:alt="Image"/>
@@ -51,9 +51,9 @@
                         <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='catalog')}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
 
-                            <input th:unless="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                            <input th:unless="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                    class="btn btn-danger" type="submit" name="addToList" value="Add to List"/>
-                            <input th:if="${#authentication.getPrincipal().getUser().containsPhoneInPreparatoryOrder(phone.id)}"
+                            <input th:if="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
                                    class="btn btn-success disabled" type="submit" name="addToList" value="Added"/>
                         </form>
                     </td>

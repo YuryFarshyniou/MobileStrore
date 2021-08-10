@@ -1,4 +1,4 @@
-package by.yurachel.springapp.repository;
+package by.yurachel.springapp.repository.phoneRepository;
 
 import by.yurachel.springapp.model.phone.impl.Phone;
 import org.springframework.data.domain.Page;
