@@ -1,38 +1,45 @@
-2021-08-09 19:15:21.685  INFO 13904 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 13904 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
-2021-08-09 19:15:21.690  INFO 13904 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
-2021-08-09 19:15:21.730  INFO 13904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2021-08-09 19:15:21.730  INFO 13904 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2021-08-09 19:15:22.291  INFO 13904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2021-08-09 19:15:22.356  INFO 13904 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 3 JPA repository interfaces.
-2021-08-09 19:15:22.783  INFO 13904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
-2021-08-09 19:15:22.789  INFO 13904 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-09 19:15:22.789  INFO 13904 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
-2021-08-09 19:15:22.876  INFO 13904 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-09 19:15:22.876  INFO 13904 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1145 ms
-2021-08-09 19:15:22.956  INFO 13904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-09 19:15:23.356  INFO 13904 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-09 19:15:23.396  INFO 13904 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-09 19:15:23.442  INFO 13904 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
-2021-08-09 19:15:23.566  INFO 13904 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2021-08-09 19:15:23.663  INFO 13904 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2021-08-09 19:15:24.262  INFO 13904 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-09 19:15:24.269  INFO 13904 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-09 19:15:24.306  WARN 13904 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-09 19:15:24.736  INFO 13904 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fe1b270, org.springframework.security.web.context.SecurityContextPersistenceFilter@3e7787a2, org.springframework.security.web.header.HeaderWriterFilter@f1e6881, org.springframework.security.web.authentication.logout.LogoutFilter@5ea5f662, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@63e86bca, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c892cd2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f8ce98f, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@594d845a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e8f760c, org.springframework.security.web.session.SessionManagementFilter@1c391524, org.springframework.security.web.access.ExceptionTranslationFilter@290ee825, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3954a347]
-2021-08-09 19:15:25.135  INFO 13904 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
-2021-08-09 19:15:25.159  INFO 13904 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
-2021-08-09 19:15:25.167  INFO 13904 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.769 seconds (JVM running for 4.345)
-2021-08-09 19:15:28.399  INFO 13904 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-09 19:15:28.399  INFO 13904 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-09 19:15:28.400  INFO 13904 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
-2021-08-09 19:15:28.489  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
-2021-08-09 19:15:28.494  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
-2021-08-09 19:15:28.497  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
-2021-08-09 19:15:28.499  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
-2021-08-09 19:15:28.502  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
-2021-08-09 19:15:28.504  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
-2021-08-09 19:15:28.506  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
-2021-08-09 19:15:28.509  INFO 13904 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
-2021-08-09 19:15:33.241  INFO 13904 --- [http-nio-9191-exec-4] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
-2021-08-09 19:15:36.838  INFO 13904 --- [http-nio-9191-exec-8] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
-2021-08-09 19:15:37.822  INFO 13904 --- [http-nio-9191-exec-2] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-10 12:28:02.574  INFO 16156 --- [restartedMain] b.y.springapp.SpringAppApplication       : Starting SpringAppApplication using Java 1.8.0_281 on DESKTOP-7FDCUJG with PID 16156 (C:\Users\USER1\Java Projects\SpringApp\target\classes started by USER1 in C:\Users\USER1\Java Projects\SpringApp)
+2021-08-10 12:28:02.578  INFO 16156 --- [restartedMain] b.y.springapp.SpringAppApplication       : No active profile set, falling back to default profiles: default
+2021-08-10 12:28:02.611  INFO 16156 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2021-08-10 12:28:02.611  INFO 16156 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2021-08-10 12:28:03.173  INFO 16156 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-08-10 12:28:03.231  INFO 16156 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 3 JPA repository interfaces.
+2021-08-10 12:28:03.656  INFO 16156 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 9191 (http)
+2021-08-10 12:28:03.663  INFO 16156 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-10 12:28:03.663  INFO 16156 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.48]
+2021-08-10 12:28:03.747  INFO 16156 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-10 12:28:03.748  INFO 16156 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1135 ms
+2021-08-10 12:28:03.828  INFO 16156 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-10 12:28:04.219  INFO 16156 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-10 12:28:04.256  INFO 16156 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-10 12:28:04.303  INFO 16156 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-08-10 12:28:04.425  INFO 16156 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-08-10 12:28:04.520  INFO 16156 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2021-08-10 12:28:05.059  INFO 16156 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-10 12:28:05.066  INFO 16156 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-10 12:28:05.102  WARN 16156 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-10 12:28:05.510  INFO 16156 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7a3b9639, org.springframework.security.web.context.SecurityContextPersistenceFilter@1c391524, org.springframework.security.web.header.HeaderWriterFilter@290ee825, org.springframework.security.web.authentication.logout.LogoutFilter@1cd0c4c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@534d198e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3e7787a2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21d791f8, org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter@62f770e3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4fe1b270, org.springframework.security.web.session.SessionManagementFilter@f1e6881, org.springframework.security.web.access.ExceptionTranslationFilter@6a78026f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c9f069]
+2021-08-10 12:28:05.904  INFO 16156 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2021-08-10 12:28:05.927  INFO 16156 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 9191 (http) with context path ''
+2021-08-10 12:28:05.935  INFO 16156 --- [restartedMain] b.y.springapp.SpringAppApplication       : Started SpringAppApplication in 3.668 seconds (JVM running for 4.236)
+2021-08-10 12:28:08.266  INFO 16156 --- [http-nio-9191-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-10 12:28:08.266  INFO 16156 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-10 12:28:08.267  INFO 16156 --- [http-nio-9191-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-08-10 12:28:08.344  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 1 was successfully found
+2021-08-10 12:28:08.348  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 2 was successfully found
+2021-08-10 12:28:08.350  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 3 was successfully found
+2021-08-10 12:28:08.352  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 4 was successfully found
+2021-08-10 12:28:08.355  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 5 was successfully found
+2021-08-10 12:28:08.357  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 6 was successfully found
+2021-08-10 12:28:08.359  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 7 was successfully found
+2021-08-10 12:28:08.362  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.PhoneService  : Phone 8 was successfully found
+2021-08-10 12:28:15.734  INFO 16156 --- [http-nio-9191-exec-5] b.y.springapp.service.impl.OrderService  : All orders in db was successfully found
+2021-08-10 12:28:18.744  INFO 16156 --- [http-nio-9191-exec-7] b.y.springapp.service.impl.PhoneService  : All phones in db was successfully found
+2021-08-10 12:28:20.776  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-10 12:28:23.215  INFO 16156 --- [http-nio-9191-exec-1] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-10 12:28:23.571  INFO 16156 --- [http-nio-9191-exec-10] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-10 12:28:24.155  INFO 16156 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-10 12:28:24.660  INFO 16156 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.OrderService  : Order 2 was successfully added to db
+2021-08-10 12:28:26.519  INFO 16156 --- [http-nio-9191-exec-6] b.y.springapp.service.impl.UserService   : All users in db was successfully found
+2021-08-10 12:28:30.831  INFO 16156 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.OrderService  : Order 1 was successfully found
+2021-08-10 12:28:30.833  INFO 16156 --- [http-nio-9191-exec-3] b.y.springapp.service.impl.OrderService  : Order 1 was successfully added to db

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -37,6 +37,9 @@ public class HomeController {
         carouselItem.add(phoneService.findById(6L));
         carouselItem.add(phoneService.findById(7L));
         carouselItem.add(phoneService.findById(8L));
+
+        carouselItem.removeAll(Collections.singleton(null));
+        carouselItemActive.removeAll(Collections.singleton(null));
 
         model.addAttribute("itemActive", carouselItemActive);
         model.addAttribute("item", carouselItem);

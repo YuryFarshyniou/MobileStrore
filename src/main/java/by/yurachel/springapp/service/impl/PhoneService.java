@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("phoneService")
 @Transactional
@@ -29,9 +30,13 @@ public class PhoneService implements IService<Phone> {
     @Transactional(readOnly = true)
     @Cacheable(cacheNames = "phoneId", key = "#id")
     public Phone findById(long id) {
-        Phone phone = phoneRepository.findById(id).orElse(null);
-        logger.info("Phone {} was successfully found", phone.getId());
-        return phone;
+        Optional<Phone> byId = phoneRepository.findById(id);
+        if (byId.isPresent()) {
+            Phone phone = byId.get();
+            logger.info("Phone {} was successfully found", phone.getId());
+            return phone;
+        }
+        return null;
     }
 
     @Override
@@ -63,7 +68,7 @@ public class PhoneService implements IService<Phone> {
     @Transactional(readOnly = true)
     @Cacheable(cacheNames = "phoneF")
     public List<Phone> findAll() {
-        List<Phone>phones = phoneRepository.findAll();
+        List<Phone> phones = phoneRepository.findAll();
         logger.info("All phones was successfully found in db");
         return phones;
     }
