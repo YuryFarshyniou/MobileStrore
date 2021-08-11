@@ -1,7 +1,7 @@
 package by.yurachel.springapp.controller.phone;
 
 import by.yurachel.springapp.model.phone.OperatingSystem;
-import by.yurachel.springapp.model.phone.impl.Phone;
+import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.service.IService;
 import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
 import by.yurachel.springapp.util.userUtils.UserUtilsInt;

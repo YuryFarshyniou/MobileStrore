@@ -1,7 +1,7 @@
 package by.yurachel.springapp.util.userUtils.impl;
 
 import by.yurachel.springapp.model.order.OrderState;
-import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.order.Order;
 import by.yurachel.springapp.util.orderUtils.OrderUtilsInt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

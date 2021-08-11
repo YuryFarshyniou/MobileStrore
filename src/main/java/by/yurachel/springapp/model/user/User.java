@@ -1,8 +1,6 @@
-package by.yurachel.springapp.model.user.impl;
+package by.yurachel.springapp.model.user;
 
-import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.model.user.Role;
-import by.yurachel.springapp.model.user.Status;
+import by.yurachel.springapp.model.order.Order;
 import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;

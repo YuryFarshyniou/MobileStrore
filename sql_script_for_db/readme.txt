@@ -1,1 +1,0 @@
-To import this schema,you need to open your DBMS,Open tab "Data import" and put this schema inside.

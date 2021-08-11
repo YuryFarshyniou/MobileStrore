@@ -8,8 +8,8 @@
 </head>
 
 <body>
-<div class="container" >
-    <form th:method="POST" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal" role="form" >
+<div class="container">
+    <form th:method="POST" th:action="@{/registration}" th:object="${newUser}" class="form-horizontal" role="form">
         <h2>Registration</h2>
         <div class="form-group">
             <label for="userName" class="col-sm-3 control-label">UserName</label>
@@ -17,6 +17,11 @@
                 <input type="text" id="userName" placeholder="User Name" class="form-control" autofocus
                        th:field="*{userName}">
                 <span style="color: darkred" th:errors="*{userName}"></span>
+            </div>
+        </div>
+        <div th:if="${param.usernameExists}" style="margin-top: 5px">
+            <div class="alert alert-danger">
+                <span>User with this username has already exists.</span>
             </div>
         </div>
         <div class="form-group">
@@ -35,8 +40,14 @@
                 <span style="color: darkred" th:errors="*{email}"></span>
             </div>
         </div>
+        <div th:if="${param.emailExists}" style="margin-top: 5px">
+            <div class="alert alert-danger">
+                <span>This email has already register.</span>
+            </div>
+        </div>
 
-        <button type="submit" class="btn btn-primary btn-block">Register</button>
+
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 10px">Register</button>
     </form>
 </div>
 <script type="text/javascript" th:src="@{../static/js/jquery/jquery-3.6.0.min.js}"></script>

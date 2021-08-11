@@ -2,10 +2,10 @@ package by.yurachel.springapp.controller.admin;
 
 import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.order.OrderState;
-import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.order.Order;
 import by.yurachel.springapp.model.user.Role;
 import by.yurachel.springapp.model.user.Status;
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.service.IService;
 import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
 import org.springframework.data.domain.Page;

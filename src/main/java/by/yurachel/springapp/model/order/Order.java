@@ -1,9 +1,9 @@
-package by.yurachel.springapp.model.order.impl;
+package by.yurachel.springapp.model.order;
 
 
 import by.yurachel.springapp.model.order.OrderState;
-import by.yurachel.springapp.model.phone.impl.Phone;
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.phone.Phone;
+import by.yurachel.springapp.model.user.User;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;

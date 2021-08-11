@@ -1,7 +1,6 @@
-package by.yurachel.springapp.model.phone.impl;
+package by.yurachel.springapp.model.phone;
 
-import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.model.phone.OperatingSystem;
+import by.yurachel.springapp.model.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

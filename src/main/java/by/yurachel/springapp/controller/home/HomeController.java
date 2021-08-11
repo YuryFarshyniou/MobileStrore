@@ -1,7 +1,7 @@
 package by.yurachel.springapp.controller.home;
 
 
-import by.yurachel.springapp.model.phone.impl.Phone;
+import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.service.IService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +25,7 @@ public class HomeController {
         this.phoneService = phoneService;
     }
 
+
     @GetMapping()
     public String home(Model model) {
         List<Phone> carouselItemActive = new ArrayList<>();
@@ -43,6 +44,7 @@ public class HomeController {
 
         model.addAttribute("itemActive", carouselItemActive);
         model.addAttribute("item", carouselItem);
+
         return "home/home";
     }
 

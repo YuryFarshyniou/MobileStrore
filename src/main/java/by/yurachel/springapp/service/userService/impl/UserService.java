@@ -1,23 +1,21 @@
-package by.yurachel.springapp.service.impl;
+package by.yurachel.springapp.service.userService.impl;
 
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.repository.userRepository.UserRepository;
-import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.service.userService.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service("userService")
 @Transactional
-public class UserService implements IService<User> {
+public class UserService implements IUserService<User> {
 
     private final UserRepository userRepository;
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
@@ -28,7 +26,7 @@ public class UserService implements IService<User> {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(cacheNames = "userId", key = "#id")
+
     public User findById(long id) {
         User user = userRepository.findById(id).orElse(null);
         logger.info("User {} was successfully found", user.getUserName());
@@ -37,7 +35,6 @@ public class UserService implements IService<User> {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(cacheNames = "usersF")
     public List<User> findAll() {
         List<User> users = userRepository.findAll();
         logger.info("Users was successfully found");
@@ -45,7 +42,6 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    @CachePut(cacheNames = "userId", key = "#user.id")
     public User save(User user) {
         User userToDb = userRepository.saveAndFlush(user);
         logger.info("User {} successfully added to db", user.getId());
@@ -53,7 +49,6 @@ public class UserService implements IService<User> {
     }
 
     @Override
-    @CacheEvict(cacheNames = "userId", key = "#id")
     public void deleteById(long id) {
         userRepository.deleteById(id);
         logger.info("User with id {} was successfully deleted", id);
@@ -61,10 +56,21 @@ public class UserService implements IService<User> {
 
     @Override
     @Transactional(readOnly = true)
-    @Cacheable(cacheNames = "usersP")
     public Page<User> findAllWithPagination(Pageable pageable) {
         Page<User> users = userRepository.findAll(pageable);
         logger.info("All users in db was successfully found");
         return users;
+    }
+
+    @Override
+    public boolean findUserByUsername(String username) {
+        Optional<User> userName = userRepository.findByUserName(username);
+        return userName.isPresent();
+    }
+
+    @Override
+    public boolean findUserByEmail(String email) {
+        Optional<User> userEmail = userRepository.findByEmail(email);
+        return userEmail.isPresent();
     }
 }

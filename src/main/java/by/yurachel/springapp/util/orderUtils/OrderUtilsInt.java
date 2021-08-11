@@ -1,6 +1,6 @@
 package by.yurachel.springapp.util.orderUtils;
 
-import by.yurachel.springapp.model.phone.impl.Phone;
+import by.yurachel.springapp.model.phone.Phone;
 
 import java.util.List;
 import java.util.Map;

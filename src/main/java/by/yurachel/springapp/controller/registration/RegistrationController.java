@@ -1,7 +1,11 @@
 package by.yurachel.springapp.controller.registration;
 
-import by.yurachel.springapp.model.user.impl.User;
-import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.config.security.SecurityUser;
+import by.yurachel.springapp.model.user.User;
+import by.yurachel.springapp.service.userService.IUserService;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,17 +16,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
-import java.io.IOException;
+import java.util.Collection;
 import java.util.Date;
 
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    private final IService<User> service;
+    private final IUserService<User> service;
     private final PasswordEncoder encoder;
 
-    public RegistrationController(IService<User> service, PasswordEncoder encoder) {
+    public RegistrationController(IUserService<User> service, PasswordEncoder encoder) {
         this.service = service;
         this.encoder = encoder;
     }
@@ -41,7 +45,22 @@ public class RegistrationController {
         }
         user.setPassword(encoder.encode(user.getPassword()));
         user.setRegistrationDate(new Date());
+        boolean userByUsername = service.findUserByUsername(user.getUserName());
+        boolean userByEmail = service.findUserByEmail(user.getEmail());
+        if (userByUsername && userByEmail) {
+            return "redirect:/registration?usernameExists=true&&emailExists=true";
+        } else if (userByUsername) {
+            return "redirect:/registration?usernameExists=true";
+        } else if (userByEmail) {
+            return "redirect:/registration?emailExists=true";
+        }
         service.save(user);
+
+        SecurityUser securityUser = new SecurityUser(user);
+        Collection<? extends GrantedAuthority> authorities = securityUser.getAuthorities();
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(securityUser, null, authorities);
+        SecurityContextHolder.getContext().setAuthentication(token);
+
         return "redirect:/home";
     }
 }

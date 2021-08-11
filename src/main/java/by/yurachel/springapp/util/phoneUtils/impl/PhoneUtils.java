@@ -1,6 +1,6 @@
 package by.yurachel.springapp.util.phoneUtils.impl;
 
-import by.yurachel.springapp.model.phone.impl.Phone;
+import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
 import org.springframework.stereotype.Component;
 

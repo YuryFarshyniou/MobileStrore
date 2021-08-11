@@ -2,9 +2,9 @@ package by.yurachel.springapp.controller.profile;
 
 import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.order.OrderState;
-import by.yurachel.springapp.model.order.impl.Order;
-import by.yurachel.springapp.model.phone.impl.Phone;
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.order.Order;
+import by.yurachel.springapp.model.phone.Phone;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.service.IService;
 import by.yurachel.springapp.util.orderUtils.OrderUtilsInt;
 import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
@@ -20,7 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/profile")
@@ -157,9 +160,16 @@ public class ProfileController {
                                @RequestParam("file") MultipartFile file) throws IOException {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        user.setAvatar(file.getBytes());
-        userService.save(user);
-        return "redirect:/profile/" + user.getId();
+        if(file.isEmpty()){
+            return "redirect:/profile/" + user.getId() + "?noFileChosen=true";
+        }
+        String fileType = file.getOriginalFilename().split("\\.")[1].toLowerCase(Locale.ROOT);
+        if (fileType.equals("png") || fileType.equals("jpg") || fileType.equals("jpeg")) {
+            user.setAvatar(file.getBytes());
+            userService.save(user);
+            return "redirect:/profile/" + user.getId();
+        }
+        return "redirect:/profile/" + user.getId() + "?fileTypeError=true";
     }
 
     @PutMapping(value = "/{id}/editUser")

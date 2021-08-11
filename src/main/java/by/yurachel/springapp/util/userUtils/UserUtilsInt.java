@@ -1,6 +1,6 @@
 package by.yurachel.springapp.util.userUtils;
 
-import by.yurachel.springapp.model.order.impl.Order;
+import by.yurachel.springapp.model.order.Order;
 
 import java.util.List;
 

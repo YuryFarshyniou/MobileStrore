@@ -1,6 +1,6 @@
 package by.yurachel.springapp.config.security;
 
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.repository.userRepository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

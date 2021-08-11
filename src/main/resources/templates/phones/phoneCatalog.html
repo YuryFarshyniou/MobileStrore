@@ -28,7 +28,7 @@
                     <th onclick="sortTableRow(1,'sortTable')" id="nameHeader">Name</th>
                     <th onclick="sortTableNumber(2,'sortTable')" id="priceHeader">Price</th>
                     <th sec:authorize="hasAuthority('developers:write')"></th>
-                    <th sec:authorize="isAuthenticated()"></th>
+                    <th sec:authorize="isAuthenticated() and !hasRole('ROLE_ADMIN')"></th>
                     <th sec:authorize="hasAuthority('developers:write')"></th>
                 </tr>
                 </thead>
@@ -47,7 +47,7 @@
                     </td>
                     <td class="price_column" th:text="${phone.getPrice}+'$'">price</td>
 
-                    <td sec:authorize="isAuthenticated()">
+                    <td sec:authorize="isAuthenticated() and !hasRole('ROLE_ADMIN')">
                         <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='catalog')}" th:method="POST"
                               th:name="addPurchaseInPhoneCatalog">
 
