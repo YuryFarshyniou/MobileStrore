@@ -60,7 +60,7 @@
                          th:src="@{/img/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
 
                     <img th:unless="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                         th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getUserUtils().getAvatarData(
+                         th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getAvatarData(
                          (#authentication.getPrincipal().getUser().getAvatar()))}"
                          alt="" width="35" height="35"
                          style="border-radius: 50%"> </a>

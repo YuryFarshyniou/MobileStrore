@@ -105,6 +105,22 @@ function phoneFilter() {
     }
 }
 
+$(document).ready(function () {
+    $(document).on("click", "#deleteA", function () {
+        let phoneId = $(this).parent().find('input').val();
+        let workingObject = $(this)
+        $.ajax({
+            type: "DELETE",
+            url: "/phones/" + phoneId,
+            success: function () {
+                workingObject.closest("tr").remove()
+            }
+        })
+    })
+
+
+})
+
 
 
 

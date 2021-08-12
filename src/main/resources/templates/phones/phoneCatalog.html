@@ -4,6 +4,8 @@
     <meta charset="UTF-8"/>
     <title>PhoneCatalog</title>
     <link rel="stylesheet" th:href="@{/css/phoneCatalog.css}">
+
+
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
@@ -65,10 +67,10 @@
                         </form>
                     </td>
                     <td sec:authorize="hasAuthority('developers:write')">
-                        <form th:action="@{/phones/{id}(id=${phone.getId()})}" th:method="DELETE"
-                              th:name="removePhone">
-                            <input class="btn btn-dark" type="submit" name="remove" value="Remove"/>
-                        </form>
+                        <input type="hidden" th:value="${phone.id}">
+                        <a id="deleteA">
+                            <span class="btn btn-dark" style="margin-bottom: 16px">Delete</span>
+                        </a>
                     </td>
                 </tr>
 
@@ -114,6 +116,7 @@
 </div>
 <footer th:insert="fragments/footer :: footer"></footer>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script th:src="@{/js/sortingTables.js}"></script>
 </body>
 </html>

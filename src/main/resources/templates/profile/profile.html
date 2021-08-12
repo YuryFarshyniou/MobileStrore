@@ -16,7 +16,8 @@
                  th:src="@{/img/unknownUser.jpg}" class="float-start"
                  alt="profileImg" id="profileUnknown" width="200" height="200">
             <img th:unless="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                 th:src="'data:image/png;base64,'+${imgUtil.getAvatarData(#authentication.getPrincipal().getUser().getAvatar())}"
+                 th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getAvatarData
+                 (#authentication.getPrincipal().getUser().getAvatar())}"
                  class=" float-start" alt="profileImg" id="profileWithAvatar" width="200" height="200">
             <span th:text="${#authentication.getName()}" id="profileUserName">  </span>
         </div>

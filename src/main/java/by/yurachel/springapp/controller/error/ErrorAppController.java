@@ -11,7 +11,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-public class AccessDeniedController implements ErrorController {
+public class ErrorAppController implements ErrorController {
 
     @GetMapping("/access-denied")
     public String getAccessDenied() {

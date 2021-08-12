@@ -1,7 +1,6 @@
-package by.yurachel.springapp.util.orderUtils.impl;
+package by.yurachel.springapp.util.orderUtils;
 
 import by.yurachel.springapp.model.phone.Phone;
-import by.yurachel.springapp.util.orderUtils.OrderUtilsInt;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -10,18 +9,18 @@ import java.util.Map;
 import java.util.Set;
 
 @Component(value = "orderUtils")
-public class OrderUtils implements OrderUtilsInt {
-    @Override
+public class OrderUtils {
+
     public double orderSum(List<Phone> phones) {
         return phones.stream().mapToDouble(Phone::getPrice).sum();
     }
 
-    @Override
+
     public void addPhone(List<Phone> phones, Phone phone) {
         phones.add(phone);
     }
 
-    @Override
+
     public boolean containsPhone(List<Phone> phones, long id) {
         Phone phone2 = phones.stream().filter(phone -> phone.getId() == id)
                 .findFirst()
@@ -30,7 +29,7 @@ public class OrderUtils implements OrderUtilsInt {
         return phone2 != null;
     }
 
-    @Override
+
     public void deletePhone(List<Phone> phones, long id) {
         for (Phone phone : phones) {
             if (phone.getId() == id) {
@@ -40,13 +39,13 @@ public class OrderUtils implements OrderUtilsInt {
         }
     }
 
-    @Override
+
     public void deleteAllPhones(List<Phone> phones, long id) {
         phones.removeIf(phone -> phone.getId() == id);
 
     }
 
-    @Override
+
     public Map<String, Integer> orderInformation(List<Phone> phones) {
         Map<String, Integer> order = new HashMap<>();
 
@@ -61,7 +60,7 @@ public class OrderUtils implements OrderUtilsInt {
         return order;
     }
 
-    @Override
+
     public Map<String, Map<Phone, Integer>> convertListOfPhonesIntoMap(List<Phone> userPhones) {
         Map<String, Map<Phone, Integer>> phones = new HashMap<>();
         for (Phone phone : userPhones) {

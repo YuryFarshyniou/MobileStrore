@@ -1,6 +1,7 @@
 package by.yurachel.springapp.config.security;
 
 import by.yurachel.springapp.config.security.handlers.CustomAccessDeniedHandler;
+import by.yurachel.springapp.config.security.handlers.CustomAuthenticationFailureHandler;
 import by.yurachel.springapp.model.user.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -39,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/home","/phones/**", "/registration").permitAll()
+                .antMatchers("/home", "/phones/**", "/registration").permitAll()
                 .antMatchers("/profile/**").authenticated()
                 .antMatchers("/admin/**").hasRole(Role.ADMIN.name())
                 .and()
@@ -48,7 +49,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/home")
-                .failureUrl("/login?error=true")
+                .failureHandler(new CustomAuthenticationFailureHandler())
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home")
@@ -73,6 +74,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements WebM
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return new CustomAccessDeniedHandler();
+    }
+
+    @Bean
+    CustomAuthenticationFailureHandler customAccessDeniedHandler() {
+        return new CustomAuthenticationFailureHandler();
     }
 
 }

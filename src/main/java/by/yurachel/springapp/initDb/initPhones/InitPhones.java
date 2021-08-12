@@ -2,6 +2,7 @@ package by.yurachel.springapp.initDb.initPhones;
 
 import by.yurachel.springapp.model.phone.OperatingSystem;
 import by.yurachel.springapp.model.phone.Phone;
+import by.yurachel.springapp.model.phone.ScreenTechnology;
 import by.yurachel.springapp.service.IService;
 import org.springframework.stereotype.Component;
 
@@ -41,7 +42,7 @@ public class InitPhones {
         phone1.setConnectionConnector("USB Type-C");
         phone1.setLength(151.7);
         phone1.setScreenRefreshRate(120);
-        phone1.setScreenTechnology("AMOLED");
+        phone1.setScreenTechnology(ScreenTechnology.AMOLED);
         phone1.setThickness(7.9);
         phone1.setWeight(169);
         phone1.setWidth(71.2);
@@ -71,7 +72,7 @@ public class InitPhones {
         phone2.setConnectionConnector("lightning");
         phone2.setLength(150.9);
         phone2.setScreenRefreshRate(60);
-        phone2.setScreenTechnology("IPS");
+        phone2.setScreenTechnology(ScreenTechnology.IPS);
         phone2.setThickness(8.3);
         phone2.setWeight(194);
         phone2.setWidth(75.7);
@@ -102,7 +103,7 @@ public class InitPhones {
         phone3.setConnectionConnector("USB Type-C");
         phone3.setLength(159.9);
         phone3.setScreenRefreshRate(90);
-        phone3.setScreenTechnology("AMOLED");
+        phone3.setScreenTechnology(ScreenTechnology.AMOLED);
         phone3.setThickness(8.4);
         phone3.setWeight(189);
         phone3.setWidth(75.1);
@@ -133,7 +134,7 @@ public class InitPhones {
         phone4.setConnectionConnector("USB Type-C");
         phone4.setLength(165.3);
         phone4.setScreenRefreshRate(120);
-        phone4.setScreenTechnology("IPS");
+        phone4.setScreenTechnology(ScreenTechnology.IPS);
         phone4.setThickness(9.4);
         phone4.setWeight(215);
         phone4.setWidth(76.8);
@@ -164,7 +165,7 @@ public class InitPhones {
         phone5.setConnectionConnector("USB Type-C");
         phone5.setLength(159.2);
         phone5.setScreenRefreshRate(60);
-        phone5.setScreenTechnology("IPS");
+        phone5.setScreenTechnology(ScreenTechnology.IPS);
         phone5.setThickness(8.7);
         phone5.setWeight(183);
         phone5.setWidth(76.3);
@@ -195,7 +196,7 @@ public class InitPhones {
         phone6.setConnectionConnector("USB Type-C");
         phone6.setLength(165.1);
         phone6.setScreenRefreshRate(144);
-        phone6.setScreenTechnology("IPS");
+        phone6.setScreenTechnology(ScreenTechnology.IPS);
         phone6.setThickness(9.33);
         phone6.setWeight(216);
         phone6.setWidth(76.4);
@@ -226,7 +227,7 @@ public class InitPhones {
         phone7.setConnectionConnector("USB Type-C");
         phone7.setLength(144);
         phone7.setScreenRefreshRate(60);
-        phone7.setScreenTechnology("OLED");
+        phone7.setScreenTechnology(ScreenTechnology.OLED);
         phone7.setThickness(8.2);
         phone7.setWeight(143);
         phone7.setWidth(69.4);
@@ -257,7 +258,7 @@ public class InitPhones {
         phone8.setConnectionConnector("lightning");
         phone8.setLength(160.8);
         phone8.setScreenRefreshRate(60);
-        phone8.setScreenTechnology("OLED");
+        phone8.setScreenTechnology(ScreenTechnology.OLED);
         phone8.setThickness(7.4);
         phone8.setWeight(228);
         phone8.setWidth(78.1);

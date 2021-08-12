@@ -8,6 +8,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 @Component
 public class InitUsers {
     private final IUserService<User> serviceUser;
@@ -24,6 +26,7 @@ public class InitUsers {
         user.setUserName("user");
         user.setEmail("user@mail.ru");
         user.setPassword(encoder.encode("user"));
+        user.setRegistrationDate(new Date());
 
         User admin = new User();
         admin.setEmail("admin@mail.ru");
@@ -31,6 +34,8 @@ public class InitUsers {
         admin.setStatus(Status.ACTIVE);
         admin.setRole(Role.ADMIN);
         admin.setPassword(encoder.encode("admin"));
+        admin.setRegistrationDate(new Date());
+
         serviceUser.save(user);
         serviceUser.save(admin);
     }

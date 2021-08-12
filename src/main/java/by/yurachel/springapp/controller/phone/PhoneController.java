@@ -2,9 +2,10 @@ package by.yurachel.springapp.controller.phone;
 
 import by.yurachel.springapp.model.phone.OperatingSystem;
 import by.yurachel.springapp.model.phone.Phone;
+import by.yurachel.springapp.model.phone.ScreenTechnology;
 import by.yurachel.springapp.service.IService;
-import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
-import by.yurachel.springapp.util.userUtils.UserUtilsInt;
+import by.yurachel.springapp.util.phoneUtils.PhoneUtils;
+import by.yurachel.springapp.util.userUtils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,13 +26,13 @@ import java.util.Arrays;
 public class PhoneController {
 
     private final IService<Phone> phoneService;
-    private final UserUtilsInt userUtils;
-    private final PhoneUtilsInt phoneUtils;
+    private final UserUtils userUtils;
+    private final PhoneUtils phoneUtils;
     private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
     public PhoneController(IService<Phone> phoneService,
-                           @Qualifier("userUtils") UserUtilsInt userUtils,
-                           @Qualifier("phoneUtils") PhoneUtilsInt phoneUtils) {
+                           @Qualifier("userUtils") UserUtils userUtils,
+                           @Qualifier("phoneUtils") PhoneUtils phoneUtils) {
         this.phoneService = phoneService;
         this.userUtils = userUtils;
         this.phoneUtils = phoneUtils;
@@ -65,6 +66,7 @@ public class PhoneController {
     public String addNewPhone(Model model) {
         model.addAttribute("newPhone", new Phone());
         model.addAttribute("os", OperatingSystem.values());
+        model.addAttribute("screenTech", ScreenTechnology.values());
         return "phones/newPhone";
     }
 
@@ -91,7 +93,7 @@ public class PhoneController {
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("phone", phoneService.findById(id));
         model.addAttribute("os", OperatingSystem.values());
-
+        model.addAttribute("screenTech", ScreenTechnology.values());
         return "phones/updatePhone";
     }
 
@@ -106,11 +108,12 @@ public class PhoneController {
         return "redirect:/phones";
     }
 
-    @DeleteMapping(value = "/{id}", name = "removePhone")
-    public String delete(@PathVariable("id") int id) {
+    @DeleteMapping(value = "/{id}")
+    @ResponseBody
+    public void delete(@PathVariable long id) {
         phoneService.deleteById(id);
-        return "redirect:/phones";
     }
+
 
     private int[] pagination(Page<Phone> phones) {
         int[] body;

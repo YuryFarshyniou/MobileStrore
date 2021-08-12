@@ -1,6 +1,5 @@
 package by.yurachel.springapp.model.phone;
 
-import by.yurachel.springapp.model.order.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -73,8 +72,8 @@ public class Phone implements Serializable {
     private double thickness;
     @NotNull(message = "Weight shouldn't be null")
     private int weight;
-    @NotNull(message = "Screen technology shouldn't be null")
-    private String screenTechnology;
+    @Enumerated(value = EnumType.STRING)
+    private ScreenTechnology screenTechnology;
     @NotNull(message = "Screen refresh rate shouldn't be null")
     private int screenRefreshRate;
     @NotNull(message = "Accumulator capacity shouldn't be null")
@@ -86,10 +85,6 @@ public class Phone implements Serializable {
     private String connectionConnector;
 
     private static final long serialVersionUID = 6295618226040646585L;
-
-    @ManyToMany(mappedBy = "phones")
-    @ToString.Exclude
-    private List<Order> orders = new ArrayList<>();
 
     @ElementCollection
     @LazyCollection(LazyCollectionOption.FALSE)

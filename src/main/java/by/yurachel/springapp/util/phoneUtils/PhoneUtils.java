@@ -1,12 +1,11 @@
-package by.yurachel.springapp.util.phoneUtils.impl;
+package by.yurachel.springapp.util.phoneUtils;
 
 import by.yurachel.springapp.model.phone.Phone;
-import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
 import org.springframework.stereotype.Component;
 
 @Component(value = "phoneUtils")
-public class PhoneUtils implements PhoneUtilsInt {
-    @Override
+public class PhoneUtils {
+
     public void addImage(Phone phone, String imgLink) {
         phone.getImages().add(imgLink);
     }

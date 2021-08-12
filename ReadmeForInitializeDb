@@ -1,3 +1,6 @@
 To initialize db, you need to go to the application.properties file.
 In this property file,you need to set property "spring.jpa.hibernate.ddl-auto" value "create",
-and then set property "project.initDb" value "true"
+and then set property "project.initDb" value "true".
+
+For role "ADMIN" - username: "admin",password: "admin".
+For role "USER" - username: "user",password: "user".

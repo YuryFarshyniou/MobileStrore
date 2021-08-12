@@ -1,7 +1,7 @@
 package by.yurachel.springapp.model.user;
 
 import by.yurachel.springapp.model.order.Order;
-import by.yurachel.springapp.util.userUtils.impl.UserUtilsInt;
+import by.yurachel.springapp.util.userUtils.UserUtils;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
@@ -13,17 +13,18 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
+@NoArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -65,8 +66,8 @@ public class User implements Serializable {
     private String address;
 
 
-    public UserUtilsInt getUserUtils() {
-        return UserUtilsInt.getUserUtils();
+    public String getAvatarData(byte[] byteDate) {
+        return Base64.getMimeEncoder().encodeToString(byteDate);
     }
 
     public User(String userName, String password, String email) {
