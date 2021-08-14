@@ -114,10 +114,13 @@ $(document).ready(function () {
             url: "/phones/" + phoneId,
             success: function () {
                 workingObject.closest("tr").remove()
+            }, error: function (e) {
+                alert(e)
+                console.log("ERROR", e)
             }
+
         })
     })
-
 
 })
 

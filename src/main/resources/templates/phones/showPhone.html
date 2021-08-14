@@ -36,6 +36,16 @@
             font-size: 18px;
         }
 
+        #bookmarkStar {
+            opacity: 0.1;
+            font-size: 30px;
+        }
+
+        #bookmarkStar:hover {
+            opacity: 1;
+
+        }
+
     </style>
 </head>
 <body>
@@ -46,9 +56,17 @@
             <img th:src="@{${phone.getImg()}}" width="300" height="300" alt="Image"/>
         </div>
         <div class="col-9">
-            <div class="row justify-content-center">
-                <div class="col justify-content-center">
-                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 300px"></h1>
+            <div class="row justify-content-centre ">
+                <div class="col-9">
+                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 100px"></h1>
+                </div>
+                <div class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;">
+                    <input type="hidden" th:value="${phone.id}">
+                    <button class=" " style="border:none;background-color: white">
+                        <span id="bookmarkStar">&#9734;</span>
+                        <span style="margin-left: 12px">In bookmarks</span>
+                    </button>
+
                 </div>
             </div>
             <div class="row">
@@ -135,8 +153,9 @@
                     <h2>Description</h2>
                 </div>
                 <div class="col-7">
-                    <p class="infoRawInShowPhone" sec:authorize="isAnonymous()">If you want to buy phones in our store,please <a
-                            class="infoLinkInShow" th:href="@{/login}">login</a>,or
+                    <p class="infoRawInShowPhone" sec:authorize="isAnonymous()">If you want to buy phones in our
+                        store,please <a
+                                class="infoLinkInShow" th:href="@{/login}">login</a>,or
                         make a <a class="infoLinkInShow" th:href="@{/registration}">registration</a> in out store.
                     </p>
                 </div>

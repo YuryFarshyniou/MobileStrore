@@ -9,9 +9,9 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -29,12 +29,11 @@ public class Phone implements Serializable {
     @GeneratedValue(generator = "increment")
     @GenericGenerator(name = "increment", strategy = "increment")
     private long id;
-
     @NotEmpty(message = "Phone name should not be empty")
     @Size(min = 2, max = 50, message = "Name should be between 2 and 50 characters")
     private String name;
     @Min(value = 1, message = "Price should be greater than one.")
-    @NotNull(message = "Price shouldn't be null.")
+    @Max(value = 10000, message = "Price should be below than 10000")
     private double price;
     @NotEmpty(message = "Processor should not be empty")
     private String processor;
@@ -44,44 +43,26 @@ public class Phone implements Serializable {
     private OperatingSystem os;
     @Temporal(TemporalType.DATE)
     private Date dateOfAdded;
-    @NotNull(message = "Screen size shouldn't be null")
     private double screenSize;
-    @NotNull(message = "RAM shouldn't be null")
     private int randomAccessMemory;
-    @NotNull(message = "Number of cameras shouldn't be null")
     private int numberOfMainCameras;
-    @NotNull(message = "Number of matrix points shouldn't be null")
     private int numberOfMatrixPoints;
-    @NotNull(message = "Number of sim cards shouldn't be null")
     private int numberOfSimCards;
-    @NotNull(message = "CPU clock speed shouldn't be null")
     private int cpuClockSpeed;
-    @NotNull(message = "Graphics accelerator shouldn't be null")
     private String graphicsAccelerator;
-    @NotNull(message = "Body material shouldn't be null")
     private String bodyMaterial;
-    @NotNull(message = "back cover material shouldn't be null")
     private String backCoverMaterial;
-    @NotNull(message = "Body color shouldn't be null")
     private String bodyColor;
-    @NotNull(message = "Length shouldn't be null")
     private double length;
-    @NotNull(message = "Width shouldn't be null")
     private double width;
-    @NotNull(message = "Thickness shouldn't be null")
     private double thickness;
-    @NotNull(message = "Weight shouldn't be null")
     private int weight;
     @Enumerated(value = EnumType.STRING)
     private ScreenTechnology screenTechnology;
-    @NotNull(message = "Screen refresh rate shouldn't be null")
     private int screenRefreshRate;
-    @NotNull(message = "Accumulator capacity shouldn't be null")
     private int accumulatorCapacity;
-    @NotNull(message = "Accumulator type shouldn't be null")
     private String accumulatorType;
     private String wifi;
-    @NotNull(message = "Connection connector shouldn't be null")
     private String connectionConnector;
 
     private static final long serialVersionUID = 6295618226040646585L;

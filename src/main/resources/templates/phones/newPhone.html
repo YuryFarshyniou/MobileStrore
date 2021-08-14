@@ -63,14 +63,12 @@
                                 <span style="font-weight: normal"> (You have to use Double.Example: 5.6)</span></label>
                             <input name="ram" type="text" class="form-control" id="screenSize" placeholder="screenSize"
                                    th:field="*{screenSize}">
-                            <span style="color: darkred" th:errors="*{screenSize}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="ram" class="form-label" style="font-weight: bold">RAM
                                 <span style="font-weight: normal"> (You have to use Integer.Example: 8)</span></label>
                             <input name="ram" type="text" class="form-control" id="ram" placeholder="ram"
                                    th:field="*{randomAccessMemory}">
-                            <span style="color: darkred" th:errors="*{randomAccessMemory}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="numberOfCameras" class="form-label" style="font-weight: bold">Number of cameras
@@ -78,7 +76,6 @@
                             <input name="numberOfCameras" type="text" class="form-control" id="numberOfCameras"
                                    placeholder="numberOfCameras"
                                    th:field="*{numberOfMainCameras}">
-                            <span style="color: darkred" th:errors="*{numberOfMainCameras}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="numberOfMatrixPoints" class="form-label" style="font-weight: bold">Number of
@@ -87,7 +84,6 @@
                             <input name="numberOfMatrixPoints" type="text" class="form-control"
                                    id="numberOfMatrixPoints" placeholder="numberOfMatrixPoints"
                                    th:field="*{numberOfMatrixPoints}">
-                            <span style="color: darkred" th:errors="*{numberOfMatrixPoints}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="numberOfSimCards" class="form-label" style="font-weight: bold">Number of sim
@@ -96,7 +92,6 @@
                             <input name="numberOfSimCards" type="text" class="form-control" id="numberOfSimCards"
                                    placeholder="numberOfSimCards"
                                    th:field="*{numberOfSimCards}">
-                            <span style="color: darkred" th:errors="*{numberOfSimCards}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="cpuClockSpeed" class="form-label" style="font-weight: bold">Cpu clock speed
@@ -104,7 +99,6 @@
                             <input name="cpuClockSpeed" type="text" class="form-control" id="cpuClockSpeed"
                                    placeholder="cpuClockSpeed"
                                    th:field="*{cpuClockSpeed}">
-                            <span style="color: darkred" th:errors="*{cpuClockSpeed}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="graphicsAccelerator" class="form-label" style="font-weight: bold">Graphics
@@ -113,7 +107,6 @@
                             <input name="graphicsAccelerator" type="text" class="form-control" id="graphicsAccelerator"
                                    placeholder="graphicsAccelerator"
                                    th:field="*{graphicsAccelerator}">
-                            <span style="color: darkred" th:errors="*{graphicsAccelerator}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="bodyMaterial" class="form-label" style="font-weight: bold">BodyMaterial
@@ -121,7 +114,6 @@
                             <input name="bodyMaterial" type="text" class="form-control" id="bodyMaterial"
                                    placeholder="bodyMaterial"
                                    th:field="*{bodyMaterial}">
-                            <span style="color: darkred" th:errors="*{bodyMaterial}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="backCoverMaterial" class="form-label" style="font-weight: bold">Back cover
@@ -130,7 +122,6 @@
                             <input name="backCoverMaterial" type="text" class="form-control" id="backCoverMaterial"
                                    placeholder="backCoverMaterial"
                                    th:field="*{backCoverMaterial}">
-                            <span style="color: darkred" th:errors="*{backCoverMaterial}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="bodyColor" class="form-label" style="font-weight: bold">Body color
@@ -138,7 +129,6 @@
                             <input name="bodyColor" type="text" class="form-control" id="bodyColor"
                                    placeholder="bodyColor"
                                    th:field="*{bodyColor}">
-                            <span style="color: darkred" th:errors="*{bodyColor}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="length" class="form-label" style="font-weight: bold">Length
@@ -146,7 +136,6 @@
                             <input name="length" type="text" class="form-control" id="length"
                                    placeholder="length"
                                    th:field="*{length}">
-                            <span style="color: darkred" th:errors="*{length}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="width" class="form-label" style="font-weight: bold">Width
@@ -154,7 +143,6 @@
                             <input name="width" type="text" class="form-control" id="width"
                                    placeholder="width"
                                    th:field="*{width}">
-                            <span style="color: darkred" th:errors="*{width}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="thickness" class="form-label" style="font-weight: bold">Thickness
@@ -162,7 +150,6 @@
                             <input name="thickness" type="text" class="form-control" id="thickness"
                                    placeholder="thickness"
                                    th:field="*{thickness}">
-                            <span style="color: darkred" th:errors="*{thickness}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="weight" class="form-label" style="font-weight: bold">Weight
@@ -170,7 +157,6 @@
                             <input name="weight" type="text" class="form-control" id="weight"
                                    placeholder="weight"
                                    th:field="*{weight}">
-                            <span style="color: darkred" th:errors="*{weight}"></span>
                         </div>
                         <div class="mb-3">
                             <label th:for="screenTechnology">
@@ -182,12 +168,6 @@
                                             th:text="${screenTech}"></option>
                                 </select>
                             </label>
-                            <!--                            <label for="screenTechnology" class="form-label" style="font-weight: bold">Screen technology-->
-                            <!--                                <span style="font-weight: normal"> (You have to use String with CAPS.Example:"AMOLED")</span></label>-->
-                            <!--                            <input name="screenTechnology" type="text" class="form-control" id="screenTechnology"-->
-                            <!--                                   placeholder="screenTechnology"-->
-                            <!--                                   th:field="*{screenTechnology}">-->
-                            <!--                            <span style="color: darkred" th:errors="*{screenTechnology}"></span>-->
                         </div>
                         <div class="mb-3">
                             <label for="screenRefreshRate" class="form-label" style="font-weight: bold">Screen refresh
@@ -196,7 +176,6 @@
                             <input name="screenRefreshRate" type="text" class="form-control" id="screenRefreshRate"
                                    placeholder="screenRefreshRate"
                                    th:field="*{screenRefreshRate}">
-                            <span style="color: darkred" th:errors="*{screenRefreshRate}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="accumulatorCapacity" class="form-label" style="font-weight: bold">Accumulator
@@ -205,7 +184,6 @@
                             <input name="accumulatorCapacity" type="text" class="form-control" id="accumulatorCapacity"
                                    placeholder="accumulatorCapacity"
                                    th:field="*{accumulatorCapacity}">
-                            <span style="color: darkred" th:errors="*{accumulatorCapacity}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="accumulatorType" class="form-label" style="font-weight: bold">Accumulator type
@@ -213,7 +191,6 @@
                             <input name="accumulatorType" type="text" class="form-control" id="accumulatorType"
                                    placeholder="accumulatorType"
                                    th:field="*{accumulatorType}">
-                            <span style="color: darkred" th:errors="*{accumulatorType}"></span>
                         </div>
                         <div class="mb-3">
                             <label for="wifi" class="form-label" style="font-weight: bold">Wi-fi
@@ -229,7 +206,6 @@
                             <input name="connectionConnector" type="text" class="form-control" id="connectionConnector"
                                    placeholder="connectionConnector"
                                    th:field="*{connectionConnector}">
-                            <span style="color: darkred" th:errors="*{connectionConnector}"></span>
                         </div>
                         <button type="submit" class="btn btn-success">Submit</button>
                     </form>

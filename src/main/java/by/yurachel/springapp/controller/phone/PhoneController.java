@@ -13,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -72,8 +74,11 @@ public class PhoneController {
 
     @PostMapping
     public String create(@ModelAttribute("newPhone") @Valid Phone phone,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("os", OperatingSystem.values());
+            model.addAttribute("screenTech", ScreenTechnology.values());
             return "phones/newPhone";
         }
         phoneService.save(phone);
@@ -100,8 +105,11 @@ public class PhoneController {
     @PutMapping("/{id}")
     public String update(@PathVariable int id,
                          @ModelAttribute("phone") @Valid Phone phone,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("os", OperatingSystem.values());
+            model.addAttribute("screenTech", ScreenTechnology.values());
             return "phones/updatePhone";
         }
         phoneService.save(phone);
@@ -110,8 +118,24 @@ public class PhoneController {
 
     @DeleteMapping(value = "/{id}")
     @ResponseBody
-    public void delete(@PathVariable long id) {
+    public ResponseEntity<Phone> delete(@PathVariable long id) {
         phoneService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping(value = "/elements")
+    @ResponseBody
+    public String elementsPerPage(@RequestParam(value = "value") int value,
+                                  @RequestParam(value = "phonesSize") int phonesSize) {
+        System.out.println(value + "   " + phonesSize);
+        return "redirect:/phones" + "?page=" + phonesSize + "&size=" + value;
+    }
+
+    @PostMapping(value = "/bookmark/{id}")
+    @ResponseBody
+    public ResponseEntity<Phone> addToBookmark(@PathVariable long id, Authentication authentication) {
+
+        return ResponseEntity.ok().build();
     }
 
 
