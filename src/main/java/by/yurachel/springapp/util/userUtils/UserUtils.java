@@ -2,13 +2,12 @@ package by.yurachel.springapp.util.userUtils;
 
 import by.yurachel.springapp.model.order.Order;
 import by.yurachel.springapp.model.order.OrderState;
+import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.util.orderUtils.OrderUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import java.util.Base64;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component(value = "userUtils")
@@ -18,8 +17,6 @@ public class UserUtils {
     public UserUtils(OrderUtils orderUtils) {
         this.orderUtils = orderUtils;
     }
-
-
 
 
     public void editOrder(List<Order> orders, Order order) {
@@ -47,7 +44,7 @@ public class UserUtils {
 
         return orders.stream().filter(order2 -> OrderState.PREPARATORY.equals(order2.getState()))
                 .findFirst()
-                .map(order1 -> orderUtils.containsPhone(order1.getPhones(),id))
+                .map(order1 -> orderUtils.containsPhone(order1.getPhones(), id))
                 .orElse(false);
     }
 
@@ -65,8 +62,19 @@ public class UserUtils {
                 .orElse(null);
     }
 
-
     public void deleteOrder(List<Order> orders, long id) {
         orders.removeIf(order -> order.getId() == id);
+    }
+
+    public void addToBookMarks(List<Phone> phones, Phone phone) {
+        phones.add(phone);
+    }
+
+    public boolean deleteFromBookmarks(List<Phone> phones, long id) {
+        return phones.removeIf(phone -> phone.getId() == id);
+    }
+
+    public boolean containsPhoneInBookmark(List<Phone> phones, long id) {
+        return phones.stream().anyMatch(phone -> phone.getId() == id);
     }
 }

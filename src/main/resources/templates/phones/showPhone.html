@@ -1,5 +1,5 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Phone</title>
@@ -36,16 +36,23 @@
             font-size: 18px;
         }
 
-        #bookmarkStar {
+        #bookmarkStarGray {
             opacity: 0.1;
             font-size: 30px;
         }
 
-        #bookmarkStar:hover {
+        #bookmarkStarGray:hover {
             opacity: 1;
-
         }
 
+        #bookmarkStarBright {
+            opacity: 1;
+            font-size: 30px
+        }
+
+        #bookmarkStarBright:hover {
+            opacity: 0.1;
+        }
     </style>
 </head>
 <body>
@@ -57,15 +64,27 @@
         </div>
         <div class="col-9">
             <div class="row justify-content-centre ">
-                <div class="col-9">
+                <div class="col-8">
                     <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 100px"></h1>
                 </div>
-                <div class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;">
-                    <input type="hidden" th:value="${phone.id}">
-                    <button class=" " style="border:none;background-color: white">
-                        <span id="bookmarkStar">&#9734;</span>
-                        <span style="margin-left: 12px">In bookmarks</span>
-                    </button>
+                <div class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;"
+                     sec:authorize="isAuthenticated()">
+                    <form th:method="POST" th:action="@{/phones/bookmark/{id}(id=${phone.id})}">
+                        <button th:unless="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
+                        phone.getId())}" class="addBookmark" style="border:none;background-color: white" type="submit">
+                            <span id="bookmarkStarGray">&#9734;</span>
+                            <span style="margin-left: 12px" id="NotInBookmarks">Not in bookmarks</span>
+                        </button>
+                    </form>
+                    <form th:method="DELETE" th:action="@{/phones/bookmark/{id}(id=${phone.id})}">
+                        <button th:if="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
+                        phone.getId())}" class="deleteBookmark" style="border:none;background-color: white"
+                                type="submit">
+                            <span id="bookmarkStarBright">&#9734;</span>
+                            <span style="margin-left: 12px" id="InBookmarks">In bookmarks</span>
+                        </button>
+                    </form>
+
 
                 </div>
             </div>
@@ -323,16 +342,7 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    $('.popup').click(function () {
-        let src = $(this).attr('src')
-        $('.modal-img').modal("show")
-        $('#popup-img').attr('src', src)
-    })
-</script>
 <footer th:insert="fragments/footer :: footer"></footer>
-
+<script th:src="@{/js/showPhone.js}"></script>
 </body>
 </html>

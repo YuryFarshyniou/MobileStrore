@@ -1,20 +1,25 @@
 package by.yurachel.springapp.controller.phone;
 
+import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.phone.OperatingSystem;
 import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.model.phone.ScreenTechnology;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.service.IService;
+import by.yurachel.springapp.service.userService.IUserService;
 import by.yurachel.springapp.util.phoneUtils.PhoneUtils;
 import by.yurachel.springapp.util.userUtils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,24 +27,26 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 @RequestMapping("/phones")
 public class PhoneController {
 
     private final IService<Phone> phoneService;
+    private final IUserService<User> userService;
     private final UserUtils userUtils;
     private final PhoneUtils phoneUtils;
+
     private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
-    public PhoneController(IService<Phone> phoneService,
-                           @Qualifier("userUtils") UserUtils userUtils,
-                           @Qualifier("phoneUtils") PhoneUtils phoneUtils) {
+    public PhoneController(IService<Phone> phoneService, IUserService<User> userService, UserUtils userUtils, PhoneUtils phoneUtils) {
         this.phoneService = phoneService;
+        this.userService = userService;
         this.userUtils = userUtils;
         this.phoneUtils = phoneUtils;
     }
-
 
     @GetMapping()
     public String phoneList(Model model,
@@ -123,19 +130,39 @@ public class PhoneController {
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(value = "/elements")
-    @ResponseBody
-    public String elementsPerPage(@RequestParam(value = "value") int value,
-                                  @RequestParam(value = "phonesSize") int phonesSize) {
-        System.out.println(value + "   " + phonesSize);
-        return "redirect:/phones" + "?page=" + phonesSize + "&size=" + value;
+    @PostMapping(value = "/bookmark/{id}")
+    public String addToBookmark(@PathVariable long id, Authentication authentication) {
+        boolean isEmpty = false;
+        Phone phone = phoneService.findById(id);
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        List<Phone> bookmarks = user.getBookmarks();
+        if (bookmarks.isEmpty()) {
+            isEmpty = true;
+        }
+        userUtils.addToBookMarks(bookmarks, phone);
+        userService.save(user);
+        if (isEmpty) {
+            User userFromDb = userService.findById(user.getId());
+            SecurityUser securityUser1 = new SecurityUser(userFromDb);
+            Collection<? extends GrantedAuthority> authorities = securityUser1.getAuthorities();
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(securityUser1, null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(token);
+
+        }
+        return "redirect:/phones/" + id;
     }
 
-    @PostMapping(value = "/bookmark/{id}")
-    @ResponseBody
-    public ResponseEntity<Phone> addToBookmark(@PathVariable long id, Authentication authentication) {
-
-        return ResponseEntity.ok().build();
+    @DeleteMapping(value = "/bookmark/{id}")
+    public String deleteFromBookmark(@PathVariable long id,
+                                     Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        boolean success = userUtils.deleteFromBookmarks(user.getBookmarks(), id);
+        System.out.println(user.getBookmarks());
+        System.out.println(user.getId());
+        userService.save(user);
+        return "redirect:/phones/" + id;
     }
 
 

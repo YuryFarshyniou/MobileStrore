@@ -1,7 +1,7 @@
 package by.yurachel.springapp.model.user;
 
 import by.yurachel.springapp.model.order.Order;
-import by.yurachel.springapp.util.userUtils.UserUtils;
+import by.yurachel.springapp.model.phone.Phone;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
@@ -12,10 +12,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -56,6 +53,10 @@ public class User implements Serializable {
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders = new ArrayList<>();
+
+    @ManyToMany()
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Phone> bookmarks = new ArrayList<>();
 
     @Lob
     private byte[] avatar;

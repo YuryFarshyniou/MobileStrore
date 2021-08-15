@@ -6,4 +6,6 @@ public interface IUserService<T> extends IService<T> {
     boolean findUserByUsername(String username);
 
     boolean findUserByEmail(String email);
+
+
 }

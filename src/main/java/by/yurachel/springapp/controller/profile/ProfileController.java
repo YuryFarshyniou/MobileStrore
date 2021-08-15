@@ -1,8 +1,8 @@
 package by.yurachel.springapp.controller.profile;
 
 import by.yurachel.springapp.config.security.SecurityUser;
-import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.order.Order;
+import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.service.IService;
@@ -20,10 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/profile")
@@ -52,6 +49,17 @@ public class ProfileController {
     @GetMapping("/{id}")
     public String userProfile(@PathVariable Long id) {
         return "profile/profile";
+    }
+
+    @GetMapping("/{id}/bookmarks")
+    public String bookmarks(@PathVariable long id, Authentication authentication,
+                            Model model) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        List<Phone> bookmarks = user.getBookmarks();
+        model.addAttribute("userUtils", userUtils);
+        model.addAttribute("bookmarks", bookmarks);
+        return "profile/bookmarks";
     }
 
     @GetMapping("/{id}/purchasesList")
@@ -159,7 +167,7 @@ public class ProfileController {
                                @RequestParam("file") MultipartFile file) throws IOException {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        if(file.isEmpty()){
+        if (file.isEmpty()) {
             return "redirect:/profile/" + user.getId() + "?noFileChosen=true";
         }
         String fileType = file.getOriginalFilename().split("\\.")[1].toLowerCase(Locale.ROOT);

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BookMarks</title>
+</head>
+
+<body>
+<header th:insert="fragments/header :: navigationBar"></header>
+<div class="container">
+    <div class="row">
+        <div class="col" style="margin-top: 100px">
+            <th:block th:each="bookmark :${bookmarks} ">
+                <p th:text="${bookmark.getName()}"></p>
+            </th:block>
+        </div>
+    </div>
+</div>
+<footer th:insert="fragments/footer :: footer"></footer>
+</body>
+</html>
