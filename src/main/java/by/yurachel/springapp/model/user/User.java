@@ -12,7 +12,10 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -65,6 +68,8 @@ public class User implements Serializable {
     private Date registrationDate;
 
     private String address;
+
+    private boolean isBookmarksEmpty;
 
 
     public String getAvatarData(byte[] byteDate) {

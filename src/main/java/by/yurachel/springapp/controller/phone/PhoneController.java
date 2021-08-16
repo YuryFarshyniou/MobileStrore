@@ -16,6 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -72,6 +73,7 @@ public class PhoneController {
     }
 
     @GetMapping("/new")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String addNewPhone(Model model) {
         model.addAttribute("newPhone", new Phone());
         model.addAttribute("os", OperatingSystem.values());
@@ -102,6 +104,7 @@ public class PhoneController {
 
 
     @GetMapping("/{id}/updatePhone")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("phone", phoneService.findById(id));
         model.addAttribute("os", OperatingSystem.values());
@@ -125,6 +128,7 @@ public class PhoneController {
 
     @DeleteMapping(value = "/{id}")
     @ResponseBody
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ResponseEntity<Phone> delete(@PathVariable long id) {
         phoneService.deleteById(id);
         return ResponseEntity.noContent().build();
@@ -132,36 +136,35 @@ public class PhoneController {
 
     @PostMapping(value = "/bookmark/{id}")
     public String addToBookmark(@PathVariable long id, Authentication authentication) {
-        boolean isEmpty = false;
+
         Phone phone = phoneService.findById(id);
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
         List<Phone> bookmarks = user.getBookmarks();
-        if (bookmarks.isEmpty()) {
-            isEmpty = true;
-        }
         userUtils.addToBookMarks(bookmarks, phone);
         userService.save(user);
-        if (isEmpty) {
+        if (user.isBookmarksEmpty()) {
             User userFromDb = userService.findById(user.getId());
             SecurityUser securityUser1 = new SecurityUser(userFromDb);
             Collection<? extends GrantedAuthority> authorities = securityUser1.getAuthorities();
             UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(securityUser1, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(token);
-
+            userFromDb.setBookmarksEmpty(false);
         }
         return "redirect:/phones/" + id;
     }
 
     @DeleteMapping(value = "/bookmark/{id}")
     public String deleteFromBookmark(@PathVariable long id,
+                                     @RequestParam(value = "from", required = false) String from,
                                      Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
-        boolean success = userUtils.deleteFromBookmarks(user.getBookmarks(), id);
-        System.out.println(user.getBookmarks());
-        System.out.println(user.getId());
+        userUtils.deleteFromBookmarks(user.getBookmarks(), id);
         userService.save(user);
+        if (from.equals("bookmarks")) {
+            return "redirect:/profile/" + id + "/bookmarks";
+        }
         return "redirect:/phones/" + id;
     }
 

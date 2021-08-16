@@ -15,7 +15,7 @@ public class ErrorAppController implements ErrorController {
 
     @GetMapping("/access-denied")
     public String getAccessDenied() {
-        return "error/access-denied";
+        return "errors/access-denied";
     }
 
     @RequestMapping("/error")
@@ -27,10 +27,10 @@ public class ErrorAppController implements ErrorController {
             int statusCode = Integer.parseInt(status.toString());
 
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "error/error_404";
+                return "errors/error_404";
             } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
 
-                return "error/error_505";
+                return "errors/error_505";
             }
 
         }

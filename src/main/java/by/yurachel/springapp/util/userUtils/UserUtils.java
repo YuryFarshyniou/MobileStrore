@@ -70,8 +70,8 @@ public class UserUtils {
         phones.add(phone);
     }
 
-    public boolean deleteFromBookmarks(List<Phone> phones, long id) {
-        return phones.removeIf(phone -> phone.getId() == id);
+    public void deleteFromBookmarks(List<Phone> phones, long id) {
+         phones.removeIf(phone -> phone.getId() == id);
     }
 
     public boolean containsPhoneInBookmark(List<Phone> phones, long id) {

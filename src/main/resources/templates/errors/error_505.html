@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org/" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Error404</title>
+    <title>Error505</title>
     <style>
 
     </style>
@@ -14,9 +14,10 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-8">
-            <img src="/img/error_404.jpg" class="rounded mx-auto d-block" alt="Error404"
-            width="100%" style="margin-top: 100px">
-            <h1>We can't find this page on our server.Please return to our <a href="/home">homepage</a>.</h1>
+            <img th:src="@{/img/errors/error_505.png}" class="rounded mx-auto d-block" alt="Error505"
+                 width="300" height="300" style="margin-top: 100px">
+            <h1>Oops,something goes wrong.Please, contact to our administrator.<br/>
+                Try to go to our <a href="/home">homepage</a>.</h1>
         </div>
     </div>
 </div>

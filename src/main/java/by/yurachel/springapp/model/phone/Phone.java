@@ -71,6 +71,7 @@ public class Phone implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<String> images = new ArrayList<>();
 
+
     public Phone() {
         dateOfAdded = new Date();
     }

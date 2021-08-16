@@ -20,7 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/profile")
@@ -122,6 +125,8 @@ public class ProfileController {
         orderService.save(order);
         if (requestFromParam.equals("showPhone")) {
             return "redirect:/phones/" + id;
+        } else if (requestFromParam.equals("bookmarks")) {
+            return "redirect:/profile/" + user.getId() + "/bookmarks";
         }
         return "redirect:/phones";
     }

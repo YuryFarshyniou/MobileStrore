@@ -3,57 +3,7 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Phone</title>
-    <style>
-        .addButtonInShowPhone {
-            margin-top: 30px;
-            margin-left: 30px;
-        }
-
-        body:not(.container) {
-            background-color: #e3e3e3;
-        }
-
-        .container {
-            background-color: white;
-            margin-bottom: 56px;
-            padding-bottom: 30px;
-        }
-
-        .ImagesShow img {
-            border: none;
-        }
-
-        .infoRawInShowPhone {
-            margin-top: 8px;
-            margin-left: 100px;
-            opacity: .6;
-        }
-
-        .infoLinkInShow {
-            font-weight: bold;
-            text-decoration: none;
-            color: gray;
-            font-size: 18px;
-        }
-
-        #bookmarkStarGray {
-            opacity: 0.1;
-            font-size: 30px;
-        }
-
-        #bookmarkStarGray:hover {
-            opacity: 1;
-        }
-
-        #bookmarkStarBright {
-            opacity: 1;
-            font-size: 30px
-        }
-
-        #bookmarkStarBright:hover {
-            opacity: 0.1;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/phones/showPhone.css}">
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
@@ -67,8 +17,8 @@
                 <div class="col-8">
                     <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 100px"></h1>
                 </div>
-                <div class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;"
-                     sec:authorize="isAuthenticated()">
+                <div  class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;"
+                     sec:authorize="hasRole('ROLE_USER')">
                     <form th:method="POST" th:action="@{/phones/bookmark/{id}(id=${phone.id})}">
                         <button th:unless="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
                         phone.getId())}" class="addBookmark" style="border:none;background-color: white" type="submit">
@@ -76,7 +26,7 @@
                             <span style="margin-left: 12px" id="NotInBookmarks">Not in bookmarks</span>
                         </button>
                     </form>
-                    <form th:method="DELETE" th:action="@{/phones/bookmark/{id}(id=${phone.id})}">
+                    <form th:method="DELETE" th:action="@{/phones/bookmark/{id}(id=${phone.id},from='showPhone')}">
                         <button th:if="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
                         phone.getId())}" class="deleteBookmark" style="border:none;background-color: white"
                                 type="submit">
@@ -84,8 +34,6 @@
                             <span style="margin-left: 12px" id="InBookmarks">In bookmarks</span>
                         </button>
                     </form>
-
-
                 </div>
             </div>
             <div class="row">

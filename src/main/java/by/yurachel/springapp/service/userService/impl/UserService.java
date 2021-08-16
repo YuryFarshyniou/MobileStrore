@@ -43,7 +43,7 @@ public class UserService implements IUserService<User> {
 
     @Override
     public User save(User user) {
-        User userToDb = userRepository.saveAndFlush(user);
+        User userToDb = userRepository.save(user);
         logger.info("User {} successfully added to db", user.getId());
         return userToDb;
     }

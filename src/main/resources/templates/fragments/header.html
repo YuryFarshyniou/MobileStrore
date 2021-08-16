@@ -57,7 +57,7 @@
                    th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">
 
                     <img th:if="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                         th:src="@{/img/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
+                         th:src="@{/img/profile/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
 
                     <img th:unless="${#authentication.getPrincipal().getUser().getAvatar()==null}"
                          th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getAvatarData(
@@ -75,17 +75,17 @@
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">Profile</a>
                             </li>
-                            <li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}/purchasesList(id=${#authentication.getPrincipal().getUser().getId()})}">Purchase
                                     list</a>
                             </li>
-                            <li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}/orders(id=${#authentication.getPrincipal().getUser().getId()})}">Your
                                     orders</a>
                             </li>
-                            <li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}/bookmarks(id=${#authentication.getPrincipal().getUser().getId()})}">Bookmarks</a>
                             </li>

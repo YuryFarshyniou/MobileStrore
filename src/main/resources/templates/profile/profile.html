@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/profile/profile.css}">
 
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="row row-cols-auto" id="idRow">
         <div class="col" id="headerProfile">
             <img th:if="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                 th:src="@{/img/unknownUser.jpg}" class="float-start"
+                 th:src="@{/img/profile/unknownUser.jpg}" class="float-start"
                  alt="profileImg" id="profileUnknown" width="200" height="200">
             <img th:unless="${#authentication.getPrincipal().getUser().getAvatar()==null}"
                  th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getAvatarData
