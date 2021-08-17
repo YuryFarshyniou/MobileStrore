@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Profile</title>
-    <link rel="stylesheet" th:href="@{/css/purchasesList.css}">
+    <link rel="stylesheet" th:href="@{/css/profile/purchasesList.css}">
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
@@ -18,7 +18,7 @@
             <img class="rounded mx-auto d-block"
                  th:if="${userUtils.getPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders())==null ||
            userUtils.getPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders()).getPhones().isEmpty()}"
-                 th:src="@{/img/emptyList.png}" alt="EmptyList"/>
+                 th:src="@{/img/profile/emptyList.png}" alt="EmptyList"/>
 
             <table class="table mt-5" id="purchaseTable"
                    th:unless="${userUtils.getPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders())==null ||
@@ -31,8 +31,12 @@
                                 id="nameColumn">name
                             </td>
 
-                            <td th:class="image"><img th:src="@{${phone2.getKey().getImg()}}" th:width="90"
-                                                      th:height="90" th:alt="Image"/></td>
+                            <td th:class="image">
+                                <a th:href="@{/phones/{id}(id=${phone2.getKey().getId()})}">
+                                    <img th:src="@{${phone2.getKey().getImg()}}" th:width="90"
+                                         th:height="90" th:alt="Image"/>
+                                </a>
+                            </td>
                             <td id="actionWithPurchases">
                                 <form th:action="@{/profile/{id}/minusOperator(id=${phone2.getKey().getId()})}"
                                       th:name="minusOperationInPurchaseList" id="minusFormButton" th:method="DELETE">
@@ -61,8 +65,10 @@
                                 <form th:action="@{/profile/{id}/allPhones(id=${phone2.getKey().getId()})}"
                                       th:method="DELETE"
                                       th:name="garbageIconInPurchaseList">
-                                    <input type="image" th:src="@{/img/garbageIcon.png}" alt="garbageIcon"
-                                           width="30" height="30"/>
+
+
+                                    <input type="image" th:src="@{/img/profile/garbageIcon.png}" alt="garbageIcon"
+                                           width="30" height="30" id="deleteFromPurchaseListAllCurrentPhones"/>
                                 </form>
                             </td>
                         </tr>

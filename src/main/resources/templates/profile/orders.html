@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/css/orders.css}">
+    <link rel="stylesheet" th:href="@{/css/profile/orders.css}">
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="col-2">
                                         <img th:if="${order.getState().name().equals('DELIVERED')}"
-                                             th:src="@{/img/delivered.jpg}"
+                                             th:src="@{/img/profile/delivered.jpg}"
                                              class="rounded mx-auto d-block" alt="deliveredImg" width="150px"
                                              height="150px">
                                     </div>
@@ -60,7 +60,7 @@
                                               th:method="DELETE">
                                             <input class="card-title"
                                                    th:if="${order.getState().name()=='CANCELED'}or ${order.getState().name()=='DELIVERED'}"
-                                                   type="image" th:src="@{/img/garbageIcon.png}" alt="garbageIcon"
+                                                   type="image" th:src="@{/static/img/profile/garbageIcon.png}" alt="garbageIcon"
                                                    width="20" height="20" id="garbageOrder"/>
                                         </form>
                                         <span th:text="'Status of order: '+${order.getState()}"

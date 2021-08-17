@@ -1,7 +1,7 @@
 package by.yurachel.springapp.config.security;
 
 import by.yurachel.springapp.model.user.Status;
-import by.yurachel.springapp.model.user.impl.User;
+import by.yurachel.springapp.model.user.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.GrantedAuthority;

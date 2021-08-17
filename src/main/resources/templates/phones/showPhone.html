@@ -1,54 +1,40 @@
 <html xmlns:th="http://www.thymeleaf.org/" lang="en"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">>
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <title>Phone</title>
-    <style>
-        .addButtonInShowPhone {
-            margin-top: 30px;
-            margin-left: 30px;
-        }
-
-        body:not(.container) {
-            background-color: #e3e3e3;
-        }
-
-        .container {
-            background-color: white;
-            margin-bottom: 56px;
-            padding-bottom: 30px;
-        }
-
-        .ImagesShow img {
-            border: none;
-        }
-
-        .infoRawInShowPhone {
-            margin-top: 8px;
-            margin-left: 100px;
-            opacity: .6;
-        }
-
-        .infoLinkInShow {
-            font-weight: bold;
-            text-decoration: none;
-            color: gray;
-            font-size: 18px;
-        }
-
-    </style>
+    <link rel="stylesheet" th:href="@{/css/phones/showPhone.css}">
 </head>
 <body>
 <header th:insert="fragments/header :: navigationBar"></header>
 <div class="container ">
     <div class="row justify-content-left mb-2 ">
         <div class="col-3 " style="margin-top: 80px">
-            <img th:src="@{${phone.getImg()}}" width="300" height="300" alt="Image"/>
+            <img th:src="@{${phone.getImg()}}" class="popup" width="300" height="300" alt="Image"
+                 style="cursor: pointer"/>
         </div>
         <div class="col-9">
-            <div class="row justify-content-center">
-                <div class="col justify-content-center">
-                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 300px"></h1>
+            <div class="row justify-content-centre ">
+                <div class="col-8">
+                    <h1 th:text="${phone.getName()}" style="margin-top: 80px; margin-left: 100px"></h1>
+                </div>
+                <div  class="col d-flex justify-content-end" style="margin-top: 80px; margin-right: 60px;"
+                     sec:authorize="hasRole('ROLE_USER')">
+                    <form th:method="POST" th:action="@{/phones/bookmark/{id}(id=${phone.id})}">
+                        <button th:unless="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
+                        phone.getId())}" class="addBookmark" style="border:none;background-color: white" type="submit">
+                            <span id="bookmarkStarGray">&#9734;</span>
+                            <span style="margin-left: 12px" id="NotInBookmarks">Not in bookmarks</span>
+                        </button>
+                    </form>
+                    <form th:method="DELETE" th:action="@{/phones/bookmark/{id}(id=${phone.id},from='showPhone')}">
+                        <button th:if="${userUtils.containsPhoneInBookmark(#authentication.getPrincipal().getUser().getBookmarks(),
+                        phone.getId())}" class="deleteBookmark" style="border:none;background-color: white"
+                                type="submit">
+                            <span id="bookmarkStarBright">&#9734;</span>
+                            <span style="margin-left: 12px" id="InBookmarks">In bookmarks</span>
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -64,7 +50,7 @@
                 <div class="col-1">
                     <h3 th:text="${phone.getPrice()} + '$'" style="margin-top: 30px"></h3>
                 </div>
-                <div class="col-2" sec:authorize="isAuthenticated()">
+                <div class="col-2" sec:authorize="isAuthenticated() and !hasRole('ROLE_ADMIN')">
                     <form th:action="@{/profile/{id}(id=${phone.getId()},requestFrom='showPhone')}" th:method="POST"
                           th:name="addPurchaseInPhoneCatalog">
                         <input th:unless="${userUtils.containsPhoneInPreparatoryOrder(#authentication.getPrincipal().getUser().getOrders(),phone.getId())}"
@@ -77,7 +63,7 @@
                 </div>
                 <div class="col-2" sec:authorize="hasRole('ROLE_ADMIN')" style="margin-top: 30px">
                     <button type="button" class="btn btn-primary " data-bs-toggle="modal"
-                            data-bs-target="#addImage" data-bs-whatever="@mdo" style="margin-left: 14px">Add image
+                            data-bs-target="#addImage" data-bs-whatever="@mdo" style="margin-left: 30px">Add image
                     </button>
                     <div class="modal fade" id="addImage" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
@@ -135,8 +121,9 @@
                     <h2>Description</h2>
                 </div>
                 <div class="col-7">
-                    <p class="infoRawInShowPhone" sec:authorize="isAnonymous()">If you want to buy phones in our store,please <a
-                            class="infoLinkInShow" th:href="@{/login}">login</a>,or
+                    <p class="infoRawInShowPhone" sec:authorize="isAnonymous()">If you want to buy phones in our
+                        store,please <a
+                                class="infoLinkInShow" th:href="@{/login}">login</a>,or
                         make a <a class="infoLinkInShow" th:href="@{/registration}">registration</a> in out store.
                     </p>
                 </div>
@@ -304,16 +291,7 @@
         </div>
     </div>
 </div>
-
-
-<script>
-    $('.popup').click(function () {
-        let src = $(this).attr('src')
-        $('.modal-img').modal("show")
-        $('#popup-img').attr('src', src)
-    })
-</script>
 <footer th:insert="fragments/footer :: footer"></footer>
-
+<script th:src="@{/js/showPhone.js}"></script>
 </body>
 </html>

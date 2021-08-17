@@ -1,17 +1,26 @@
 package by.yurachel.springapp.controller.phone;
 
+import by.yurachel.springapp.config.security.SecurityUser;
 import by.yurachel.springapp.model.phone.OperatingSystem;
-import by.yurachel.springapp.model.phone.impl.Phone;
+import by.yurachel.springapp.model.phone.Phone;
+import by.yurachel.springapp.model.phone.ScreenTechnology;
+import by.yurachel.springapp.model.user.User;
 import by.yurachel.springapp.service.IService;
-import by.yurachel.springapp.util.phoneUtils.PhoneUtilsInt;
-import by.yurachel.springapp.util.userUtils.UserUtilsInt;
+import by.yurachel.springapp.service.userService.IUserService;
+import by.yurachel.springapp.util.phoneUtils.PhoneUtils;
+import by.yurachel.springapp.util.userUtils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,24 +28,26 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 @Controller
 @RequestMapping("/phones")
 public class PhoneController {
 
     private final IService<Phone> phoneService;
-    private final UserUtilsInt userUtils;
-    private final PhoneUtilsInt phoneUtils;
+    private final IUserService<User> userService;
+    private final UserUtils userUtils;
+    private final PhoneUtils phoneUtils;
+
     private static final Logger logger = LoggerFactory.getLogger(PhoneController.class);
 
-    public PhoneController(IService<Phone> phoneService,
-                           @Qualifier("userUtils") UserUtilsInt userUtils,
-                           @Qualifier("phoneUtils") PhoneUtilsInt phoneUtils) {
+    public PhoneController(IService<Phone> phoneService, IUserService<User> userService, UserUtils userUtils, PhoneUtils phoneUtils) {
         this.phoneService = phoneService;
+        this.userService = userService;
         this.userUtils = userUtils;
         this.phoneUtils = phoneUtils;
     }
-
 
     @GetMapping()
     public String phoneList(Model model,
@@ -62,16 +73,21 @@ public class PhoneController {
     }
 
     @GetMapping("/new")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String addNewPhone(Model model) {
         model.addAttribute("newPhone", new Phone());
         model.addAttribute("os", OperatingSystem.values());
+        model.addAttribute("screenTech", ScreenTechnology.values());
         return "phones/newPhone";
     }
 
     @PostMapping
     public String create(@ModelAttribute("newPhone") @Valid Phone phone,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("os", OperatingSystem.values());
+            model.addAttribute("screenTech", ScreenTechnology.values());
             return "phones/newPhone";
         }
         phoneService.save(phone);
@@ -88,29 +104,71 @@ public class PhoneController {
 
 
     @GetMapping("/{id}/updatePhone")
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("phone", phoneService.findById(id));
         model.addAttribute("os", OperatingSystem.values());
-
+        model.addAttribute("screenTech", ScreenTechnology.values());
         return "phones/updatePhone";
     }
 
     @PutMapping("/{id}")
     public String update(@PathVariable int id,
                          @ModelAttribute("phone") @Valid Phone phone,
-                         BindingResult bindingResult) {
+                         BindingResult bindingResult,
+                         Model model) {
         if (bindingResult.hasErrors()) {
+            model.addAttribute("os", OperatingSystem.values());
+            model.addAttribute("screenTech", ScreenTechnology.values());
             return "phones/updatePhone";
         }
         phoneService.save(phone);
         return "redirect:/phones";
     }
 
-    @DeleteMapping(value = "/{id}", name = "removePhone")
-    public String delete(@PathVariable("id") int id) {
+    @DeleteMapping(value = "/{id}")
+    @ResponseBody
+    @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
+    public ResponseEntity<Phone> delete(@PathVariable long id) {
+        phoneUtils.findUsersAndOrders(id);
         phoneService.deleteById(id);
-        return "redirect:/phones";
+        return ResponseEntity.noContent().build();
     }
+
+    @PostMapping(value = "/bookmark/{id}")
+    public String addToBookmark(@PathVariable long id, Authentication authentication) {
+
+        Phone phone = phoneService.findById(id);
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        List<Phone> bookmarks = user.getBookmarks();
+        userUtils.addToBookMarks(bookmarks, phone);
+        userService.save(user);
+        if (user.isBookmarksEmpty()) {
+            User userFromDb = userService.findById(user.getId());
+            SecurityUser securityUser1 = new SecurityUser(userFromDb);
+            Collection<? extends GrantedAuthority> authorities = securityUser1.getAuthorities();
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(securityUser1, null, authorities);
+            SecurityContextHolder.getContext().setAuthentication(token);
+            userFromDb.setBookmarksEmpty(false);
+        }
+        return "redirect:/phones/" + id;
+    }
+
+    @DeleteMapping(value = "/bookmark/{id}")
+    public String deleteFromBookmark(@PathVariable long id,
+                                     @RequestParam(value = "from", required = false) String from,
+                                     Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        userUtils.deleteFromBookmarks(user.getBookmarks(), id);
+        userService.save(user);
+        if (from.equals("bookmarks")) {
+            return "redirect:/profile/" + id + "/bookmarks";
+        }
+        return "redirect:/phones/" + id;
+    }
+
 
     private int[] pagination(Page<Phone> phones) {
         int[] body;

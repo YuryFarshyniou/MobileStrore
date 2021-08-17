@@ -6,7 +6,7 @@
 </head>
 
 <body>
-<div th:fragment="navigationBar">
+<div  th:fragment="navigationBar">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
@@ -35,10 +35,10 @@
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/phones">Catalog</a>
+                        <a class="nav-link" th:href="@{/phones}">Catalog</a>
                     </li>
                     <li sec:authorize="isAnonymous()" class="nav-item">
-                        <a class="nav-link" href="/registration">Sign up</a>
+                        <a class="nav-link" th:href="@{/registration}">Sign up</a>
                     </li>
                     <li sec:authorize="hasAuthority('developers:write')" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
@@ -47,7 +47,7 @@
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>
-                                <a class="dropdown-item" href="/phones/new">Add new phone</a>
+                                <a class="dropdown-item" th:href="@{/phones/new}">Add new phone</a>
                             </li>
                         </ul>
                     </li>
@@ -57,10 +57,10 @@
                    th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">
 
                     <img th:if="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                         th:src="@{/img/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
+                         th:src="@{/img/profile/unknownUser.jpg}" alt="" width="35" height="35" style="border-radius: 50%">
 
                     <img th:unless="${#authentication.getPrincipal().getUser().getAvatar()==null}"
-                         th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getUserUtils().getAvatarData(
+                         th:src="'data:image/png;base64,'+${#authentication.getPrincipal().getUser().getAvatarData(
                          (#authentication.getPrincipal().getUser().getAvatar()))}"
                          alt="" width="35" height="35"
                          style="border-radius: 50%"> </a>
@@ -75,15 +75,19 @@
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}(id=${#authentication.getPrincipal().getUser().getId()})}">Profile</a>
                             </li>
-                            <li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}/purchasesList(id=${#authentication.getPrincipal().getUser().getId()})}">Purchase
                                     list</a>
                             </li>
-                            <li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
                                 <a class="dropdown-item"
                                    th:href="@{/profile/{id}/orders(id=${#authentication.getPrincipal().getUser().getId()})}">Your
                                     orders</a>
+                            </li>
+                            <li sec:authorize="hasRole('ROLE_USER')">
+                                <a class="dropdown-item"
+                                   th:href="@{/profile/{id}/bookmarks(id=${#authentication.getPrincipal().getUser().getId()})}">Bookmarks</a>
                             </li>
                         </ul>
                     </li>
@@ -93,7 +97,6 @@
                             type="submit">Logout
                     </button>
                 </form>
-
                 <form class="form-inline my-2 my-lg-0" form-method="get" th:action="@{/login}"
                       style="margin-right: 30px">
                     <button sec:authorize="isAnonymous()" th:href="@{~/login}"
