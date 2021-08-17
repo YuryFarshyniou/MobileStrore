@@ -24,7 +24,6 @@ import java.util.List;
 @Setter
 @EqualsAndHashCode
 @ToString
-@NoArgsConstructor
 public class User implements Serializable {
 
     @Id
@@ -74,6 +73,10 @@ public class User implements Serializable {
 
     public String getAvatarData(byte[] byteDate) {
         return Base64.getMimeEncoder().encodeToString(byteDate);
+    }
+
+    public User() {
+        registrationDate = new Date();
     }
 
     public User(String userName, String password, String email) {
