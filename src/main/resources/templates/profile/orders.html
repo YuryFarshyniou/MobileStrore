@@ -60,7 +60,7 @@
                                               th:method="DELETE">
                                             <input class="card-title"
                                                    th:if="${order.getState().name()=='CANCELED'}or ${order.getState().name()=='DELIVERED'}"
-                                                   type="image" th:src="@{/static/img/profile/garbageIcon.png}" alt="garbageIcon"
+                                                   type="image" th:src="@{/img/profile/garbageIcon.png}" alt="garbageIcon"
                                                    width="20" height="20" id="garbageOrder"/>
                                         </form>
                                         <span th:text="'Status of order: '+${order.getState()}"
