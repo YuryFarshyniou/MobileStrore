@@ -11,3 +11,5 @@ document.getElementById("phoneSum").innerHTML = "Sum of your purchases: " + sumV
 document.getElementById("amountOfPurchasesAndSum").innerHTML = "Amount of purchases: " + amountOfPurchases +
     "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
     + " Sum of purchases: &nbsp;" + sumVal + "$";
+
+

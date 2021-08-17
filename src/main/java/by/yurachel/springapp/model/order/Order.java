@@ -1,7 +1,6 @@
 package by.yurachel.springapp.model.order;
 
 
-import by.yurachel.springapp.model.order.OrderState;
 import by.yurachel.springapp.model.phone.Phone;
 import by.yurachel.springapp.model.user.User;
 import lombok.*;

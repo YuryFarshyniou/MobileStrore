@@ -34,6 +34,6 @@ public class ErrorAppController implements ErrorController {
             }
 
         }
-        return "error";
+        return "/errors/error";
     }
 }

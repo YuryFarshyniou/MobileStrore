@@ -92,9 +92,62 @@ ${#dates.format(#authentication.getPrincipal().getUser().getRegistrationDate(),'
 
             </div>
         </div>
-        <div class="col-1" id="editColumn">
-            <a th:href="@{/profile/{id}/edit(id=${#authentication.getPrincipal().getUser().getId()})} " id="editHref">Edit</a>
+        <div class="col-2" style="margin-top: 30px">
+            <button type="button" class="btn btn-success " data-bs-toggle="modal"
+                    data-bs-target="#editProfile" data-bs-whatever="@mdo" style="margin-top:30% ">Edit profile
+            </button>
+            <div class="modal fade" id="editProfile" tabindex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Edit profile</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <form th:method="PUT" th:action="@{/profile/{id}/editUser(id=${user.id})}"
+                              th:object="${user}">
+                            <div class="modal-body">
+
+                                <div class="mb-3">
+                                    <label for="userName" class="form-label">UserName: </label>
+                                    <input name="name" type="text" class="form-control" id="userName"
+                                           aria-describedby="emailHelp" placeholder="userName" th:field="*{userName}">
+                                    <span style="color: darkred" th:errors="*{userName}"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email: </label>
+                                    <input name="email" type="text" class="form-control" id="email"
+                                           placeholder="email" th:field="*{email}">
+                                    <span style="color: darkred" th:errors="*{email}"></span>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="firstName" class="form-label">FirstName: </label>
+                                    <input name="firstName" type="text" class="form-control" id="firstName"
+                                           placeholder="FirstName" th:field="*{firstName}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="lastName" class="form-label">LastName: </label>
+                                    <input name="lastName" type="text" class="form-control" id="lastName"
+                                           placeholder="LastName" th:field="*{lastName}">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="address" class="form-label">Address: </label>
+                                    <input name="address" type="text" class="form-control" id="address"
+                                           placeholder="address" th:field="*{address}">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">Update</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
+        <!--        <div class="col-1" id="editColumn">-->
+        <!--            <a th:href="@{/profile/{id}/edit(id=${#authentication.getPrincipal().getUser().getId()})} " id="editHref">Edit</a>-->
+        <!--        </div>-->
     </div>
 </div>
 <footer th:insert="fragments/footer :: footer"></footer>

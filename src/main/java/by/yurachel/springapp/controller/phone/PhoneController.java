@@ -130,6 +130,7 @@ public class PhoneController {
     @ResponseBody
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     public ResponseEntity<Phone> delete(@PathVariable long id) {
+        phoneUtils.findUsersAndOrders(id);
         phoneService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

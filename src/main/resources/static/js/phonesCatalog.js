@@ -105,24 +105,42 @@ function phoneFilter() {
     }
 }
 
-$(document).ready(function () {
-    $(document).on("click", "#deleteA", function () {
-        let phoneId = $(this).parent().find('input').val();
-        let workingObject = $(this)
-        $.ajax({
-            type: "DELETE",
-            url: "/phones/" + phoneId,
-            success: function () {
-                workingObject.closest("tr").remove()
-            }, error: function (e) {
-                alert(e)
-                console.log("ERROR", e)
-            }
-
-        })
+$(document).on("click", "#deleteA", function () {
+    swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this phone!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
     })
+        .then((willDelete) => {
+            if (willDelete) {
+                let phoneId = $(this).parent().find('input').val();
+                let workingObject = $(this);
 
+                $.ajax({
+                    type: "DELETE",
+                    url: "/phones/" + phoneId,
+                    success: function () {
+                        workingObject.closest("tr").remove()
+                    }, error: function (e) {
+                        alert(e)
+                        console.log("ERROR", e)
+                    }
+                })
+                swal("Phone has been deleted!", {
+                    icon: "success",
+                });
+            } else {
+                swal("Phone is safe!");
+            }
+        });
 })
+
+
+
+
+
 
 
 

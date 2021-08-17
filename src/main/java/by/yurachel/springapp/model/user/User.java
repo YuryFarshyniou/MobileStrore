@@ -57,7 +57,7 @@ public class User implements Serializable {
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Order> orders = new ArrayList<>();
 
-    @ManyToMany()
+    @ManyToMany
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Phone> bookmarks = new ArrayList<>();
 

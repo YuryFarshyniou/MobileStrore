@@ -11,6 +11,7 @@ import by.yurachel.springapp.util.userUtils.UserUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,11 @@ public class ProfileController {
     }
 
     @GetMapping("/{id}")
-    public String userProfile(@PathVariable Long id) {
+    public String userProfile(@PathVariable Long id, Model model,
+                              Authentication authentication) {
+        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
+        User user = securityUser.getUser();
+        model.addAttribute("user", user);
         return "profile/profile";
     }
 
@@ -89,21 +94,13 @@ public class ProfileController {
         model.addAttribute("orders", orders);
         model.addAttribute("orderUtils", orderUtils);
 
+
         return "profile/orders";
     }
 
     @GetMapping("/{id}/successOrder")
     public String successOrder(@PathVariable Long id) {
         return "fragments/successOrder";
-    }
-
-    @GetMapping("/{id}/edit")
-    public String editProfile(@PathVariable Long id, Authentication authentication,
-                              Model model) {
-        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-        User user = securityUser.getUser();
-        model.addAttribute("user", user);
-        return "profile/editProfile";
     }
 
     @PostMapping(value = "/{id}")
@@ -189,7 +186,7 @@ public class ProfileController {
                            @ModelAttribute("user") @Valid User user,
                            BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "profile/editProfile";
+            return "profile/profile";
         }
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User loginUser = securityUser.getUser();
@@ -214,7 +211,7 @@ public class ProfileController {
         return "redirect:/profile/" + securityUser.getUser().getId() + "/purchasesList";
     }
 
-    @DeleteMapping(value = "/{id}/allPhones")
+        @DeleteMapping(value = "/{id}/allPhones")
     public String removeAllPhonesInOneOrderFromPurchase(@PathVariable Long id, Authentication authentication) {
         SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
         User user = securityUser.getUser();
@@ -229,6 +226,7 @@ public class ProfileController {
         orderService.save(order);
         return "redirect:/profile/{id}/purchasesList";
     }
+
 
     @DeleteMapping(value = "/{id}/order")
     public String deleteOrder(@PathVariable Long id, Authentication authentication) {
